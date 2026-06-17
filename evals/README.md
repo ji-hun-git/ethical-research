@@ -19,20 +19,18 @@ pytest
 `cases.json` holds the behavioral cases — including the three from the smoke test
 (`plan-safe`, `citation-verify-trap`, `question-critical-ko`) — each with a
 pass/fail rubric (`must` / `must_not`). Because these test an assistant's
-*behavior*, scoring is a judgment call, so the harness offers both a no-setup
-path and a live path.
+*behavior*, scoring is a judgment call, so the harness keeps it explicit and
+offline (no network, no dependencies).
 
 ```
 python evals/run_evals.py --list             # print every case with its rubric
 python evals/run_evals.py --template > r.json # emit a results template to fill by hand
 python evals/run_evals.py --check r.json      # score a filled file (exits 1 on any fail)
-python evals/run_evals.py --with-claude       # live: run prompts through Claude + an LLM judge
 ```
 
-The live path (`--with-claude`) is opt-in: it needs `ANTHROPIC_API_KEY` and
-`pip install anthropic`. It sends each prompt to a model whose system prompt is
-this repo's `skills/ethical-research/SKILL.md`, then asks a judge model whether
-the reply meets the rubric. The default paths run offline with no key.
+A reviewer runs each prompt against the skill, marks the case pass/fail in the
+results file, and `--check` turns that into a gate. If you want to automate
+scoring, wire your own model-backed judge into the check step.
 
 The narrative specs in `safe-cases.md` and `unsafe-cases.md` are the
 human-readable companion to `cases.json`.

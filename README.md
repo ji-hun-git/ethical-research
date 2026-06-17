@@ -115,11 +115,11 @@ pip install -r requirements-dev.txt
 pytest
 ```
 
-Behavioral cases live in [evals/](evals/) with pass/fail rubrics:
+Behavioral cases live in [evals/](evals/) with pass/fail rubrics (offline review gate):
 
 ```
-python evals/run_evals.py --list           # cases and rubrics
-python evals/run_evals.py --with-claude     # live run (needs ANTHROPIC_API_KEY)
+python evals/run_evals.py --list            # cases and rubrics
+python evals/run_evals.py --check r.json     # score a filled results file
 ```
 
 ## License and credit
