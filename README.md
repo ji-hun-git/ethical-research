@@ -94,6 +94,24 @@ the general category of academic-research copilots — and says so plainly. See
 **[ACKNOWLEDGMENTS.md](ACKNOWLEDGMENTS.md)**. Holding ourselves to the citation
 standard we ask of users is not a footnote here; it's the thesis.
 
+## Development
+
+Structural tests run with no external dependencies and catch plugin-breaking
+drift (broken reference links, commands missing from the router, a charter that
+lost a commitment):
+
+```
+pip install -r requirements-dev.txt
+pytest
+```
+
+Behavioral cases live in [evals/](evals/) with pass/fail rubrics:
+
+```
+python evals/run_evals.py --list           # cases + rubrics
+python evals/run_evals.py --with-claude     # live run (needs ANTHROPIC_API_KEY)
+```
+
 ## This is a starting point, not the final word
 
 Ethical Research is an evolving project. Better safeguards, better Korean academic

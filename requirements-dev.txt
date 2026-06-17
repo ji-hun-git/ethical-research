@@ -1,0 +1,6 @@
+# Structural tests + eval harness
+pytest>=7
+
+# Optional — only for the live behavioral run:
+#   python evals/run_evals.py --with-claude
+# anthropic>=0.40
