@@ -30,9 +30,22 @@ full-paper-generation mode** — that is the point.
 | `/er-review` | A candid critique of your own draft — finds the weak points and explains them. |
 | `/er-citation-check` | Goes through your citations and flags fabrication risk, unsupported claims, and missing locators. |
 | `/er-disclosure` | Drafts a truthful, venue-appropriate AI-use disclosure statement. |
+| `/er-question` | Turns the tables — the assistant asks **you** the hard questions to sharpen your own thinking. |
 
 Every substantive output ships **with** an AI-use disclosure statement. You can't
 get the help without the honesty.
+
+## You stay the thinker
+
+The real risk with a capable research assistant is quieter than fabrication: if
+the AI does all the planning and synthesizing, you become a passive approver of
+its output. Ethical Research is built against that. Across every mode it runs a
+**critical-thinking loop** — it asks what *you* already think before it analyzes,
+leads with questions instead of answers, surfaces your assumptions, hands you
+options instead of decisions, and asks you to critique its drafts. It does the
+mechanical lifting; the ideas, claims, and judgment stay yours. The `/er-question`
+mode exists purely for this. See
+[reference/critical-thinking.md](reference/critical-thinking.md).
 
 ## What it will not do
 
@@ -50,6 +63,16 @@ style, proper hedging and 논증 connectives), never translates citations or pro
 nouns, and can produce side-by-side Korean/English when you ask. See
 [reference/korean-academic-register.md](reference/korean-academic-register.md)
 and [reference/korean-glossary.md](reference/korean-glossary.md).
+
+## Grounded in Korean research ethics
+
+Its rules are anchored in the frameworks Korean researchers actually answer to —
+the national 「연구윤리 확보를 위한 지침」 and the research-integrity regulations at
+SNU and KAIST (연구진실성위원회, IRB, mandatory research-ethics education). No
+fabrication, citation integrity, and no ghostwriting map onto 위조/변조, 표절, and
+부당한 저자 표시 respectively. It will not, however, claim your work "complies with"
+a specific institution's policy unless you give it that policy's text. See
+[reference/research-ethics-kr.md](reference/research-ethics-kr.md).
 
 ## Install (Claude Code)
 

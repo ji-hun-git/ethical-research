@@ -35,6 +35,10 @@ Ethical Research is not "the same thing in Korean." It makes deliberately strict
   without also receiving the disclosure statement that goes with it.
 - It treats **Korean as a first language to compose in**, never as a translation
   target.
+- It runs a **critical-thinking loop** that keeps the human doing the reasoning —
+  asking the user questions rather than just producing answers for them.
+- It is **grounded in Korean research-ethics frameworks** (the national guideline
+  plus SNU and KAIST regulations), not a generic notion of "ethics."
 
 See [ETHICS.md](ETHICS.md) for the full charter.
 
