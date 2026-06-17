@@ -1,0 +1,18 @@
+{
+  "name": "ethical-research",
+  "version": "0.1.0",
+  "description": "Korean-English academic-integrity research copilot for Claude Code. Plans, reviews, verifies, and improves scholarly work; refuses ghostwriting, fabricated citations, and AI-use concealment.",
+  "author": {
+    "name": "Ethical Research project contributors"
+  },
+  "license": "MIT",
+  "keywords": [
+    "academic-integrity",
+    "research",
+    "korean",
+    "bilingual",
+    "citation-verification",
+    "literature-review",
+    "claude-code"
+  ]
+}
