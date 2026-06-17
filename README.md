@@ -76,10 +76,16 @@ a specific institution's policy unless you give it that policy's text. See
 
 ## Install (Claude Code)
 
-Ethical Research is a Claude Code plugin. Point Claude Code at this repository as a local
-plugin marketplace, then enable the `ethical-research` plugin. Once enabled, the skill
-activates on phrases like "help me plan my paper / 논문 계획 도와줘 / check these
-citations / 인용 확인" or via the `/er-*` commands above.
+In Claude Code, run:
+
+```
+/plugin marketplace add ji-hun-git/ethical-research
+/plugin install ethical-research@ethical-research
+```
+
+Then start a new session. The skill activates on phrases like "help me plan my
+paper / 논문 계획 도와줘 / check these citations / 인용 확인", or via the `/er-*`
+commands above.
 
 ## Origin & credit
 

@@ -72,10 +72,15 @@ IRB, 필수 연구윤리 교육)이 그것입니다. 허위 금지·인용 정�
 
 ## 설치 (Claude Code)
 
-윤리적 연구는 Claude Code 플러그인입니다. 이 저장소를 로컬 플러그인 마켓플레이스로
-등록한 뒤 `ethical-research` 플러그인을 활성화하십시오. 활성화하면 "논문 계획 도와줘 /
-인용 확인 / help me plan my paper" 같은 표현이나 위의 `/er-*` 명령어로 스킬이
-작동합니다.
+Claude Code에서 다음을 실행하십시오.
+
+```
+/plugin marketplace add ji-hun-git/ethical-research
+/plugin install ethical-research@ethical-research
+```
+
+이후 새 세션을 시작하십시오. "논문 계획 도와줘 / 인용 확인 / help me plan my paper"
+같은 표현이나 위의 `/er-*` 명령어로 스킬이 작동합니다.
 
 ## 출처와 인용
 
