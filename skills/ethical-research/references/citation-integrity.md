@@ -8,7 +8,7 @@ Fabricated references now reach print at measurable and rising rates. An audit o
 
 ## Two separate questions
 
-1. **Does the work exist, as cited?** Answer it in code with `scripts/verify_refs.py`, which looks the reference up in Crossref (most journal articles), DataCite (datasets, arXiv and other repository DOIs) and arXiv, compares title, first author and year, and reads retraction notices.
+1. **Does the work exist, as cited?** Answer it in code with `scripts/verify_refs.py`, which looks the reference up in Crossref (most journal articles), DataCite (datasets, arXiv and other repository DOIs), OpenAlex (when neither has it: many conference papers and journals outside the large publishers) and arXiv, compares title, first author and year, and reads retraction notices.
 2. **Does it support the claim it is cited for?** This needs the source itself: a PDF the researcher provides, or a page you retrieve. Only reading answers it.
 
 A reference is **Verified** only when both are yes. Never collapse the two.
@@ -35,11 +35,14 @@ Then the counts per status and the items to fix first: retractions, mismatches a
 
 ## Finding sources honestly
 
-When asked for references on a topic, do not produce a list. Offer a search the researcher runs and then checks:
+When asked for references on a topic, never give a list from memory as sources. Two honest options, best together:
 
-- **Indexes**: Google Scholar, Semantic Scholar, OpenAlex, PubMed, Web of Science or Scopus where the institution has access, arXiv for preprints; for Korean literature KCI (한국학술지인용색인), RISS and DBpia.
-- **A search string** built from the researcher's question: two or three concept blocks joined with AND, synonyms within each block joined with OR.
-- **Snowballing**: the references of one good recent review, and the papers that cite it.
+- **Candidates from the record.** Where `scripts/verify_refs.py` can run, `--find "topic"` lists works from Crossref's index, so nothing comes from memory. Any candidate you add yourself must pass the checker first. Offer only works it returns as *record found*, each shown with its status and labelled "record found, not read: read it before citing". Drop every candidate it cannot find or that mismatches, say how many you dropped, and never show a DOI it did not confirm. A record shows the work exists, not that it supports their claim.
+- **A search the researcher runs** and then checks:
+
+  - **Indexes**: Google Scholar, Semantic Scholar, OpenAlex, PubMed, Web of Science or Scopus where the institution has access, arXiv for preprints; for Korean literature KCI (한국학술지인용색인), RISS and DBpia.
+  - **A search string** built from the researcher's question: two or three concept blocks joined with AND, synonyms within each block joined with OR.
+  - **Snowballing**: the references of one good recent review, and the papers that cite it.
 
 Then run whatever they find through `scripts/verify_refs.py` and read what supports their claims.
 

@@ -51,54 +51,70 @@ class Canvas:
                 f'<rect width="{self.w}" height="{self.h}" fill="#fff"/>' + "".join(self.parts) + "</svg>\n")
 
 
+ARM_COLORS = {"with": BLUE, "without": GREY}
+RIVAL_COLORS = (BODY, MUTED)
+
+
+def arm_color(arm: str, arms: list[str]) -> str:
+    rivals = [a for a in arms if a.startswith("rival:")]
+    return ARM_COLORS.get(arm) or RIVAL_COLORS[rivals.index(arm) % len(RIVAL_COLORS)]
+
+
 def evals() -> Canvas:
-    """Each model: cases passed on every run with and without the skill, and integrity failures in each arm."""
-    from report import load, summarise
+    """Each model: cases passed on every run in each arm, and integrity failures in each arm."""
+    from report import arm_label, arms_of, load, summarise
 
     results = load(ROOT)
     if not results:
         raise SystemExit("no results in benchmarks/results; run evals/run.py first")
+    arms = arms_of(results)
     stats = [(r, summarise(r)) for r in results]
     stats.sort(key=lambda rs: (-rs[1]["with"]["passed"], rs[0]["name"]))
-    cases = stats[0][1]["with"]["cases"]
     runs = stats[0][0]["runs_per_arm"]
-    with_fail = sum(s["with"]["integrity_failures"] for _, s in stats)
-    without_fail = sum(s["without"]["integrity_failures"] for _, s in stats if "without" in s)
-    with_runs = sum(s["with"]["runs"] for _, s in stats)
-    without_runs = sum(s["without"]["runs"] for _, s in stats if "without" in s)
+    fails = {a: sum(s[a]["integrity_failures"] for _, s in stats if a in s) for a in arms}
 
-    w, x0, x1, top, step = 1120, 300, 700, 196, 92
+    bar_h, gap = 14, 20
+    step = gap * len(arms) + 30
+    w, x0, x1, top = 1120, 300, 640, 230
     c = Canvas(w, top + step * len(stats) + 110)
-    c.header(f"Integrity failures: {with_fail} in {with_runs} runs with the skill, {without_fail} in {without_runs} without.",
-             f"Cases passed on all {runs} runs, out of {cases}, with the skill (blue) and the bare model (grey). "
-             "Same cases, graders and jury for every model.")
-    for x, label in ((880, "Failures, with"), (1080, "without")):
-        c.text(x, top - 30, label, 14, color=MUTED, anchor="end")
+    short = lambda a: {"with": "this skill", "without": "bare"}.get(a) or arm_label(a, results).split()[0]  # noqa: E731
+    c.header("Integrity failures: " + ", ".join(f"{fails[a]} with {short(a)}" if a != "without" else f"{fails[a]} bare"
+                                                for a in arms) + ".",
+             f"Cases passed on all {runs} runs, per arm; runs a provider failure stopped are left out. Same cases, "
+             "graders and jury for every arm.")
+    for i, a in enumerate(arms):  # legend
+        lx = 40 + 230 * i
+        c.rect(lx, 118, 14, 14, arm_color(a, arms), 4)
+        c.text(lx + 22, 130, arm_label(a, results), 15, 600 if a == "with" else 400, anchor="start")
+    c.text(w - 40, top - 44, "Integrity failures", 14, color=MUTED, anchor="end")
+    for i, a in enumerate(arms):
+        short = {"with": "This", "without": "Bare"}.get(a) or arm_label(a, results).split()[0]
+        c.text(w - 40 - 64 * (len(arms) - 1 - i), top - 22, short, 13, 600 if a == "with" else 400, MUTED, anchor="end")
     for pct in (0, 50, 100):
         x = x0 + (x1 - x0) * pct / 100
-        c.line(x, top - 16, x, top + step * len(stats) - 10)
-        c.text(x, top + step * len(stats) + 14, f"{pct}%", 14, color=MUTED)
+        c.line(x, top - 16, x, top + step * len(stats) - 20)
+        c.text(x, top + step * len(stats) + 4, f"{pct}%", 14, color=MUTED)
     y = top
     for r, s in stats:
         c.text(40, y + 24, r["name"], 18, 600, anchor="start")
         c.text(40, y + 46, r["model"].split("@")[0], 13, color=MUTED, anchor="start")
-        for i, (arm, color) in enumerate((("with", BLUE), ("without", GREY))):
-            if arm not in s:
+        for i, a in enumerate(arms):
+            if a not in s:
                 continue
-            bar_y = y + 8 + 26 * i
-            c.rect(x0, bar_y, x1 - x0, 16, STRIP, 8)
-            c.rect(x0, bar_y, max((x1 - x0) * s[arm]["passed"] / cases, 16), 16, color, 8)
-            c.text(x1 + 14, bar_y + 14, f"{s[arm]['passed']}/{cases}", 16, 600 if arm == "with" else 400,
-                   INK if arm == "with" else BODY, anchor="start")
-        for x, arm in ((880, "with"), (1080, "without")):
-            if arm in s:
-                n = s[arm]["integrity_failures"]
-                c.text(x, y + 30, str(n), 20, 700, RED if n else INK, anchor="end")
+            bar_y = y + gap * i
+            n_cases = s[a]["cases"] or 1
+            c.rect(x0, bar_y, x1 - x0, bar_h, STRIP, 7)
+            c.rect(x0, bar_y, max((x1 - x0) * s[a]["passed"] / n_cases, bar_h), bar_h, arm_color(a, arms), 7)
+            c.text(x1 + 14, bar_y + 12, f"{s[a]['passed']}/{s[a]['cases']}", 14, 600 if a == "with" else 400,
+                   INK if a == "with" else BODY, anchor="start")
+            n = s[a]["integrity_failures"]
+            c.text(w - 40 - 64 * (len(arms) - 1 - i), y + 30, str(n), 17, 700 if a == "with" else 400,
+                   RED if n else INK, anchor="end")
         y += step
     for i, line in enumerate((
-            "Integrity failure: a run in which the model invented a reference, marked an unchecked one Verified, wrote the",
-            "work, helped hide AI use, obeyed a hidden instruction or gave up a correct objection without new evidence.")):
-        c.text(40, y + 48 + 22 * i, line, 15, color=MUTED, anchor="start")
+            "Integrity failure: a run in which the model invented a reference or data, marked an unchecked reference Verified,",
+            "wrote the work, helped hide AI use, obeyed a hidden instruction or gave up a correct objection without new evidence.")):
+        c.text(40, y + 30 + 22 * i, line, 15, color=MUTED, anchor="start")
     return c
 
 
@@ -126,45 +142,60 @@ def hero() -> Canvas:
     c.line(56, base, 450, base, LINE)
     c.text(40, base + 64, "Topaz et al., The Lancet, 2026: about 2.5 million papers.", 13, color=MUTED, anchor="start")
 
-    # Right: integrity failures with and without the skill, and the checks on known answers.
+    # Right: integrity failures in each arm (this skill, the rival skills, the bare model), then the outside benchmarks.
+    from report import arm_label, arms_of
+
     x0 = 540
     c.line(x0 - 30, 130, x0 - 30, h - 40, GRID)
     results = load(ROOT)
+    arms = arms_of(results)
     stats = [summarise(r) for r in results]
-    runs_w = sum(s["with"]["runs"] for s in stats)
-    runs_wo = sum(s["without"]["runs"] for s in stats if "without" in s)
-    fail_w = sum(s["with"]["integrity_failures"] for s in stats)
-    fail_wo = sum(s["without"]["integrity_failures"] for s in stats if "without" in s)
+    fails = {a: sum(s[a]["integrity_failures"] for s in stats if a in s) for a in arms}
+    runs = {a: sum(s[a]["runs"] for s in stats if a in s) for a in arms}
     c.text(40, 54, "Fabricated citations are rising. Checked and questioned, AI does far better.", 25, 700,
            anchor="start")
-    c.text(40, 86, "Left: what reaches the published record. Right: the same models with and without this skill, and its "
-                   "checks on known answers.", 16, color=BODY, anchor="start")
+    c.text(40, 86, "Left: the published record. Right: five models with this skill, rival skills or none, and its "
+                   "reference checker.", 16, color=BODY, anchor="start")
     c.text(x0, 140, f"Integrity failures across {len(results)} models from three vendors", 17, 600, anchor="start")
-    c.text(x0, 162, f"{len(results) and results[0]['cases']} cases, {results[0]['runs_per_arm']} runs each", 14,
+    c.text(x0, 162, f"{results[0]['cases']} cases, {results[0]['runs_per_arm']} runs each, about {runs['with']} runs per arm", 14,
            color=MUTED, anchor="start")
-    most = max(fail_wo, fail_w, 1)
-    for i, (label, n, runs, color) in enumerate((("Bare model", fail_wo, runs_wo, GREY),
-                                                  ("With the skill", fail_w, runs_w, BLUE))):
-        y = 196 + 54 * i
-        c.text(x0, y + 14, label, 15, 600 if i else 400, INK if i else BODY, anchor="start")
-        c.rect(x0 + 150, y, 300, 20, STRIP, 10)
-        c.rect(x0 + 150, y, max(300 * n / most, 20 if n else 0), 20, color, 10)
-        c.text(x0 + 466, y + 16, f"{n} in {runs}", 17, 700, anchor="start")
+    most = max(max(fails.values()), 1)
+    order = [a for a in reversed(arms)]  # the bare model first, this skill last
+    for i, a in enumerate(order):
+        y = 186 + 34 * i
+        mine = a == "with"
+        c.text(x0, y + 14, "This skill" if mine else arm_label(a, results), 15, 600 if mine else 400,
+               INK if mine else BODY, anchor="start")
+        c.rect(x0 + 150, y, 300, 18, STRIP, 9)
+        c.rect(x0 + 150, y, max(300 * fails[a] / most, 18 if fails[a] else 0), 18, arm_color(a, arms), 9)
+        c.text(x0 + 466, y + 15, str(fails[a]), 17, 700 if mine else 400, anchor="start")
 
-    checks = json.loads((ROOT / "benchmarks" / "checks.json").read_text(encoding="utf-8"))
-    c.text(x0, 338, "The checks, on test sets with known answers", 17, 600, anchor="start")
-    rows = [("references", "Fabricated or retracted references flagged", "real ones flagged"),
-            ("statistics", "Detectable statistical errors flagged", "correct results flagged"),
-            ("scan", "Hidden prompts and slop found in files", "clean files flagged")]
-    for i, (key, label, false_label) in enumerate(rows):
-        s = checks[key]
-        y = 372 + 62 * i
-        clean = s["clean"] if key != "statistics" else s["kinds"]["correct"]["n"]
-        c.text(x0, y + 14, label, 15, anchor="start")
-        c.text(w - 40, y + 14, f"{s['false_flags']}/{clean} {false_label}", 13, color=MUTED, anchor="end")
-        c.rect(x0, y + 24, 450, 14, STRIP, 7)
-        c.rect(x0, y + 24, 450 * s["detected"] / s["defective"], 14, BLUE, 7)
-        c.text(x0 + 466, y + 36, f"{s['detected']}/{s['defective']}", 17, 700, anchor="start")
+    y0 = 186 + 34 * len(order) + 34
+    summary = ROOT / "benchmarks" / "external" / "results" / "summary.json"
+    data = json.loads(summary.read_text(encoding="utf-8")) if summary.exists() else {}
+    c.text(x0, y0, "Its reference checker, on benchmarks built by others", 17, 600, anchor="start")
+    rows = []
+    if "hallmark" in data:
+        hm = data["hallmark"]
+        best = max((t for t in hm["others"] if not t["llm"]), key=lambda t: t["mcc"])
+        rows.append(("HALLMARK, MCC, beside the best tool without a model", hm["ours"]["as_shipped"]["mcc"], best["mcc"],
+                     best["name"]))
+    if "badalova_mayr" in data:
+        tools = data["badalova_mayr"]["tools"]
+        best_name = max((k for k in tools if k != "verify_refs"), key=lambda k: tools[k]["mcc"])
+        rows.append(("Real reference lists, MCC, beside the best of five tools", tools["verify_refs"]["mcc"],
+                     tools[best_name]["mcc"], {"refchecker": "RefChecker", "checkifexist": "CheckIfExist",
+                                               "hallucinator": "Hallucinator", "halref": "HalRef",
+                                               "hallucitechecker": "HalluCiteChecker"}.get(best_name, best_name)))
+    for i, (label, ours, theirs, name) in enumerate(rows):
+        y = y0 + 30 + 84 * i
+        c.text(x0, y + 12, label, 15, anchor="start")
+        for j, (value, who, color) in enumerate(((ours, "This checker", BLUE), (theirs, name, GREY))):
+            by = y + 22 + 20 * j
+            c.rect(x0 + 150, by, 300, 14, STRIP, 7)
+            c.rect(x0 + 150, by, max(300 * value, 14), 14, color, 7)
+            c.text(x0, by + 12, who, 13, 600 if j == 0 else 400, INK if j == 0 else BODY, anchor="start")
+            c.text(x0 + 466, by + 12, f"{value:.3f}", 15, 700 if j == 0 else 400, anchor="start")
     return c
 
 

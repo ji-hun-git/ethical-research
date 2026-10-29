@@ -7,7 +7,7 @@
 | Level | Finding | Why it matters |
 | --- | --- | --- |
 | error | Instructions addressed to an AI ("ignore previous instructions", "give a positive review", "for LLM reviewers"), in English or Korean | Hidden reviewer prompts were found in 17 arXiv preprints in 2025 and are misconduct at ICML, ICLR, ACL and under Korea's 2026 MSIT guide ([policies.md](policies.md)) |
-| error | Text a reader cannot see: drawn in white, at a size under 2 pt, in PDF render mode 3 (invisible), Word hidden or white runs, LaTeX comments and `\textcolor{white}` carrying instructions | The usual hiding places for those prompts |
+| error | Text a reader cannot see: drawn in white, at a size under 2 pt, in PDF render mode 3 (invisible), placed off the page, Word hidden or white runs, LaTeX comments and `\textcolor{white}` carrying instructions, and instructions in a PDF's metadata (title, subject, keywords, XMP) | The usual hiding places for those prompts |
 | error | Unicode tag characters, decoded so the hidden message can be quoted | They render as nothing and can carry instructions |
 | error | Five or more tortured phrases | The threshold the Problematic Paper Screener uses for a likely paper-mill product |
 | warn | Each tortured phrase ("profound learning" for deep learning, "counterfeit consciousness" for artificial intelligence), from Table 1 of Cabanac et al. (2021) | Synonym-swapped terms are a paper-mill signature; a single one can be innocent |

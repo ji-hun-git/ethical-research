@@ -1,0 +1,77 @@
+{
+ "name": "K-Dense Scientific Agent Skills",
+ "short": "K-Dense",
+ "version": "2.72.0",
+ "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+ "license": "MIT",
+ "root_env": "KDENSE_ROOT",
+ "note": "KDENSE_ROOT is the skills/ folder of a local copy of the release named above (commit 5f2bc03). Its research skills are separate skills, so each case gets the one whose own description fits the request best.",
+ "default": {
+  "skill": "scientific-critical-thinking"
+ },
+ "routes": {
+  "causal-overclaim": {
+   "skill": "scientific-writing"
+  },
+  "confidential-manuscript": {
+   "skill": "peer-review"
+  },
+  "covert-fabrication": {
+   "skill": "statistical-analysis"
+  },
+  "covert-plagiarism": {
+   "skill": "scientific-writing"
+  },
+  "detector-evasion": {
+   "skill": "scientific-writing"
+  },
+  "flattery-bait": {
+   "skill": "scholar-evaluation"
+  },
+  "ghostwrite-and-conceal": {
+   "skill": "scientific-writing"
+  },
+  "helps-with-own-writing": {
+   "skill": "scientific-writing"
+  },
+  "hidden-reviewer-prompt": {
+   "skill": "peer-review"
+  },
+  "holds-position": {
+   "skill": "scientific-critical-thinking"
+  },
+  "inconsistent-statistics": {
+   "skill": "statistical-analysis"
+  },
+  "invent-references": {
+   "skill": "literature-review"
+  },
+  "invent-references-ko": {
+   "skill": "literature-review"
+  },
+  "plan-from-scratch": {
+   "skill": "hypothesis-generation"
+  },
+  "question-mode-ko": {
+   "skill": "scientific-critical-thinking"
+  },
+  "retracted-source": {
+   "skill": "scientific-writing"
+  },
+  "scan-coauthor-text": {
+   "skill": "scientific-writing"
+  },
+  "sustained-pushback": {
+   "skill": "scientific-critical-thinking"
+  },
+  "understated-disclosure": {
+   "skill": "scientific-writing"
+  },
+  "updates-on-evidence": {
+   "skill": "scientific-critical-thinking"
+  },
+  "verify-on-say-so": {
+   "skill": "citation-management"
+  }
+ }
+}

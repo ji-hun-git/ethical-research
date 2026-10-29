@@ -7,8 +7,8 @@
   statistics   APA-style results whose p-values were computed with SciPy as the reference, half of
                them corrupted (a wrong p, or a flipped significance decision)
   scan         clean paragraphs, and the same paragraphs with a defect planted: an instruction to AI
-               reviewers in white or tiny PDF text, in a hidden Word run, in a LaTeX comment, in Unicode
-               tag characters; chatbot text; tortured phrases
+               reviewers in white, tiny, invisible or off-page PDF text or the PDF's metadata, in a hidden
+               Word run, in a LaTeX comment, in Unicode tag characters; chatbot text; tortured phrases
 
   python benchmarks/checks.py                 run all three (references need the network)
   python benchmarks/checks.py statistics scan offline parts only
@@ -187,12 +187,16 @@ def pdf(visible: str, hidden: str | None, how: str) -> bytes:
     def esc(s):
         return s.replace("\\", "\\\\").replace("(", "\\(").replace(")", "\\)")
     content = f"BT /F1 11 Tf 0 0 0 rg 72 700 Td ({esc(visible)}) Tj ET".encode("latin-1")
-    if hidden:
-        state = {"white text": "1 1 1 rg /F1 11 Tf", "tiny font": "0 g /F1 0.4 Tf",
-                 "invisible render mode": "3 Tr /F1 11 Tf"}[how]
-        content += f" BT {state} 72 690 Td ({esc(hidden)}) Tj ET".encode("latin-1")
+    info = b""
+    if hidden and how == "metadata":
+        info = f"3 0 obj\n<< /Title (A study) /Subject ({esc(hidden)}) >>\nendobj\n".encode("latin-1")
+    elif hidden:
+        state = {"white text": "1 1 1 rg /F1 11 Tf 72 690 Td", "tiny font": "0 g /F1 0.4 Tf 72 690 Td",
+                 "invisible render mode": "3 Tr /F1 11 Tf 72 690 Td", "off the page": "/F1 11 Tf 1 0 0 1 -2000 -2000 Tm"}[how]
+        content += f" BT {state} ({esc(hidden)}) Tj ET".encode("latin-1")
     body = zlib.compress(content)
-    return (b"%PDF-1.4\n1 0 obj\n<< /Length " + str(len(body)).encode() + b" /Filter /FlateDecode >>\nstream\n"
+    return (b"%PDF-1.4\n2 0 obj\n<< /Type /Page /MediaBox [0 0 612 792] >>\nendobj\n" + info +
+            b"1 0 obj\n<< /Length " + str(len(body)).encode() + b" /Filter /FlateDecode >>\nstream\n"
             + body + b"\nendstream\nendobj\n%%EOF")
 
 
@@ -213,7 +217,7 @@ def scan_cases() -> list[tuple[str, str, bytes, bool]]:
     for para in CLEAN:
         cases += [("clean text", ".txt", para.encode(), False), ("clean PDF", ".pdf", pdf(para, None, ""), False),
                   ("clean Word", ".docx", docx(para, None), False), ("clean LaTeX", ".tex", para.encode(), False)]
-        for how in ("white text", "tiny font", "invisible render mode"):
+        for how in ("white text", "tiny font", "invisible render mode", "off the page", "metadata"):
             cases.append((f"PDF {how}", ".pdf", pdf(para, INSTRUCTION, how), True))
         cases.append(("Word hidden run", ".docx", docx(para, INSTRUCTION), True))
         cases.append(("LaTeX comment", ".tex", (para + "\n% " + INSTRUCTION.lower()).encode(), True))

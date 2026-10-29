@@ -25,3 +25,6 @@ evals/results/
 # Local / secrets
 .env
 *.local
+
+# Built by scripts/build_skill_zip.py
+dist/

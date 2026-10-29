@@ -106,6 +106,23 @@ class Modes(unittest.TestCase):
         listed = set(re.findall(r"^\| `(er-[a-z-]+)` \|", (SKILL / "SKILL.md").read_text(encoding="utf-8"), re.M))
         self.assertEqual(listed, {m.name for m in MODES})
 
+    def test_the_upload_zip_is_self_contained(self):
+        sys.path.insert(0, str(ROOT / "scripts"))
+        import build_skill_zip
+        files = dict(build_skill_zip.entries())
+        self.assertEqual(len([n for n in files if "/modes/" in n]), 12)
+        for name, data in files.items():
+            text = data.decode("utf-8", "replace")
+            self.assertNotIn("CLAUDE_PLUGIN_ROOT", text, name)
+            self.assertNotIn("$ARGUMENTS", text, name)
+            if name.endswith(".md"):  # every relative link inside the zip lands on a file in the zip
+                base = name.rsplit("/", 1)[0]
+                for link in re.findall(r"\]\(((?!https?:|#)[^)\s]+\.md)\)", text):
+                    parts = []
+                    for part in f"{base}/{link}".split("/"):
+                        parts = parts[:-1] if part == ".." else parts + [part]
+                    self.assertIn("/".join(parts), files, f"{name}: {link}")
+
 
 class Evals(unittest.TestCase):
     def test_cases_load_in_claude_plugin_eval(self):

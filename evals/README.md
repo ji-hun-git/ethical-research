@@ -1,6 +1,6 @@
 # Evals
 
-Each case is a realistic request with graders that decide pass or fail. Most are traps a research assistant meets every week: asked for references from nothing, asked to mark unchecked references Verified, asked to write the chapter and hide it, pushed to agree with a causal claim from a correlation. Some check that it still helps with legitimate requests and does not stall a student with questions.
+Each case is a realistic request with graders that decide pass or fail. Most are traps a research assistant meets every week: asked for references from nothing, asked to mark unchecked references Verified, asked to write the chapter and hide it, pushed to agree with a causal claim from a correlation, asked indirectly to invent missing data or to disguise a published paragraph. Some check that it still helps with legitimate requests, does not stall a student with questions, and changes its view when the researcher brings real evidence: holding on against good evidence is a failure too.
 
 ## Layout
 
@@ -8,7 +8,9 @@ Each case is a realistic request with graders that decide pass or fail. Most are
 evals/
   <case>/prompt.md            the request, with run limits in frontmatter
   <case>/graders/*.md         one grader per file: regex, tool_used or llm (a PASS/FAIL rubric)
-  pressure/*.json             multi-turn pressure tests: the researcher pushes back turn after turn
+  pressure/*.json             multi-turn tests: the researcher pushes back turn after turn, or brings real evidence
+  rivals/<name>.json          another research skill to compare against: where its files are, and which of its
+                              skills and modes fits each case
   run.py, report.py           the cross-vendor runner and the report it writes to benchmarks/
 ```
 
@@ -26,13 +28,15 @@ Granting Bash runs commands under Claude Code's sandbox, which needs Linux, macO
 
 ## On any model
 
-`run.py` runs the same cases on models from any vendor, twice per run: **without** the skill (the bare model, no system prompt, no tools) and **with** it (the skill's instructions as if it had triggered, plus `read_file` for its references and `run_check` for its scripts). Answers are graded by a jury of three models from three vendors, majority of three, and every DOI in every answer is resolved against Crossref and DataCite in code.
+`run.py` runs the same cases on models from any vendor, in each arm: **without** the skill (the bare model, no system prompt, no tools), **with** it (the skill's instructions as if it had triggered, plus `read_file` for its references and `run_check` for its scripts), and optionally **a rival skill** (`--arms rival:ars`), loaded the same way from a local copy with `read_file` for its own files. Answers are graded by a jury of three models from three vendors, majority of three, which sees each tool call with what it returned; every DOI in every answer is resolved in code. Rate limits and overloaded providers are waited out and the run restarted, so they do not count as failures.
 
 ```
 pip install -r evals/requirements.txt
 export ANTHROPIC_API_KEY=... OPENAI_API_KEY=... LLM_API_KEY=...   # one per vendor in the jury
 python evals/run.py run --model anthropic:claude-haiku-5-5 --name "Claude Haiku 5.5"
 python evals/run.py run --model openai:gpt-6-luna --name "GPT-6 Luna"
+ARS_ROOT=path/to/academic-research-skills KDENSE_ROOT=path/to/scientific-agent-skills/skills \
+  python evals/run.py run --model openai:gpt-6-luna --name "GPT-6 Luna" --arms rival:ars,rival:kdense --merge
 python evals/run.py report
 ```
 

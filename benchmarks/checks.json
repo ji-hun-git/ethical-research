@@ -71,6 +71,18 @@
     "unchecked": 0,
     "should_flag": true
    },
+   "PDF off the page": {
+    "n": 5,
+    "flagged": 5,
+    "unchecked": 0,
+    "should_flag": true
+   },
+   "PDF metadata": {
+    "n": 5,
+    "flagged": 5,
+    "unchecked": 0,
+    "should_flag": true
+   },
    "Word hidden run": {
     "n": 5,
     "flagged": 5,
@@ -102,8 +114,8 @@
     "should_flag": true
    }
   },
-  "detected": 40,
-  "defective": 40,
+  "detected": 50,
+  "defective": 50,
   "false_flags": 0,
   "clean": 20,
   "unchecked": 0,
@@ -112,26 +124,26 @@
  "references": {
   "kinds": {
    "real": {
-    "n": 54,
+    "n": 60,
     "flagged": 0,
     "unchecked": 0,
     "should_flag": false
    },
    "DOI moved to another paper": {
-    "n": 27,
-    "flagged": 27,
+    "n": 29,
+    "flagged": 29,
     "unchecked": 0,
     "should_flag": true
    },
    "DOI with altered digits": {
-    "n": 27,
-    "flagged": 27,
+    "n": 29,
+    "flagged": 29,
     "unchecked": 0,
     "should_flag": true
    },
    "invented title, real author, no DOI": {
-    "n": 27,
-    "flagged": 27,
+    "n": 29,
+    "flagged": 29,
     "unchecked": 0,
     "should_flag": true
    },
@@ -142,11 +154,11 @@
     "should_flag": true
    }
   },
-  "detected": 83,
-  "defective": 83,
+  "detected": 89,
+  "defective": 89,
   "false_flags": 0,
-  "clean": 54,
+  "clean": 60,
   "unchecked": 0,
-  "date": "2026-10-29"
+  "date": "2026-10-30"
  }
 }

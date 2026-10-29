@@ -10,7 +10,7 @@ The checks are implementations of published methods. The credit for the methods 
 - **GRIM** is the test of Brown & Heathers (2017, *Social Psychological and Personality Science*).
 - **Tortured phrases** come from Table 1 of Cabanac, Labbé & Magazinov (2021, arXiv:2107.06751), and the threshold of five from their Problematic Paper Screener.
 - **Chatbot phrases** are the most specific of those documented by Glynn (Academ-AI, arXiv:2411.15218).
-- **Reference records** come from Crossref, including the Retraction Watch data Crossref has carried in its API since January 2025, and from DataCite, which also resolves arXiv DOIs. Both are open infrastructure run for the research community.
+- **Reference records** come from Crossref, including the Retraction Watch data Crossref has carried in its API since January 2025, and from DataCite, which also resolves arXiv DOIs. When neither has a work, the checker asks arXiv, OpenReview (which also serves the DBLP index of computer-science venues) and OpenAlex. All are open infrastructure run for the research community.
 - **The questioning loop** draws on research on sycophancy, cognitive offloading and AI that challenges its users; [the questioning reference](skills/ethical-research/references/questioning.md) cites each source.
 
 ## Prior art
@@ -20,6 +20,16 @@ Ethical Research belongs to the broader category of academic research assistants
 From that line of work it reuses ideas: treating fabricated citations as a hard failure, verifying references against bibliographic indexes, Socratic planning, venue-specific AI-use disclosure and mandatory human checkpoints. Ideas, methods and workflows belong to no one, and building on good ones is how research works.
 
 It does not reuse expression. No text, code, prompt wording, file structure, mode names or taxonomy phrasing was copied or translated from it, which is why Ethical Research carries its own license (MIT) rather than CC BY-NC 4.0.
+
+## Benchmarks and skills it is measured against
+
+The head-to-head evals load two other research skills as they are published, without changing them, and only read their files: **Academic Research Skills** (Cheng-I Wu, CC BY-NC 4.0) and **K-Dense Scientific Agent Skills** (K-Dense Inc., MIT). How each case is routed to them is in [evals/rivals](evals/rivals/). Neither is redistributed here.
+
+The outside benchmarks are other people's work, used under their licenses and run as their authors describe:
+
+- **HALLMARK** (Kim, Brendel & Reizinger, 2026, arXiv:2607.18360; MIT), its data, its scoring rules and the published results of the tools it compares.
+- **The reference set of Badalova & Mayr** (2026, arXiv:2607.22693; data CC BY 4.0, doi:10.5281/zenodo.23236264), with the outputs of the five tools they tested.
+- **SycoBench-600** (Sinha, 2026, Findings of ACL; code MIT, data CC BY 4.0), its questions, prompts, parser and metrics.
 
 ## Where it differs on purpose
 

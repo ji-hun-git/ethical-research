@@ -255,9 +255,28 @@ def _pdf_string(token: bytes) -> str | None:
     return None  # hex strings are glyph ids in most modern PDFs; not decodable without the font
 
 
+PDF_META = re.compile(rb"/(Title|Subject|Keywords|Author|Creator)\s*(\((?:\\.|[^\\)])*\))")
+XMP_TEXT = re.compile(r"<(dc:description|dc:title|dc:subject|pdf:Keywords)[^>]*>(.*?)</\1>", re.S)
+NUMBER = re.compile(rb"[-+]?\d*\.?\d+")
+
+
+def _metadata(data: bytes) -> list[tuple[str, str]]:
+    """Instructions placed in the document's metadata, where a reader never looks but a tool may."""
+    found = [(m.group(1).decode(), _pdf_string(m.group(2)) or "") for m in PDF_META.finditer(data)]
+    for m in PDF_STREAM.finditer(data):
+        if b"/Metadata" in m.group(1) or b"/XML" in m.group(1):
+            xml = m.group(2).decode("utf-8", "replace")
+            found += [(tag, re.sub(r"<[^>]+>", " ", body)) for tag, body in XMP_TEXT.findall(xml)]
+    return [("PDF metadata", f"{field}: {text.strip()}") for field, text in found
+            if any(re.search(p, text, re.I) for p in INJECTION)]
+
+
 def read_pdf(path: Path) -> tuple[str, list[tuple[str, str]], list[str]]:
     data = path.read_bytes()
     visible, hidden, undecoded = [], [], 0
+    box = re.search(rb"/MediaBox\s*\[\s*([-\d.]+)\s+([-\d.]+)\s+([-\d.]+)\s+([-\d.]+)\s*\]", data)
+    x0, y0, x1, y1 = (float(v) for v in box.groups()) if box else (0.0, 0.0, 612.0, 792.0)
+    hidden += _metadata(data)
     for m in PDF_STREAM.finditer(data):
         head, body = m.group(1), m.group(2)
         if b"/FlateDecode" in head:
@@ -270,8 +289,25 @@ def read_pdf(path: Path) -> tuple[str, list[tuple[str, str]], list[str]]:
         if b"Tj" not in body and b"TJ" not in body:
             continue
         fill_white, size, render, buf = False, 10.0, 0, []
-        stack = []
+        stack: list[bytes] = []
+        ctm, saved, tx, ty = (1.0, 0.0, 0.0, 1.0, 0.0, 0.0), [], 0.0, 0.0  # page transform; text position
         for tok in PDF_TOKEN.findall(body):
+            nums = [float(t) for t in stack if NUMBER.fullmatch(t)]
+            if tok == b"q":
+                saved.append(ctm)
+            elif tok == b"Q":
+                ctm = saved.pop() if saved else ctm
+            elif tok == b"cm" and len(nums) >= 6:
+                a, b, c, d, e, f = nums[-6:]
+                A, B, C, D, E, F = ctm
+                ctm = (a * A + b * C, a * B + b * D, c * A + d * C, c * B + d * D, e * A + f * C + E, e * B + f * D + F)
+            elif tok == b"Tm" and len(nums) >= 6:
+                tx, ty = nums[-2], nums[-1]
+            elif tok in (b"Td", b"TD") and len(nums) >= 2:
+                tx, ty = tx + nums[-2], ty + nums[-1]
+            if tok in (b"q", b"Q", b"cm", b"Tm", b"Td", b"TD"):
+                stack = []
+                continue
             if tok in (b"rg", b"g", b"k", b"sc", b"scn"):
                 nums = [float(t) for t in stack if re.fullmatch(rb"[-+]?\d*\.?\d+", t)]
                 fill_white = (tok == b"k" and nums[-4:] == [0, 0, 0, 0]) or (
@@ -292,8 +328,11 @@ def read_pdf(path: Path) -> tuple[str, list[tuple[str, str]], list[str]]:
                 stack = []
                 if not text:
                     continue
+                px = ctm[0] * tx + ctm[2] * ty + ctm[4]
+                py = ctm[1] * tx + ctm[3] * ty + ctm[5]
+                off_page = not (x0 - 20 <= px <= x1 + 20 and y0 - 20 <= py <= y1 + 20)
                 how = ("invisible render mode" if render == 3 else "white text" if fill_white
-                       else "tiny font" if size < 2 else None)
+                       else "tiny font" if size < 2 else "off the page" if off_page else None)
                 if how:
                     hidden.append((how, text))
                 else:
@@ -302,7 +341,7 @@ def read_pdf(path: Path) -> tuple[str, list[tuple[str, str]], list[str]]:
                 if buf:
                     visible.append("".join(buf))
                     buf = []
-                stack = []
+                stack, tx, ty = [], 0.0, 0.0
             else:
                 stack.append(tok)
         if buf:

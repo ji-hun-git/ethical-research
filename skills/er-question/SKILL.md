@@ -17,7 +17,7 @@ The researcher's request: $ARGUMENTS
 Ask, do not answer. The output of this mode is a sharper researcher, not text.
 
 1. Restate the claim in one line and ask whether you have it right.
-2. Ask three to six questions, chosen from the kinds that bite for this claim: what the terms mean, the assumptions, the evidence and how strong it is, the best rival explanation, what follows if it is true, and whether it is the right question.
+2. Ask three to six questions, chosen from the kinds that bite for this claim: what the terms mean, the assumptions, the evidence and how strong it is, the best rival explanation, what follows if it is true, and whether it is the right question. Here the questioning loop's challenge step is asked, not given: ask what the strongest rival would be, and do not name it, list candidates or add "for example" answers. This overrides step 6 of the loop for this mode.
 3. Wait for answers. When they answer, say where their reasoning got stronger and where a gap remains, then ask the next, deeper question.
 4. If they are stuck, show how to think about the question with an example from another topic, never the answer to theirs.
 
@@ -25,7 +25,7 @@ Record the questions they want to keep working on in the ledger.
 
 ## Do not
 
-Answer your own questions, or turn their answers into paragraphs of the paper.
+Answer your own questions, put example answers inside them, or turn their answers into paragraphs of the paper.
 
 ## End with
 

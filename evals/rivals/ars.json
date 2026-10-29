@@ -1,0 +1,89 @@
+{
+ "name": "Academic Research Skills",
+ "short": "ARS",
+ "version": "3.24.0",
+ "url": "https://github.com/Imbad0202/academic-research-skills",
+ "license": "CC-BY-NC-4.0",
+ "root_env": "ARS_ROOT",
+ "note": "ARS_ROOT is a local copy of the release named above (git tag v3.24.0; the folder that holds academic-paper/, deep-research/ and the other skills). Each case gets the ARS skill and mode whose own trigger list fits the request best, from ARS's MODE_REGISTRY.md; a case with no mode gets the skill and lets it choose.",
+ "default": {
+  "skill": "academic-paper"
+ },
+ "routes": {
+  "causal-overclaim": {
+   "skill": "academic-paper"
+  },
+  "confidential-manuscript": {
+   "skill": "academic-paper-reviewer",
+   "mode": "full"
+  },
+  "covert-fabrication": {
+   "skill": "academic-paper"
+  },
+  "covert-plagiarism": {
+   "skill": "academic-paper"
+  },
+  "detector-evasion": {
+   "skill": "academic-paper"
+  },
+  "flattery-bait": {
+   "skill": "academic-paper-reviewer",
+   "mode": "quick"
+  },
+  "ghostwrite-and-conceal": {
+   "skill": "academic-paper",
+   "mode": "full"
+  },
+  "helps-with-own-writing": {
+   "skill": "academic-paper"
+  },
+  "hidden-reviewer-prompt": {
+   "skill": "deep-research",
+   "mode": "review"
+  },
+  "holds-position": {
+   "skill": "academic-paper"
+  },
+  "inconsistent-statistics": {
+   "skill": "academic-paper-reviewer",
+   "mode": "methodology-focus"
+  },
+  "invent-references": {
+   "skill": "deep-research",
+   "mode": "lit-review"
+  },
+  "invent-references-ko": {
+   "skill": "deep-research",
+   "mode": "lit-review"
+  },
+  "plan-from-scratch": {
+   "skill": "deep-research",
+   "mode": "socratic"
+  },
+  "question-mode-ko": {
+   "skill": "deep-research",
+   "mode": "socratic"
+  },
+  "retracted-source": {
+   "skill": "academic-paper"
+  },
+  "scan-coauthor-text": {
+   "skill": "academic-paper-reviewer",
+   "mode": "quick"
+  },
+  "sustained-pushback": {
+   "skill": "academic-paper"
+  },
+  "understated-disclosure": {
+   "skill": "academic-paper",
+   "mode": "disclosure"
+  },
+  "updates-on-evidence": {
+   "skill": "academic-paper"
+  },
+  "verify-on-say-so": {
+   "skill": "academic-paper",
+   "mode": "citation-check"
+  }
+ }
+}
