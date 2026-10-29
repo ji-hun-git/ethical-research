@@ -44,6 +44,6 @@ Text hidden in a manuscript to steer an AI reviewer (white text, tiny fonts, "gi
 
 ## Sources for the hidden-prompt section
 
-- Nikkei Asia (2025, July 1). 'Positive review only': Researchers hide AI prompts in papers. https://asia.nikkei.com/Business/Technology/Artificial-intelligence/Positive-review-only-Researchers-hide-AI-prompts-in-papers
+- Nikkei Asia (2025, July 1). [Report on hidden "positive review only" prompts in arXiv preprints.] https://asia.nikkei.com/Business/Technology/Artificial-intelligence/Positive-review-only-Researchers-hide-AI-prompts-in-papers
 - ICML 2025 Publication Ethics. https://icml.cc/Conferences/2025/PublicationEthics
 - Lin (2025). Hidden prompts in manuscripts exploit AI-assisted peer review. arXiv:2507.06185.

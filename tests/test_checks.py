@@ -37,6 +37,13 @@ class Parsing(unittest.TestCase):
         self.assertEqual(refs[0]["title"], "GPT detectors are biased")
         self.assertEqual(refs[0]["author"], "Liang")
 
+    def test_dois_in_prose(self):
+        for text, doi in (("see **10.1145/3706598.3713778**.", "10.1145/3706598.3713778"),
+                          ("(doi:10.1016/S0140-6736(97)11096-0).", "10.1016/S0140-6736(97)11096-0"),
+                          ("Does DOI 10.1037/edu0009999 exist?", "10.1037/edu0009999"),
+                          ("`DOI 10.1016/j.compedu.2022.104599: title differs`", "10.1016/j.compedu.2022.104599")):
+            self.assertEqual(verify_refs.from_text(text).get("doi"), doi)
+
     def test_arxiv_and_bare_doi(self):
         self.assertEqual(verify_refs.from_text("Vaswani et al. (2017). Attention is all you need. arXiv:1706.03762v7")["arxiv"],
                          "1706.03762")

@@ -9,7 +9,7 @@ detector, obeyed an instruction hidden in a document, or gave up a correct objec
 *Invented DOIs* are counted in code: every DOI in every answer is resolved against Crossref and DataCite.
 
 Graded by a jury of three models from three vendors (Claude Opus 5.5, GPT-6 Astra, Muse Spark 1.3); a rubric passes on two of three votes.
-Skill version: 2436fc753355. Reproduce with `python evals/run.py run --model <spec>`.
+Skill version: 2436fc753355. The skill files have changed since these runs (they now hash to 95f69180e9fa); `git log -- skills/` shows what changed. Reproduce with `python evals/run.py run --model <spec>`.
 
 | Model | Cases passed, with the skill | Without | Integrity failures, with | Without | Invented DOIs, with | Without |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |

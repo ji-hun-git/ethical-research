@@ -69,9 +69,9 @@ Standard library only. Use `python3` where `python` is not Python 3. Each script
 
 | Script | What it reports | How to read it |
 | --- | --- | --- |
-| `scripts/verify_refs.py refs.txt` | per reference: record found, metadata mismatch, retracted, not found, unchecked | A found record shows the work exists, not that it supports the claim. "Not found" is a fabrication risk until someone finds the source; books, theses and many Korean journals are outside Crossref. See [references/citation-integrity.md](references/citation-integrity.md). |
+| `scripts/verify_refs.py refs.txt` | per reference: record found, metadata mismatch, retracted, concern (an expression of concern), not found, unchecked | A found record shows the work exists, not that it supports the claim. "Not found" is a fabrication risk until someone finds the source; books, theses and many Korean journals are outside Crossref. See [references/citation-integrity.md](references/citation-integrity.md). |
 | `scripts/stats_check.py results.txt`, `--grim 3.47 25` | recomputed p-values for t, F, chi-square, r and z results; GRIM for means | An inconsistency is a question for the author, not proof of misconduct. See [references/statistics.md](references/statistics.md). |
-| `scripts/integrity_scan.py paper.pdf` | errors (hidden instructions, tag characters, chatbot text), warnings, questions | It finds defects; it does not judge whether text was written by AI, and a clean scan certifies nothing. See [references/integrity-scan.md](references/integrity-scan.md). |
+| `scripts/integrity_scan.py paper.pdf` | errors (hidden instructions, hidden text, tag characters, a paper-mill signature), warnings (chatbot text, tortured phrases, placeholders), questions (strong claims) | It finds defects; it does not judge whether text was written by AI, and a clean scan certifies nothing. See [references/integrity-scan.md](references/integrity-scan.md). |
 | `scripts/ledger.py status` | open questions, questions the evidence owes, accepted risks | Raise items only when the work reaches them. |
 
 Report what a script found in your own words, with its exact status labels, and never upgrade a result: "record found" is not "Verified", and "unchecked" is not "fine".

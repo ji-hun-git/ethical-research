@@ -41,7 +41,7 @@ import urllib.request
 
 TIMEOUT = 20
 USER_AGENT = "ethical-research/2026.10.29 (https://github.com/ji-hun-git/ethical-research)"
-DOI_RE = re.compile(r"\b(10\.\d{4,9}/[^\s\"'<>{}]+[^\s\"'<>{}.,;)\]])", re.I)
+DOI_RE = re.compile(r"\b(10\.\d{4,9}/[-._;()/:A-Za-z0-9]+)")  # the pattern Crossref recommends
 ARXIV_RE = re.compile(r"(?:arxiv[:./\s]*(?:abs/)?|^)(\d{4}\.\d{4,5}|[a-z\-]+(?:\.[A-Z]{2})?/\d{7})(?:v\d+)?\b", re.I)
 YEAR_RE = re.compile(r"\b(1[89]\d{2}|20\d{2})\b")
 BIB_FIELD = re.compile(r"(\w+)\s*=\s*(?:\{((?:[^{}]|\{[^{}]*\})*)\}|\"([^\"]*)\"|(\d+))")
@@ -71,7 +71,7 @@ def from_text(line: str) -> dict:
     ref = {"raw": line}
     doi = DOI_RE.search(line)
     if doi:
-        ref["doi"] = doi.group(1).rstrip(".")
+        ref["doi"] = clean_doi(doi.group(1))
     arxiv = ARXIV_RE.search(line) if "arxiv" in line.lower() or re.fullmatch(r"\d{4}\.\d{4,5}(v\d+)?", line) else None
     if arxiv:
         ref["arxiv"] = arxiv.group(1)
@@ -85,6 +85,14 @@ def from_text(line: str) -> dict:
     if author:
         ref["author"] = author.group(1)
     return ref
+
+
+def clean_doi(doi: str) -> str:
+    """Drop what follows a DOI in prose: sentence punctuation, and a closing bracket that is not its own."""
+    doi = doi.rstrip(".,;:")
+    while doi.endswith(")") and doi.count(")") > doi.count("("):
+        doi = doi[:-1].rstrip(".,;:")
+    return doi
 
 
 def apa_title(line: str) -> str | None:
