@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use Ethical Research, please cite it as below."
+title: "Ethical Research: a research assistant that keeps questioning"
+authors:
+  - family-names: Chae
+    given-names: Jihun
+    affiliation: "KAIST Graduate School of Culture Technology"
+    email: chaejihun@kaist.ac.kr
+date-released: 2026-10-29
+version: "2026.10.29"
+url: "https://github.com/ji-hun-git/ethical-research"
+repository-code: "https://github.com/ji-hun-git/ethical-research"
+license: MIT
+keywords:
+  - research integrity
+  - academic integrity
+  - citation verification
+  - sycophancy
+  - critical thinking
+  - peer review
+  - agent skills

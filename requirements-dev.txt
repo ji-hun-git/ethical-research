@@ -1,2 +1,0 @@
-# Structural tests (the eval harness in evals/ has no third-party dependencies)
-pytest>=7

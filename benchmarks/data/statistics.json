@@ -1,0 +1,2402 @@
+[
+ {
+  "text": "χ2(3, N = 99) = 12.15, p = .007",
+  "corrupt": false,
+  "reference_p": 0.006886595412304074,
+  "detectable": false
+ },
+ {
+  "text": "t(282) = 0.60, p = .030",
+  "corrupt": true,
+  "reference_p": 0.5489880554034208,
+  "detectable": true
+ },
+ {
+  "text": "t(52) = 2.06, p = .044",
+  "corrupt": false,
+  "reference_p": 0.044419436781026424,
+  "detectable": false
+ },
+ {
+  "text": "t(131) = 0.59, p = .182",
+  "corrupt": true,
+  "reference_p": 0.5562069707092396,
+  "detectable": true
+ },
+ {
+  "text": "F(6, 51) = 7.05, p < .001",
+  "corrupt": false,
+  "reference_p": 1.6785382404300245e-05,
+  "detectable": false
+ },
+ {
+  "text": "r(35) = .59, p = .210",
+  "corrupt": true,
+  "reference_p": 0.00012142221338969642,
+  "detectable": true
+ },
+ {
+  "text": "r(83) = .33, p = .002",
+  "corrupt": false,
+  "reference_p": 0.002040363588613222,
+  "detectable": false
+ },
+ {
+  "text": "z = 1.44, p = .067",
+  "corrupt": true,
+  "reference_p": 0.14986739906865415,
+  "detectable": true
+ },
+ {
+  "text": "χ2(2, N = 114) = 16.66, p < .001",
+  "corrupt": false,
+  "reference_p": 0.00024117204487855882,
+  "detectable": false
+ },
+ {
+  "text": "z = 0.52, p = .030",
+  "corrupt": true,
+  "reference_p": 0.6030635750939324,
+  "detectable": true
+ },
+ {
+  "text": "χ2(8, N = 514) = 17.77, p = .023",
+  "corrupt": false,
+  "reference_p": 0.023018501653234248,
+  "detectable": false
+ },
+ {
+  "text": "χ2(5, N = 234) = 7.83, p = .556",
+  "corrupt": true,
+  "reference_p": 0.16585687953828937,
+  "detectable": true
+ },
+ {
+  "text": "z = 2.13, p = .033",
+  "corrupt": false,
+  "reference_p": 0.03317161336721002,
+  "detectable": false
+ },
+ {
+  "text": "χ2(12, N = 673) = 13.74, p = .030",
+  "corrupt": true,
+  "reference_p": 0.3176186890999849,
+  "detectable": true
+ },
+ {
+  "text": "F(3, 97) = 11.22, p < .001",
+  "corrupt": false,
+  "reference_p": 2.1968162204668247e-06,
+  "detectable": false
+ },
+ {
+  "text": "r(30) = .58, p = .002",
+  "corrupt": true,
+  "reference_p": 0.0005026096515836581,
+  "detectable": true
+ },
+ {
+  "text": "χ2(12, N = 558) = 10.83, p = .544",
+  "corrupt": false,
+  "reference_p": 0.5435412406382352,
+  "detectable": false
+ },
+ {
+  "text": "z = 3.25, p = .210",
+  "corrupt": true,
+  "reference_p": 0.0011540500847815318,
+  "detectable": true
+ },
+ {
+  "text": "r(366) = .41, p < .001",
+  "corrupt": false,
+  "reference_p": 2.368523874821313e-16,
+  "detectable": false
+ },
+ {
+  "text": "t(166) = 2.98, p = .018",
+  "corrupt": true,
+  "reference_p": 0.0033156112178409775,
+  "detectable": true
+ },
+ {
+  "text": "r(352) = .22, p < .001",
+  "corrupt": false,
+  "reference_p": 2.967992160292867e-05,
+  "detectable": false
+ },
+ {
+  "text": "r(191) = .12, p = .030",
+  "corrupt": true,
+  "reference_p": 0.09645747749645428,
+  "detectable": true
+ },
+ {
+  "text": "F(6, 146) = 4.96, p < .001",
+  "corrupt": false,
+  "reference_p": 0.00011930830574539232,
+  "detectable": false
+ },
+ {
+  "text": "r(51) = .12, p = .126",
+  "corrupt": true,
+  "reference_p": 0.39206392013398395,
+  "detectable": true
+ },
+ {
+  "text": "r(291) = .18, p = .002",
+  "corrupt": false,
+  "reference_p": 0.0019798621662971854,
+  "detectable": false
+ },
+ {
+  "text": "r(193) = .42, p = .210",
+  "corrupt": true,
+  "reference_p": 9.82044935971019e-10,
+  "detectable": true
+ },
+ {
+  "text": "F(2, 138) = 8.00, p < .001",
+  "corrupt": false,
+  "reference_p": 0.0005160921151444634,
+  "detectable": false
+ },
+ {
+  "text": "t(256) = 3.77, p = .000",
+  "corrupt": true,
+  "reference_p": 0.00020274092304547315,
+  "detectable": false
+ },
+ {
+  "text": "r(283) = .23, p < .001",
+  "corrupt": false,
+  "reference_p": 8.912305326323624e-05,
+  "detectable": false
+ },
+ {
+  "text": "z = 1.48, p = .030",
+  "corrupt": true,
+  "reference_p": 0.13887324666666345,
+  "detectable": true
+ },
+ {
+  "text": "r(358) = .48, p < .001",
+  "corrupt": false,
+  "reference_p": 3.810297481313299e-22,
+  "detectable": false
+ },
+ {
+  "text": "r(213) = .25, p = .000",
+  "corrupt": true,
+  "reference_p": 0.0002127884545323952,
+  "detectable": false
+ },
+ {
+  "text": "F(1, 126) = 5.46, p = .021",
+  "corrupt": false,
+  "reference_p": 0.021034675925809255,
+  "detectable": false
+ },
+ {
+  "text": "t(182) = 2.78, p = .210",
+  "corrupt": true,
+  "reference_p": 0.006007268282964554,
+  "detectable": true
+ },
+ {
+  "text": "χ2(10, N = 262) = 1.25, p = 1.000",
+  "corrupt": false,
+  "reference_p": 0.9995260128967541,
+  "detectable": false
+ },
+ {
+  "text": "z = 1.69, p = .532",
+  "corrupt": true,
+  "reference_p": 0.09102795464309961,
+  "detectable": true
+ },
+ {
+  "text": "r(72) = .09, p = .446",
+  "corrupt": false,
+  "reference_p": 0.4457150826331635,
+  "detectable": false
+ },
+ {
+  "text": "r(248) = .30, p = .210",
+  "corrupt": true,
+  "reference_p": 1.3558438731920408e-06,
+  "detectable": true
+ },
+ {
+  "text": "χ2(8, N = 215) = 24.95, p = .002",
+  "corrupt": false,
+  "reference_p": 0.001585175308007234,
+  "detectable": false
+ },
+ {
+  "text": "z = 0.39, p = .338",
+  "corrupt": true,
+  "reference_p": 0.6965365469280352,
+  "detectable": true
+ },
+ {
+  "text": "z = 3.68, p < .001",
+  "corrupt": false,
+  "reference_p": 0.00023323395363073626,
+  "detectable": false
+ },
+ {
+  "text": "z = 1.40, p = .030",
+  "corrupt": true,
+  "reference_p": 0.16151331846754213,
+  "detectable": true
+ },
+ {
+  "text": "z = 1.66, p = .097",
+  "corrupt": false,
+  "reference_p": 0.09691445253344565,
+  "detectable": false
+ },
+ {
+  "text": "F(3, 134) = 6.53, p = .000",
+  "corrupt": true,
+  "reference_p": 0.0003722670509056441,
+  "detectable": false
+ },
+ {
+  "text": "z = 3.30, p < .001",
+  "corrupt": false,
+  "reference_p": 0.0009668482847675551,
+  "detectable": false
+ },
+ {
+  "text": "F(2, 225) = 8.96, p = .210",
+  "corrupt": true,
+  "reference_p": 0.00018026654572512392,
+  "detectable": true
+ },
+ {
+  "text": "t(22) = 3.60, p = .002",
+  "corrupt": false,
+  "reference_p": 0.0015914800267431662,
+  "detectable": false
+ },
+ {
+  "text": "r(142) = .13, p = .446",
+  "corrupt": true,
+  "reference_p": 0.12042269941371962,
+  "detectable": true
+ },
+ {
+  "text": "χ2(2, N = 282) = 7.00, p = .030",
+  "corrupt": false,
+  "reference_p": 0.0301973834223185,
+  "detectable": false
+ },
+ {
+  "text": "r(110) = .22, p = .210",
+  "corrupt": true,
+  "reference_p": 0.019765262320733206,
+  "detectable": true
+ },
+ {
+  "text": "r(344) = .22, p < .001",
+  "corrupt": false,
+  "reference_p": 3.6575033329079705e-05,
+  "detectable": false
+ },
+ {
+  "text": "t(69) = 4.11, p = .001",
+  "corrupt": true,
+  "reference_p": 0.00010734648729692384,
+  "detectable": true
+ },
+ {
+  "text": "F(4, 190) = 1.31, p = .268",
+  "corrupt": false,
+  "reference_p": 0.26775999386513966,
+  "detectable": false
+ },
+ {
+  "text": "r(247) = .25, p = .210",
+  "corrupt": true,
+  "reference_p": 6.646361993471662e-05,
+  "detectable": true
+ },
+ {
+  "text": "F(1, 97) = 7.21, p = .009",
+  "corrupt": false,
+  "reference_p": 0.008528090266021004,
+  "detectable": false
+ },
+ {
+  "text": "r(345) = .10, p = .372",
+  "corrupt": true,
+  "reference_p": 0.06278108408606795,
+  "detectable": true
+ },
+ {
+  "text": "F(5, 300) = 1.83, p = .107",
+  "corrupt": false,
+  "reference_p": 0.10676896395183466,
+  "detectable": false
+ },
+ {
+  "text": "t(60) = 2.46, p = .210",
+  "corrupt": true,
+  "reference_p": 0.016791443947348984,
+  "detectable": true
+ },
+ {
+  "text": "F(1, 148) = 2.79, p = .097",
+  "corrupt": false,
+  "reference_p": 0.0969677499182748,
+  "detectable": false
+ },
+ {
+  "text": "z = 1.19, p = .798",
+  "corrupt": true,
+  "reference_p": 0.23404639204621747,
+  "detectable": true
+ },
+ {
+  "text": "F(1, 201) = 10.80, p = .001",
+  "corrupt": false,
+  "reference_p": 0.00119774447656161,
+  "detectable": false
+ },
+ {
+  "text": "z = 3.32, p = .210",
+  "corrupt": true,
+  "reference_p": 0.000900174481184235,
+  "detectable": true
+ },
+ {
+  "text": "z = 0.86, p = .390",
+  "corrupt": false,
+  "reference_p": 0.3897890425036168,
+  "detectable": false
+ },
+ {
+  "text": "z = 0.37, p = .236",
+  "corrupt": true,
+  "reference_p": 0.7113824903989066,
+  "detectable": true
+ },
+ {
+  "text": "F(2, 92) = 5.84, p = .004",
+  "corrupt": false,
+  "reference_p": 0.004095157276206741,
+  "detectable": false
+ },
+ {
+  "text": "t(292) = 0.47, p = .030",
+  "corrupt": true,
+  "reference_p": 0.6387058361475788,
+  "detectable": true
+ },
+ {
+  "text": "t(294) = 0.44, p = .660",
+  "corrupt": false,
+  "reference_p": 0.6602603932296431,
+  "detectable": false
+ },
+ {
+  "text": "F(3, 41) = 9.34, p = .000",
+  "corrupt": true,
+  "reference_p": 7.89922185599832e-05,
+  "detectable": false
+ },
+ {
+  "text": "r(176) = .38, p < .001",
+  "corrupt": false,
+  "reference_p": 1.6795225067786165e-07,
+  "detectable": false
+ },
+ {
+  "text": "z = 2.54, p = .210",
+  "corrupt": true,
+  "reference_p": 0.011085246886165202,
+  "detectable": true
+ },
+ {
+  "text": "z = 3.78, p < .001",
+  "corrupt": false,
+  "reference_p": 0.0001568283587671701,
+  "detectable": false
+ },
+ {
+  "text": "z = 3.54, p = .000",
+  "corrupt": true,
+  "reference_p": 0.0004001270320146402,
+  "detectable": false
+ },
+ {
+  "text": "r(80) = .26, p = .018",
+  "corrupt": false,
+  "reference_p": 0.01832523753779059,
+  "detectable": false
+ },
+ {
+  "text": "r(236) = .20, p = .210",
+  "corrupt": true,
+  "reference_p": 0.0019313419977212306,
+  "detectable": true
+ },
+ {
+  "text": "χ2(2, N = 208) = 26.96, p < .001",
+  "corrupt": false,
+  "reference_p": 1.3986542970508984e-06,
+  "detectable": false
+ },
+ {
+  "text": "χ2(3, N = 190) = 7.97, p = .023",
+  "corrupt": true,
+  "reference_p": 0.04663580118707224,
+  "detectable": true
+ },
+ {
+  "text": "r(259) = .11, p = .076",
+  "corrupt": false,
+  "reference_p": 0.0760695095237222,
+  "detectable": false
+ },
+ {
+  "text": "F(2, 240) = 11.93, p = .210",
+  "corrupt": true,
+  "reference_p": 1.149534561515755e-05,
+  "detectable": true
+ },
+ {
+  "text": "χ2(2, N = 69) = 21.80, p < .001",
+  "corrupt": false,
+  "reference_p": 1.8458233995780565e-05,
+  "detectable": false
+ },
+ {
+  "text": "χ2(9, N = 770) = 14.03, p = .444",
+  "corrupt": true,
+  "reference_p": 0.12126206461573079,
+  "detectable": true
+ },
+ {
+  "text": "z = 3.85, p < .001",
+  "corrupt": false,
+  "reference_p": 0.00011811782483784475,
+  "detectable": false
+ },
+ {
+  "text": "t(125) = 4.38, p = .210",
+  "corrupt": true,
+  "reference_p": 2.4836559007274458e-05,
+  "detectable": true
+ },
+ {
+  "text": "F(3, 86) = 9.89, p < .001",
+  "corrupt": false,
+  "reference_p": 1.1378961920200082e-05,
+  "detectable": false
+ },
+ {
+  "text": "χ2(7, N = 577) = 4.91, p = .249",
+  "corrupt": true,
+  "reference_p": 0.6709454705039293,
+  "detectable": true
+ },
+ {
+  "text": "χ2(1, N = 237) = 24.09, p < .001",
+  "corrupt": false,
+  "reference_p": 9.193649123985487e-07,
+  "detectable": false
+ },
+ {
+  "text": "r(47) = .18, p = .030",
+  "corrupt": true,
+  "reference_p": 0.2158603368564229,
+  "detectable": true
+ },
+ {
+  "text": "t(121) = 0.49, p = .625",
+  "corrupt": false,
+  "reference_p": 0.6250211694149357,
+  "detectable": false
+ },
+ {
+  "text": "t(240) = 0.25, p = .990",
+  "corrupt": true,
+  "reference_p": 0.8028012078326133,
+  "detectable": true
+ },
+ {
+  "text": "z = 0.78, p = .435",
+  "corrupt": false,
+  "reference_p": 0.43539087517146624,
+  "detectable": false
+ },
+ {
+  "text": "z = 2.93, p = .210",
+  "corrupt": true,
+  "reference_p": 0.0033896200385545197,
+  "detectable": true
+ },
+ {
+  "text": "t(100) = 1.07, p = .287",
+  "corrupt": false,
+  "reference_p": 0.2871951900632479,
+  "detectable": false
+ },
+ {
+  "text": "χ2(11, N = 827) = 9.50, p = .151",
+  "corrupt": true,
+  "reference_p": 0.5758415533915471,
+  "detectable": true
+ },
+ {
+  "text": "χ2(6, N = 306) = 24.21, p < .001",
+  "corrupt": false,
+  "reference_p": 0.0004777831101260826,
+  "detectable": false
+ },
+ {
+  "text": "t(15) = 0.28, p = .030",
+  "corrupt": true,
+  "reference_p": 0.7833019218587667,
+  "detectable": true
+ },
+ {
+  "text": "F(4, 74) = 8.00, p < .001",
+  "corrupt": false,
+  "reference_p": 2.044280378929014e-05,
+  "detectable": false
+ },
+ {
+  "text": "r(346) = .31, p = .000",
+  "corrupt": true,
+  "reference_p": 3.455533533642122e-09,
+  "detectable": false
+ },
+ {
+  "text": "F(2, 195) = 2.62, p = .075",
+  "corrupt": false,
+  "reference_p": 0.07536471121256558,
+  "detectable": false
+ },
+ {
+  "text": "F(4, 197) = 11.79, p = .210",
+  "corrupt": true,
+  "reference_p": 1.3199766606423002e-08,
+  "detectable": true
+ },
+ {
+  "text": "r(93) = .05, p = .630",
+  "corrupt": false,
+  "reference_p": 0.6303819307913152,
+  "detectable": false
+ },
+ {
+  "text": "r(269) = .41, p = .000",
+  "corrupt": true,
+  "reference_p": 2.0693903322394146e-12,
+  "detectable": false
+ },
+ {
+  "text": "t(243) = 1.00, p = .318",
+  "corrupt": false,
+  "reference_p": 0.31830524701053337,
+  "detectable": false
+ },
+ {
+  "text": "χ2(8, N = 422) = 0.61, p = .030",
+  "corrupt": true,
+  "reference_p": 0.9997171420458562,
+  "detectable": true
+ },
+ {
+  "text": "F(1, 178) = 2.85, p = .093",
+  "corrupt": false,
+  "reference_p": 0.09312516839203011,
+  "detectable": false
+ },
+ {
+  "text": "F(1, 191) = 4.77, p = .010",
+  "corrupt": true,
+  "reference_p": 0.030178084639757654,
+  "detectable": true
+ },
+ {
+  "text": "F(5, 22) = 1.36, p = .277",
+  "corrupt": false,
+  "reference_p": 0.2771914886795235,
+  "detectable": false
+ },
+ {
+  "text": "t(81) = 1.92, p = .030",
+  "corrupt": true,
+  "reference_p": 0.058378072149349126,
+  "detectable": true
+ },
+ {
+  "text": "F(1, 290) = 10.28, p = .001",
+  "corrupt": false,
+  "reference_p": 0.0014951046744374318,
+  "detectable": false
+ },
+ {
+  "text": "F(6, 219) = 9.24, p = .000",
+  "corrupt": true,
+  "reference_p": 5.012037869025388e-09,
+  "detectable": false
+ },
+ {
+  "text": "z = 2.68, p = .007",
+  "corrupt": false,
+  "reference_p": 0.00736221601834996,
+  "detectable": false
+ },
+ {
+  "text": "t(270) = 2.90, p = .210",
+  "corrupt": true,
+  "reference_p": 0.004038557674948509,
+  "detectable": true
+ },
+ {
+  "text": "z = 3.09, p = .002",
+  "corrupt": false,
+  "reference_p": 0.002001564953228023,
+  "detectable": false
+ },
+ {
+  "text": "z = 3.39, p = .000",
+  "corrupt": true,
+  "reference_p": 0.0006989262366759418,
+  "detectable": true
+ },
+ {
+  "text": "t(23) = 0.38, p = .707",
+  "corrupt": false,
+  "reference_p": 0.7074318648291582,
+  "detectable": false
+ },
+ {
+  "text": "χ2(2, N = 512) = 11.61, p = .210",
+  "corrupt": true,
+  "reference_p": 0.0030124547530879604,
+  "detectable": true
+ },
+ {
+  "text": "r(145) = .02, p = .810",
+  "corrupt": false,
+  "reference_p": 0.809988330194993,
+  "detectable": false
+ },
+ {
+  "text": "t(265) = 4.06, p = .000",
+  "corrupt": true,
+  "reference_p": 6.465193653216129e-05,
+  "detectable": false
+ },
+ {
+  "text": "χ2(2, N = 290) = 25.46, p < .001",
+  "corrupt": false,
+  "reference_p": 2.9609511700921417e-06,
+  "detectable": false
+ },
+ {
+  "text": "F(2, 255) = 6.08, p = .210",
+  "corrupt": true,
+  "reference_p": 0.002633389316102883,
+  "detectable": true
+ },
+ {
+  "text": "t(109) = 0.53, p = .597",
+  "corrupt": false,
+  "reference_p": 0.5971899071292655,
+  "detectable": false
+ },
+ {
+  "text": "F(3, 150) = 7.92, p = .000",
+  "corrupt": true,
+  "reference_p": 6.133949148799167e-05,
+  "detectable": false
+ },
+ {
+  "text": "t(254) = 0.46, p = .646",
+  "corrupt": false,
+  "reference_p": 0.6459097332126607,
+  "detectable": false
+ },
+ {
+  "text": "χ2(11, N = 272) = 3.44, p = .030",
+  "corrupt": true,
+  "reference_p": 0.9835418844025472,
+  "detectable": true
+ },
+ {
+  "text": "r(248) = .29, p < .001",
+  "corrupt": false,
+  "reference_p": 3.117628435124263e-06,
+  "detectable": false
+ },
+ {
+  "text": "t(289) = 1.06, p = .143",
+  "corrupt": true,
+  "reference_p": 0.29002968360867104,
+  "detectable": true
+ },
+ {
+  "text": "χ2(8, N = 568) = 2.76, p = .949",
+  "corrupt": false,
+  "reference_p": 0.9485044796885307,
+  "detectable": false
+ },
+ {
+  "text": "r(147) = .24, p = .210",
+  "corrupt": true,
+  "reference_p": 0.0031971880938168446,
+  "detectable": true
+ },
+ {
+  "text": "z = 0.63, p = .529",
+  "corrupt": false,
+  "reference_p": 0.5286945842313551,
+  "detectable": false
+ },
+ {
+  "text": "z = 1.27, p = .941",
+  "corrupt": true,
+  "reference_p": 0.2040846301496383,
+  "detectable": true
+ },
+ {
+  "text": "t(194) = 1.19, p = .236",
+  "corrupt": false,
+  "reference_p": 0.23550062868121485,
+  "detectable": false
+ },
+ {
+  "text": "r(211) = .03, p = .030",
+  "corrupt": true,
+  "reference_p": 0.6633031880918699,
+  "detectable": true
+ },
+ {
+  "text": "r(164) = .44, p < .001",
+  "corrupt": false,
+  "reference_p": 3.0009088040558652e-09,
+  "detectable": false
+ },
+ {
+  "text": "r(186) = .24, p = .003",
+  "corrupt": true,
+  "reference_p": 0.0009086346320112801,
+  "detectable": true
+ },
+ {
+  "text": "χ2(7, N = 250) = 4.04, p = .775",
+  "corrupt": false,
+  "reference_p": 0.7751588337637043,
+  "detectable": false
+ },
+ {
+  "text": "t(156) = 1.29, p = .030",
+  "corrupt": true,
+  "reference_p": 0.19895965247156103,
+  "detectable": true
+ },
+ {
+  "text": "χ2(7, N = 99) = 22.79, p = .002",
+  "corrupt": false,
+  "reference_p": 0.0018542046292528314,
+  "detectable": false
+ },
+ {
+  "text": "χ2(2, N = 727) = 2.02, p = .104",
+  "corrupt": true,
+  "reference_p": 0.3642189795715234,
+  "detectable": true
+ },
+ {
+  "text": "χ2(7, N = 244) = 15.57, p = .029",
+  "corrupt": false,
+  "reference_p": 0.029348757107342305,
+  "detectable": false
+ },
+ {
+  "text": "χ2(7, N = 881) = 26.59, p = .210",
+  "corrupt": true,
+  "reference_p": 0.000394906738071868,
+  "detectable": true
+ },
+ {
+  "text": "t(33) = 4.21, p < .001",
+  "corrupt": false,
+  "reference_p": 0.000184679803015853,
+  "detectable": false
+ },
+ {
+  "text": "r(240) = .38, p = .000",
+  "corrupt": true,
+  "reference_p": 9.863634207708002e-10,
+  "detectable": false
+ },
+ {
+  "text": "t(289) = 0.75, p = .454",
+  "corrupt": false,
+  "reference_p": 0.45386482767639713,
+  "detectable": false
+ },
+ {
+  "text": "r(222) = .22, p = .210",
+  "corrupt": true,
+  "reference_p": 0.0009166135217222739,
+  "detectable": true
+ },
+ {
+  "text": "r(345) = .16, p = .003",
+  "corrupt": false,
+  "reference_p": 0.002798972590751899,
+  "detectable": false
+ },
+ {
+  "text": "r(295) = .41, p = .000",
+  "corrupt": true,
+  "reference_p": 1.8088756757317514e-13,
+  "detectable": false
+ },
+ {
+  "text": "F(5, 274) = 6.74, p < .001",
+  "corrupt": false,
+  "reference_p": 6.063939199655221e-06,
+  "detectable": false
+ },
+ {
+  "text": "r(180) = .60, p = .210",
+  "corrupt": true,
+  "reference_p": 3.5286011651482854e-19,
+  "detectable": true
+ },
+ {
+  "text": "F(1, 109) = 4.30, p = .040",
+  "corrupt": false,
+  "reference_p": 0.04046902452837505,
+  "detectable": false
+ },
+ {
+  "text": "t(171) = 1.23, p = .061",
+  "corrupt": true,
+  "reference_p": 0.22038660844920388,
+  "detectable": true
+ },
+ {
+  "text": "r(206) = .26, p < .001",
+  "corrupt": false,
+  "reference_p": 0.00014907265720527592,
+  "detectable": false
+ },
+ {
+  "text": "z = 1.08, p = .030",
+  "corrupt": true,
+  "reference_p": 0.280142180177538,
+  "detectable": true
+ },
+ {
+  "text": "χ2(10, N = 178) = 29.05, p = .001",
+  "corrupt": false,
+  "reference_p": 0.001223030080158627,
+  "detectable": false
+ },
+ {
+  "text": "z = 2.26, p = .010",
+  "corrupt": true,
+  "reference_p": 0.023821250837094132,
+  "detectable": true
+ },
+ {
+  "text": "χ2(4, N = 711) = 11.84, p = .019",
+  "corrupt": false,
+  "reference_p": 0.018581585224520438,
+  "detectable": false
+ },
+ {
+  "text": "r(231) = .57, p = .210",
+  "corrupt": true,
+  "reference_p": 1.7865479163464163e-21,
+  "detectable": true
+ },
+ {
+  "text": "F(1, 237) = 8.60, p = .004",
+  "corrupt": false,
+  "reference_p": 0.0036910250717963554,
+  "detectable": false
+ },
+ {
+  "text": "r(310) = .30, p = .000",
+  "corrupt": true,
+  "reference_p": 6.563176117643774e-08,
+  "detectable": false
+ },
+ {
+  "text": "r(137) = .47, p < .001",
+  "corrupt": false,
+  "reference_p": 5.301758923805024e-09,
+  "detectable": false
+ },
+ {
+  "text": "F(2, 97) = 6.41, p = .210",
+  "corrupt": true,
+  "reference_p": 0.0024287303634570054,
+  "detectable": true
+ },
+ {
+  "text": "t(290) = 3.54, p < .001",
+  "corrupt": false,
+  "reference_p": 0.0004659229070204538,
+  "detectable": false
+ },
+ {
+  "text": "t(72) = 1.20, p = .990",
+  "corrupt": true,
+  "reference_p": 0.2340730140698618,
+  "detectable": true
+ },
+ {
+  "text": "F(6, 148) = 6.48, p < .001",
+  "corrupt": false,
+  "reference_p": 4.353891067417131e-06,
+  "detectable": false
+ },
+ {
+  "text": "r(367) = .46, p = .210",
+  "corrupt": true,
+  "reference_p": 1.01222496818519e-20,
+  "detectable": true
+ },
+ {
+  "text": "r(143) = .15, p = .072",
+  "corrupt": false,
+  "reference_p": 0.07173302706670288,
+  "detectable": false
+ },
+ {
+  "text": "z = 0.30, p = .990",
+  "corrupt": true,
+  "reference_p": 0.7641771556220948,
+  "detectable": true
+ },
+ {
+  "text": "χ2(11, N = 298) = 25.26, p = .008",
+  "corrupt": false,
+  "reference_p": 0.008350158630935195,
+  "detectable": false
+ },
+ {
+  "text": "r(279) = .16, p = .210",
+  "corrupt": true,
+  "reference_p": 0.007199590792737542,
+  "detectable": true
+ },
+ {
+  "text": "t(19) = 1.03, p = .316",
+  "corrupt": false,
+  "reference_p": 0.3159442892669073,
+  "detectable": false
+ },
+ {
+  "text": "r(51) = .17, p = .089",
+  "corrupt": true,
+  "reference_p": 0.22360831415428434,
+  "detectable": true
+ },
+ {
+  "text": "r(27) = .42, p = .023",
+  "corrupt": false,
+  "reference_p": 0.023308779500080853,
+  "detectable": false
+ },
+ {
+  "text": "r(195) = .42, p = .210",
+  "corrupt": true,
+  "reference_p": 8.048404328164467e-10,
+  "detectable": true
+ },
+ {
+  "text": "F(4, 122) = 3.95, p = .005",
+  "corrupt": false,
+  "reference_p": 0.004748124619757266,
+  "detectable": false
+ },
+ {
+  "text": "F(2, 258) = 2.89, p = .203",
+  "corrupt": true,
+  "reference_p": 0.05737750023790644,
+  "detectable": true
+ },
+ {
+  "text": "z = 0.99, p = .322",
+  "corrupt": false,
+  "reference_p": 0.3221741190216618,
+  "detectable": false
+ },
+ {
+  "text": "F(4, 233) = 10.95, p = .210",
+  "corrupt": true,
+  "reference_p": 3.7427570033642955e-08,
+  "detectable": true
+ },
+ {
+  "text": "t(117) = 0.30, p = .765",
+  "corrupt": false,
+  "reference_p": 0.764709504757441,
+  "detectable": false
+ },
+ {
+  "text": "z = 0.83, p = .990",
+  "corrupt": true,
+  "reference_p": 0.4065387836561368,
+  "detectable": true
+ },
+ {
+  "text": "r(374) = .53, p < .001",
+  "corrupt": false,
+  "reference_p": 1.2812286067287398e-28,
+  "detectable": false
+ },
+ {
+  "text": "t(48) = 4.21, p = .210",
+  "corrupt": true,
+  "reference_p": 0.00011142634173170756,
+  "detectable": true
+ },
+ {
+  "text": "t(167) = 3.06, p = .003",
+  "corrupt": false,
+  "reference_p": 0.002579401353177647,
+  "detectable": false
+ },
+ {
+  "text": "r(201) = .59, p = .000",
+  "corrupt": true,
+  "reference_p": 1.9962707546990223e-20,
+  "detectable": false
+ },
+ {
+  "text": "χ2(2, N = 176) = 10.87, p = .004",
+  "corrupt": false,
+  "reference_p": 0.004361235021152498,
+  "detectable": false
+ },
+ {
+  "text": "z = 3.87, p = .210",
+  "corrupt": true,
+  "reference_p": 0.00010883535326739919,
+  "detectable": true
+ },
+ {
+  "text": "r(54) = .05, p = .714",
+  "corrupt": false,
+  "reference_p": 0.7143981316097867,
+  "detectable": false
+ },
+ {
+  "text": "r(110) = .24, p = .034",
+  "corrupt": true,
+  "reference_p": 0.010809600716079658,
+  "detectable": true
+ },
+ {
+  "text": "r(25) = .39, p = .044",
+  "corrupt": false,
+  "reference_p": 0.04432097029104234,
+  "detectable": false
+ },
+ {
+  "text": "F(6, 227) = 0.78, p = .030",
+  "corrupt": true,
+  "reference_p": 0.586378674377332,
+  "detectable": true
+ },
+ {
+  "text": "χ2(4, N = 670) = 22.54, p < .001",
+  "corrupt": false,
+  "reference_p": 0.0001564392595399101,
+  "detectable": false
+ },
+ {
+  "text": "χ2(6, N = 681) = 8.53, p = .990",
+  "corrupt": true,
+  "reference_p": 0.2017863928655935,
+  "detectable": true
+ },
+ {
+  "text": "χ2(5, N = 823) = 0.61, p = .988",
+  "corrupt": false,
+  "reference_p": 0.9875408112341595,
+  "detectable": false
+ },
+ {
+  "text": "z = 3.69, p = .210",
+  "corrupt": true,
+  "reference_p": 0.0002242540519644938,
+  "detectable": true
+ },
+ {
+  "text": "F(1, 263) = 8.67, p = .004",
+  "corrupt": false,
+  "reference_p": 0.0035242441540316773,
+  "detectable": false
+ },
+ {
+  "text": "r(207) = .48, p = .000",
+  "corrupt": true,
+  "reference_p": 1.9228120940965581e-13,
+  "detectable": false
+ },
+ {
+  "text": "r(103) = .03, p = .761",
+  "corrupt": false,
+  "reference_p": 0.7612824872485329,
+  "detectable": false
+ },
+ {
+  "text": "χ2(12, N = 671) = 23.30, p = .210",
+  "corrupt": true,
+  "reference_p": 0.025284353254454158,
+  "detectable": true
+ },
+ {
+  "text": "χ2(10, N = 252) = 2.83, p = .985",
+  "corrupt": false,
+  "reference_p": 0.985146346436626,
+  "detectable": false
+ },
+ {
+  "text": "r(395) = .11, p = .136",
+  "corrupt": true,
+  "reference_p": 0.028417241912675542,
+  "detectable": true
+ },
+ {
+  "text": "z = 2.32, p = .020",
+  "corrupt": false,
+  "reference_p": 0.02034087733743936,
+  "detectable": false
+ },
+ {
+  "text": "F(4, 73) = 11.86, p = .210",
+  "corrupt": true,
+  "reference_p": 1.778371010369613e-07,
+  "detectable": true
+ },
+ {
+  "text": "r(265) = .59, p < .001",
+  "corrupt": false,
+  "reference_p": 1.9726065352006252e-26,
+  "detectable": false
+ },
+ {
+  "text": "r(98) = .16, p = .036",
+  "corrupt": true,
+  "reference_p": 0.11180177785684935,
+  "detectable": true
+ },
+ {
+  "text": "z = 3.43, p < .001",
+  "corrupt": false,
+  "reference_p": 0.0006035812492172734,
+  "detectable": false
+ },
+ {
+  "text": "t(158) = 1.46, p = .030",
+  "corrupt": true,
+  "reference_p": 0.14627556615170675,
+  "detectable": true
+ },
+ {
+  "text": "F(4, 146) = 2.47, p = .047",
+  "corrupt": false,
+  "reference_p": 0.04724198084582757,
+  "detectable": false
+ },
+ {
+  "text": "F(2, 164) = 10.64, p = .000",
+  "corrupt": true,
+  "reference_p": 4.5212142946118416e-05,
+  "detectable": false
+ },
+ {
+  "text": "χ2(4, N = 286) = 15.47, p = .004",
+  "corrupt": false,
+  "reference_p": 0.003819399543004922,
+  "detectable": false
+ },
+ {
+  "text": "t(245) = 4.46, p = .210",
+  "corrupt": true,
+  "reference_p": 1.2492093109986521e-05,
+  "detectable": true
+ },
+ {
+  "text": "r(201) = .04, p = .571",
+  "corrupt": false,
+  "reference_p": 0.5709725068895093,
+  "detectable": false
+ },
+ {
+  "text": "χ2(4, N = 244) = 4.02, p = .153",
+  "corrupt": true,
+  "reference_p": 0.40330591075310296,
+  "detectable": true
+ },
+ {
+  "text": "t(198) = 2.40, p = .017",
+  "corrupt": false,
+  "reference_p": 0.017321297344379406,
+  "detectable": false
+ },
+ {
+  "text": "F(4, 153) = 9.37, p = .210",
+  "corrupt": true,
+  "reference_p": 8.432613493991627e-07,
+  "detectable": true
+ },
+ {
+  "text": "F(1, 208) = 4.28, p = .040",
+  "corrupt": false,
+  "reference_p": 0.03979963682565016,
+  "detectable": false
+ },
+ {
+  "text": "t(112) = 4.50, p = .000",
+  "corrupt": true,
+  "reference_p": 1.6706665997296783e-05,
+  "detectable": false
+ },
+ {
+  "text": "t(175) = 1.96, p = .052",
+  "corrupt": false,
+  "reference_p": 0.051583692672173824,
+  "detectable": false
+ },
+ {
+  "text": "χ2(3, N = 129) = 18.82, p = .210",
+  "corrupt": true,
+  "reference_p": 0.00029785597079920337,
+  "detectable": true
+ },
+ {
+  "text": "t(216) = 0.64, p = .523",
+  "corrupt": false,
+  "reference_p": 0.5228508652588495,
+  "detectable": false
+ },
+ {
+  "text": "r(349) = .34, p = .000",
+  "corrupt": true,
+  "reference_p": 6.024767170246806e-11,
+  "detectable": false
+ },
+ {
+  "text": "r(366) = .18, p < .001",
+  "corrupt": false,
+  "reference_p": 0.0005211715983016518,
+  "detectable": false
+ },
+ {
+  "text": "χ2(11, N = 102) = 9.57, p = .030",
+  "corrupt": true,
+  "reference_p": 0.5694292188203214,
+  "detectable": true
+ },
+ {
+  "text": "r(223) = .03, p = .654",
+  "corrupt": false,
+  "reference_p": 0.6544459782222143,
+  "detectable": false
+ },
+ {
+  "text": "χ2(11, N = 795) = 6.32, p = .990",
+  "corrupt": true,
+  "reference_p": 0.8511826366051803,
+  "detectable": true
+ },
+ {
+  "text": "F(4, 78) = 9.90, p < .001",
+  "corrupt": false,
+  "reference_p": 1.5704628042412547e-06,
+  "detectable": false
+ },
+ {
+  "text": "r(305) = .53, p = .210",
+  "corrupt": true,
+  "reference_p": 1.2358774475487235e-23,
+  "detectable": true
+ },
+ {
+  "text": "t(290) = 0.81, p = .419",
+  "corrupt": false,
+  "reference_p": 0.4186043232993737,
+  "detectable": false
+ },
+ {
+  "text": "r(55) = .35, p = .004",
+  "corrupt": true,
+  "reference_p": 0.007610212756483879,
+  "detectable": true
+ },
+ {
+  "text": "F(3, 165) = 2.19, p = .091",
+  "corrupt": false,
+  "reference_p": 0.09117406841411808,
+  "detectable": false
+ },
+ {
+  "text": "F(1, 75) = 4.79, p = .210",
+  "corrupt": true,
+  "reference_p": 0.03173854936872239,
+  "detectable": true
+ },
+ {
+  "text": "χ2(3, N = 94) = 25.20, p < .001",
+  "corrupt": false,
+  "reference_p": 1.4022918833002407e-05,
+  "detectable": false
+ },
+ {
+  "text": "r(171) = .05, p = .245",
+  "corrupt": true,
+  "reference_p": 0.5135703373587548,
+  "detectable": true
+ },
+ {
+  "text": "F(5, 227) = 7.49, p < .001",
+  "corrupt": false,
+  "reference_p": 1.5834146345129605e-06,
+  "detectable": false
+ },
+ {
+  "text": "F(4, 113) = 6.92, p = .210",
+  "corrupt": true,
+  "reference_p": 5.0955827805684985e-05,
+  "detectable": true
+ },
+ {
+  "text": "r(193) = .09, p = .211",
+  "corrupt": false,
+  "reference_p": 0.21084608743209063,
+  "detectable": false
+ },
+ {
+  "text": "F(6, 118) = 0.78, p = .217",
+  "corrupt": true,
+  "reference_p": 0.5872171877080014,
+  "detectable": true
+ },
+ {
+  "text": "χ2(2, N = 516) = 12.00, p = .002",
+  "corrupt": false,
+  "reference_p": 0.002478752176666357,
+  "detectable": false
+ },
+ {
+  "text": "z = 3.44, p = .210",
+  "corrupt": true,
+  "reference_p": 0.0005817141865814857,
+  "detectable": true
+ },
+ {
+  "text": "z = 1.22, p = .222",
+  "corrupt": false,
+  "reference_p": 0.22246487489566913,
+  "detectable": false
+ },
+ {
+  "text": "r(347) = .23, p = .000",
+  "corrupt": true,
+  "reference_p": 1.427052156018344e-05,
+  "detectable": false
+ },
+ {
+  "text": "z = 3.95, p < .001",
+  "corrupt": false,
+  "reference_p": 7.815119319557493e-05,
+  "detectable": false
+ },
+ {
+  "text": "r(130) = .28, p = .210",
+  "corrupt": true,
+  "reference_p": 0.001147356404916276,
+  "detectable": true
+ },
+ {
+  "text": "r(214) = .08, p = .242",
+  "corrupt": false,
+  "reference_p": 0.24167504634299866,
+  "detectable": false
+ },
+ {
+  "text": "F(3, 240) = 4.57, p = .002",
+  "corrupt": true,
+  "reference_p": 0.003918799598049502,
+  "detectable": true
+ },
+ {
+  "text": "t(74) = 0.55, p = .584",
+  "corrupt": false,
+  "reference_p": 0.5839756747151218,
+  "detectable": false
+ },
+ {
+  "text": "χ2(12, N = 105) = 15.59, p = .030",
+  "corrupt": true,
+  "reference_p": 0.21074445480045345,
+  "detectable": true
+ },
+ {
+  "text": "t(41) = 4.48, p < .001",
+  "corrupt": false,
+  "reference_p": 5.8664975063343895e-05,
+  "detectable": false
+ },
+ {
+  "text": "t(107) = 0.77, p = .206",
+  "corrupt": true,
+  "reference_p": 0.4429965603878635,
+  "detectable": true
+ },
+ {
+  "text": "F(1, 199) = 7.44, p = .007",
+  "corrupt": false,
+  "reference_p": 0.006949328258141722,
+  "detectable": false
+ },
+ {
+  "text": "χ2(3, N = 678) = 10.05, p = .210",
+  "corrupt": true,
+  "reference_p": 0.018145863797500043,
+  "detectable": true
+ },
+ {
+  "text": "χ2(9, N = 541) = 28.95, p < .001",
+  "corrupt": false,
+  "reference_p": 0.000660745099783296,
+  "detectable": false
+ },
+ {
+  "text": "F(5, 154) = 7.51, p = .000",
+  "corrupt": true,
+  "reference_p": 2.467279652287366e-06,
+  "detectable": false
+ },
+ {
+  "text": "F(4, 102) = 7.75, p < .001",
+  "corrupt": false,
+  "reference_p": 1.707395950906578e-05,
+  "detectable": false
+ },
+ {
+  "text": "χ2(11, N = 435) = 10.17, p = .030",
+  "corrupt": true,
+  "reference_p": 0.5151635571226472,
+  "detectable": true
+ },
+ {
+  "text": "z = 0.48, p = .631",
+  "corrupt": false,
+  "reference_p": 0.6312273930324451,
+  "detectable": false
+ },
+ {
+  "text": "χ2(8, N = 643) = 16.88, p = .177",
+  "corrupt": true,
+  "reference_p": 0.03138317059023026,
+  "detectable": true
+ },
+ {
+  "text": "z = 2.63, p = .009",
+  "corrupt": false,
+  "reference_p": 0.008538486818178702,
+  "detectable": false
+ },
+ {
+  "text": "r(387) = .48, p = .210",
+  "corrupt": true,
+  "reference_p": 8.2261934203146e-24,
+  "detectable": true
+ },
+ {
+  "text": "χ2(6, N = 502) = 23.06, p < .001",
+  "corrupt": false,
+  "reference_p": 0.0007766300467071802,
+  "detectable": false
+ },
+ {
+  "text": "F(2, 44) = 3.77, p = .110",
+  "corrupt": true,
+  "reference_p": 0.030816390584038185,
+  "detectable": true
+ },
+ {
+  "text": "t(25) = 1.15, p = .261",
+  "corrupt": false,
+  "reference_p": 0.26102627541561274,
+  "detectable": false
+ },
+ {
+  "text": "χ2(10, N = 477) = 18.96, p = .210",
+  "corrupt": true,
+  "reference_p": 0.04077369430836462,
+  "detectable": true
+ },
+ {
+  "text": "r(126) = .38, p < .001",
+  "corrupt": false,
+  "reference_p": 9.681872681757696e-06,
+  "detectable": false
+ },
+ {
+  "text": "t(19) = 0.43, p = .990",
+  "corrupt": true,
+  "reference_p": 0.6720331528557493,
+  "detectable": true
+ },
+ {
+  "text": "z = 1.13, p = .258",
+  "corrupt": false,
+  "reference_p": 0.2584762244800357,
+  "detectable": false
+ },
+ {
+  "text": "z = 1.41, p = .030",
+  "corrupt": true,
+  "reference_p": 0.15853968290678477,
+  "detectable": true
+ },
+ {
+  "text": "F(2, 27) = 11.26, p < .001",
+  "corrupt": false,
+  "reference_p": 0.0002778895592690527,
+  "detectable": false
+ },
+ {
+  "text": "F(6, 96) = 5.57, p = .000",
+  "corrupt": true,
+  "reference_p": 5.443243540622144e-05,
+  "detectable": false
+ },
+ {
+  "text": "r(145) = .58, p < .001",
+  "corrupt": false,
+  "reference_p": 1.3792554351785127e-14,
+  "detectable": false
+ },
+ {
+  "text": "t(295) = 4.04, p = .210",
+  "corrupt": true,
+  "reference_p": 6.82306063990877e-05,
+  "detectable": true
+ },
+ {
+  "text": "F(2, 20) = 0.81, p = .459",
+  "corrupt": false,
+  "reference_p": 0.45892642009728996,
+  "detectable": false
+ },
+ {
+  "text": "z = 0.39, p = .178",
+  "corrupt": true,
+  "reference_p": 0.6965365469280352,
+  "detectable": true
+ },
+ {
+  "text": "t(290) = 3.02, p = .003",
+  "corrupt": false,
+  "reference_p": 0.002752772697191846,
+  "detectable": false
+ },
+ {
+  "text": "F(2, 231) = 2.63, p = .030",
+  "corrupt": true,
+  "reference_p": 0.07423618075968699,
+  "detectable": true
+ },
+ {
+  "text": "z = 0.95, p = .342",
+  "corrupt": false,
+  "reference_p": 0.34211225261696365,
+  "detectable": false
+ },
+ {
+  "text": "χ2(2, N = 99) = 9.36, p = .047",
+  "corrupt": true,
+  "reference_p": 0.009279013887064744,
+  "detectable": true
+ },
+ {
+  "text": "z = 0.32, p = .749",
+  "corrupt": false,
+  "reference_p": 0.7489683305533599,
+  "detectable": false
+ },
+ {
+  "text": "r(391) = .55, p = .210",
+  "corrupt": true,
+  "reference_p": 1.886222006909089e-32,
+  "detectable": true
+ },
+ {
+  "text": "F(1, 153) = 3.02, p = .084",
+  "corrupt": false,
+  "reference_p": 0.08425553101193814,
+  "detectable": false
+ },
+ {
+  "text": "t(71) = 1.64, p = .520",
+  "corrupt": true,
+  "reference_p": 0.1054287002480434,
+  "detectable": true
+ },
+ {
+  "text": "t(144) = 2.93, p = .004",
+  "corrupt": false,
+  "reference_p": 0.003942807558780112,
+  "detectable": false
+ },
+ {
+  "text": "r(361) = .48, p = .210",
+  "corrupt": true,
+  "reference_p": 2.561997954791608e-22,
+  "detectable": true
+ },
+ {
+  "text": "t(267) = 0.27, p = .787",
+  "corrupt": false,
+  "reference_p": 0.7873688208111593,
+  "detectable": false
+ },
+ {
+  "text": "χ2(4, N = 257) = 25.33, p = .000",
+  "corrupt": true,
+  "reference_p": 4.317874573670196e-05,
+  "detectable": false
+ },
+ {
+  "text": "F(4, 188) = 7.33, p < .001",
+  "corrupt": false,
+  "reference_p": 1.6581354849200014e-05,
+  "detectable": false
+ },
+ {
+  "text": "r(332) = .55, p = .210",
+  "corrupt": true,
+  "reference_p": 8.43474658610576e-28,
+  "detectable": true
+ },
+ {
+  "text": "r(281) = .42, p < .001",
+  "corrupt": false,
+  "reference_p": 1.6039973160358147e-13,
+  "detectable": false
+ },
+ {
+  "text": "t(231) = 4.31, p = .000",
+  "corrupt": true,
+  "reference_p": 2.4172466079607544e-05,
+  "detectable": false
+ },
+ {
+  "text": "r(328) = .36, p < .001",
+  "corrupt": false,
+  "reference_p": 1.5589611640941482e-11,
+  "detectable": false
+ },
+ {
+  "text": "z = 3.67, p = .210",
+  "corrupt": true,
+  "reference_p": 0.00024255046857071534,
+  "detectable": true
+ },
+ {
+  "text": "z = 3.74, p < .001",
+  "corrupt": false,
+  "reference_p": 0.00018402025494821078,
+  "detectable": false
+ },
+ {
+  "text": "χ2(3, N = 81) = 21.17, p = .000",
+  "corrupt": true,
+  "reference_p": 9.705537854358715e-05,
+  "detectable": false
+ },
+ {
+  "text": "t(31) = 0.48, p = .635",
+  "corrupt": false,
+  "reference_p": 0.6345970321290906,
+  "detectable": false
+ },
+ {
+  "text": "z = 3.12, p = .210",
+  "corrupt": true,
+  "reference_p": 0.001808510399644679,
+  "detectable": true
+ },
+ {
+  "text": "r(64) = .16, p = .199",
+  "corrupt": false,
+  "reference_p": 0.1993883667181255,
+  "detectable": false
+ },
+ {
+  "text": "F(1, 37) = 0.70, p = .185",
+  "corrupt": true,
+  "reference_p": 0.40815502676799664,
+  "detectable": true
+ },
+ {
+  "text": "χ2(8, N = 150) = 3.45, p = .903",
+  "corrupt": false,
+  "reference_p": 0.9030353134867614,
+  "detectable": false
+ },
+ {
+  "text": "F(3, 183) = 4.24, p = .210",
+  "corrupt": true,
+  "reference_p": 0.00633195316326082,
+  "detectable": true
+ },
+ {
+  "text": "t(196) = 4.11, p < .001",
+  "corrupt": false,
+  "reference_p": 5.813426636714413e-05,
+  "detectable": false
+ },
+ {
+  "text": "z = 2.16, p = .014",
+  "corrupt": true,
+  "reference_p": 0.03077266956785089,
+  "detectable": true
+ },
+ {
+  "text": "r(25) = .27, p = .173",
+  "corrupt": false,
+  "reference_p": 0.17318867218086703,
+  "detectable": false
+ },
+ {
+  "text": "t(185) = 2.22, p = .210",
+  "corrupt": true,
+  "reference_p": 0.027633349478685783,
+  "detectable": true
+ },
+ {
+  "text": "z = 3.33, p < .001",
+  "corrupt": false,
+  "reference_p": 0.0008684598407633108,
+  "detectable": false
+ },
+ {
+  "text": "F(4, 20) = 6.43, p = .000",
+  "corrupt": true,
+  "reference_p": 0.0017000412756728175,
+  "detectable": true
+ },
+ {
+  "text": "t(186) = 2.31, p = .022",
+  "corrupt": false,
+  "reference_p": 0.02198590405150217,
+  "detectable": false
+ },
+ {
+  "text": "r(365) = .48, p = .210",
+  "corrupt": true,
+  "reference_p": 1.5092495879635977e-22,
+  "detectable": true
+ },
+ {
+  "text": "z = 1.26, p = .208",
+  "corrupt": false,
+  "reference_p": 0.2076693622426008,
+  "detectable": false
+ },
+ {
+  "text": "F(3, 129) = 11.28, p = .000",
+  "corrupt": true,
+  "reference_p": 1.2739692890810057e-06,
+  "detectable": false
+ },
+ {
+  "text": "r(366) = .35, p < .001",
+  "corrupt": false,
+  "reference_p": 4.808166336606381e-12,
+  "detectable": false
+ },
+ {
+  "text": "t(175) = 1.73, p = .030",
+  "corrupt": true,
+  "reference_p": 0.08539331318415383,
+  "detectable": true
+ },
+ {
+  "text": "r(340) = .03, p = .580",
+  "corrupt": false,
+  "reference_p": 0.5803383679890415,
+  "detectable": false
+ },
+ {
+  "text": "F(3, 154) = 5.31, p = .001",
+  "corrupt": true,
+  "reference_p": 0.0016476322869870708,
+  "detectable": true
+ },
+ {
+  "text": "r(74) = .33, p = .004",
+  "corrupt": false,
+  "reference_p": 0.0036002105546206063,
+  "detectable": false
+ },
+ {
+  "text": "z = 2.69, p = .210",
+  "corrupt": true,
+  "reference_p": 0.0071452019047994735,
+  "detectable": true
+ },
+ {
+  "text": "r(348) = .34, p < .001",
+  "corrupt": false,
+  "reference_p": 6.415250015361043e-11,
+  "detectable": false
+ },
+ {
+  "text": "χ2(3, N = 755) = 14.16, p = .001",
+  "corrupt": true,
+  "reference_p": 0.0026952602379763588,
+  "detectable": true
+ },
+ {
+  "text": "χ2(8, N = 763) = 19.46, p = .013",
+  "corrupt": false,
+  "reference_p": 0.012584000580800649,
+  "detectable": false
+ },
+ {
+  "text": "F(5, 118) = 3.43, p = .210",
+  "corrupt": true,
+  "reference_p": 0.006261719113351749,
+  "detectable": true
+ },
+ {
+  "text": "F(2, 187) = 7.35, p < .001",
+  "corrupt": false,
+  "reference_p": 0.0008456462518105977,
+  "detectable": false
+ },
+ {
+  "text": "χ2(3, N = 243) = 7.47, p = .016",
+  "corrupt": true,
+  "reference_p": 0.05833431138878684,
+  "detectable": true
+ },
+ {
+  "text": "F(6, 72) = 2.59, p = .025",
+  "corrupt": false,
+  "reference_p": 0.0249758736664084,
+  "detectable": false
+ },
+ {
+  "text": "F(2, 174) = 8.88, p = .210",
+  "corrupt": true,
+  "reference_p": 0.00021273393398228468,
+  "detectable": true
+ },
+ {
+  "text": "χ2(4, N = 525) = 26.61, p < .001",
+  "corrupt": false,
+  "reference_p": 2.3834156156058752e-05,
+  "detectable": false
+ },
+ {
+  "text": "t(14) = 1.92, p = .372",
+  "corrupt": true,
+  "reference_p": 0.07546793599515537,
+  "detectable": true
+ },
+ {
+  "text": "r(21) = .10, p = .650",
+  "corrupt": false,
+  "reference_p": 0.6498436580780913,
+  "detectable": false
+ },
+ {
+  "text": "z = 3.03, p = .210",
+  "corrupt": true,
+  "reference_p": 0.002445537387184519,
+  "detectable": true
+ },
+ {
+  "text": "z = 2.47, p = .014",
+  "corrupt": false,
+  "reference_p": 0.013511305214281295,
+  "detectable": false
+ },
+ {
+  "text": "r(127) = .41, p = .000",
+  "corrupt": true,
+  "reference_p": 1.3982780913401918e-06,
+  "detectable": false
+ },
+ {
+  "text": "F(6, 83) = 5.61, p < .001",
+  "corrupt": false,
+  "reference_p": 6.323290066608831e-05,
+  "detectable": false
+ },
+ {
+  "text": "χ2(5, N = 150) = 19.03, p = .210",
+  "corrupt": true,
+  "reference_p": 0.0018975613078265896,
+  "detectable": true
+ },
+ {
+  "text": "F(3, 236) = 5.95, p < .001",
+  "corrupt": false,
+  "reference_p": 0.0006297923670995631,
+  "detectable": false
+ },
+ {
+  "text": "t(217) = 2.43, p = .088",
+  "corrupt": true,
+  "reference_p": 0.015911668368597448,
+  "detectable": true
+ },
+ {
+  "text": "t(207) = 3.78, p < .001",
+  "corrupt": false,
+  "reference_p": 0.00020510859496030646,
+  "detectable": false
+ },
+ {
+  "text": "t(27) = 1.28, p = .030",
+  "corrupt": true,
+  "reference_p": 0.21143405909776122,
+  "detectable": true
+ },
+ {
+  "text": "z = 1.59, p = .112",
+  "corrupt": false,
+  "reference_p": 0.11183480503893882,
+  "detectable": false
+ },
+ {
+  "text": "z = 1.99, p = .012",
+  "corrupt": true,
+  "reference_p": 0.04659093550042364,
+  "detectable": true
+ },
+ {
+  "text": "χ2(9, N = 809) = 10.61, p = .303",
+  "corrupt": false,
+  "reference_p": 0.3033910291355735,
+  "detectable": false
+ },
+ {
+  "text": "r(117) = .59, p = .210",
+  "corrupt": true,
+  "reference_p": 1.6560201551559534e-12,
+  "detectable": true
+ },
+ {
+  "text": "z = 1.62, p = .105",
+  "corrupt": false,
+  "reference_p": 0.10523227690850412,
+  "detectable": false
+ },
+ {
+  "text": "t(137) = 1.38, p = .432",
+  "corrupt": true,
+  "reference_p": 0.16983453763277936,
+  "detectable": true
+ },
+ {
+  "text": "r(331) = .42, p < .001",
+  "corrupt": false,
+  "reference_p": 1.157743181624158e-15,
+  "detectable": false
+ },
+ {
+  "text": "χ2(10, N = 279) = 8.32, p = .030",
+  "corrupt": true,
+  "reference_p": 0.5976109055357126,
+  "detectable": true
+ },
+ {
+  "text": "r(246) = .14, p = .027",
+  "corrupt": false,
+  "reference_p": 0.027492591337367315,
+  "detectable": false
+ },
+ {
+  "text": "F(1, 118) = 5.79, p = .007",
+  "corrupt": true,
+  "reference_p": 0.017669470834314964,
+  "detectable": true
+ },
+ {
+  "text": "χ2(11, N = 888) = 19.34, p = .055",
+  "corrupt": false,
+  "reference_p": 0.05525683281306142,
+  "detectable": false
+ },
+ {
+  "text": "r(249) = .60, p = .210",
+  "corrupt": true,
+  "reference_p": 6.189221601111879e-26,
+  "detectable": true
+ },
+ {
+  "text": "χ2(4, N = 435) = 8.39, p = .078",
+  "corrupt": false,
+  "reference_p": 0.07829250709055287,
+  "detectable": false
+ },
+ {
+  "text": "χ2(7, N = 543) = 20.53, p = .023",
+  "corrupt": true,
+  "reference_p": 0.004531767166900955,
+  "detectable": true
+ },
+ {
+  "text": "χ2(4, N = 378) = 19.80, p < .001",
+  "corrupt": false,
+  "reference_p": 0.0005469040344123107,
+  "detectable": false
+ },
+ {
+  "text": "r(258) = .27, p = .210",
+  "corrupt": true,
+  "reference_p": 1.0105148983155347e-05,
+  "detectable": true
+ },
+ {
+  "text": "F(3, 217) = 0.97, p = .408",
+  "corrupt": false,
+  "reference_p": 0.4077318237871491,
+  "detectable": false
+ },
+ {
+  "text": "z = 3.65, p = .001",
+  "corrupt": true,
+  "reference_p": 0.00026224030884096865,
+  "detectable": true
+ },
+ {
+  "text": "z = 0.36, p = .719",
+  "corrupt": false,
+  "reference_p": 0.7188471335640175,
+  "detectable": false
+ },
+ {
+  "text": "t(115) = 4.29, p = .210",
+  "corrupt": true,
+  "reference_p": 3.740562398932573e-05,
+  "detectable": true
+ },
+ {
+  "text": "z = 0.83, p = .407",
+  "corrupt": false,
+  "reference_p": 0.4065387836561368,
+  "detectable": false
+ },
+ {
+  "text": "F(2, 251) = 4.35, p = .003",
+  "corrupt": true,
+  "reference_p": 0.013893842371076269,
+  "detectable": true
+ },
+ {
+  "text": "z = 3.60, p < .001",
+  "corrupt": false,
+  "reference_p": 0.00031821718031506727,
+  "detectable": false
+ },
+ {
+  "text": "z = 3.92, p = .210",
+  "corrupt": true,
+  "reference_p": 8.854896862414149e-05,
+  "detectable": true
+ },
+ {
+  "text": "F(4, 129) = 6.51, p < .001",
+  "corrupt": false,
+  "reference_p": 8.365967577816056e-05,
+  "detectable": false
+ },
+ {
+  "text": "r(353) = .53, p = .000",
+  "corrupt": true,
+  "reference_p": 4.204372029770721e-27,
+  "detectable": false
+ },
+ {
+  "text": "F(4, 272) = 6.82, p < .001",
+  "corrupt": false,
+  "reference_p": 3.0325066426690847e-05,
+  "detectable": false
+ },
+ {
+  "text": "r(249) = .55, p = .210",
+  "corrupt": true,
+  "reference_p": 3.0226885534330597e-21,
+  "detectable": true
+ },
+ {
+  "text": "z = 2.52, p = .012",
+  "corrupt": false,
+  "reference_p": 0.011735483430665125,
+  "detectable": false
+ },
+ {
+  "text": "t(90) = 3.82, p = .001",
+  "corrupt": true,
+  "reference_p": 0.0002450676246831506,
+  "detectable": true
+ },
+ {
+  "text": "r(201) = .27, p < .001",
+  "corrupt": false,
+  "reference_p": 9.789358224537243e-05,
+  "detectable": false
+ },
+ {
+  "text": "t(100) = 2.94, p = .210",
+  "corrupt": true,
+  "reference_p": 0.004076995187732027,
+  "detectable": true
+ },
+ {
+  "text": "χ2(2, N = 546) = 15.56, p < .001",
+  "corrupt": false,
+  "reference_p": 0.000418012174611013,
+  "detectable": false
+ },
+ {
+  "text": "F(1, 129) = 8.70, p = .014",
+  "corrupt": true,
+  "reference_p": 0.003779570526635757,
+  "detectable": true
+ },
+ {
+  "text": "χ2(8, N = 617) = 23.47, p = .003",
+  "corrupt": false,
+  "reference_p": 0.0028104296769560478,
+  "detectable": false
+ },
+ {
+  "text": "F(3, 242) = 4.30, p = .210",
+  "corrupt": true,
+  "reference_p": 0.005602854786351489,
+  "detectable": true
+ },
+ {
+  "text": "χ2(6, N = 463) = 24.92, p < .001",
+  "corrupt": false,
+  "reference_p": 0.0003532982063175111,
+  "detectable": false
+ },
+ {
+  "text": "χ2(9, N = 568) = 29.54, p = .002",
+  "corrupt": true,
+  "reference_p": 0.0005251739377464783,
+  "detectable": true
+ },
+ {
+  "text": "t(177) = 1.03, p = .304",
+  "corrupt": false,
+  "reference_p": 0.3044154166941466,
+  "detectable": false
+ },
+ {
+  "text": "χ2(3, N = 700) = 17.80, p = .210",
+  "corrupt": true,
+  "reference_p": 0.0004836614556391786,
+  "detectable": true
+ },
+ {
+  "text": "z = 3.58, p < .001",
+  "corrupt": false,
+  "reference_p": 0.000343594207491861,
+  "detectable": false
+ },
+ {
+  "text": "z = 2.42, p = .005",
+  "corrupt": true,
+  "reference_p": 0.015520507101107285,
+  "detectable": true
+ },
+ {
+  "text": "F(4, 50) = 9.53, p < .001",
+  "corrupt": false,
+  "reference_p": 8.31407996690125e-06,
+  "detectable": false
+ },
+ {
+  "text": "z = 2.56, p = .210",
+  "corrupt": true,
+  "reference_p": 0.010467216327111565,
+  "detectable": true
+ },
+ {
+  "text": "F(1, 254) = 7.62, p = .006",
+  "corrupt": false,
+  "reference_p": 0.00619321513761103,
+  "detectable": false
+ },
+ {
+  "text": "F(1, 112) = 10.47, p = .001",
+  "corrupt": true,
+  "reference_p": 0.0015955465175989,
+  "detectable": true
+ },
+ {
+  "text": "χ2(3, N = 625) = 23.70, p < .001",
+  "corrupt": false,
+  "reference_p": 2.8854213459568342e-05,
+  "detectable": false
+ },
+ {
+  "text": "χ2(5, N = 85) = 5.95, p = .030",
+  "corrupt": true,
+  "reference_p": 0.3111145848325295,
+  "detectable": true
+ },
+ {
+  "text": "r(300) = .32, p < .001",
+  "corrupt": false,
+  "reference_p": 1.2837748507297359e-08,
+  "detectable": false
+ },
+ {
+  "text": "t(223) = 2.67, p = .004",
+  "corrupt": true,
+  "reference_p": 0.008143471980145534,
+  "detectable": true
+ },
+ {
+  "text": "r(314) = .36, p < .001",
+  "corrupt": false,
+  "reference_p": 4.20633658176377e-11,
+  "detectable": false
+ },
+ {
+  "text": "F(4, 231) = 6.72, p = .210",
+  "corrupt": true,
+  "reference_p": 3.923656542760804e-05,
+  "detectable": true
+ },
+ {
+  "text": "t(226) = 0.22, p = .826",
+  "corrupt": false,
+  "reference_p": 0.8260697464626061,
+  "detectable": false
+ },
+ {
+  "text": "t(53) = 1.14, p = .990",
+  "corrupt": true,
+  "reference_p": 0.2594120746213054,
+  "detectable": true
+ },
+ {
+  "text": "z = 1.20, p = .230",
+  "corrupt": false,
+  "reference_p": 0.23013934044341644,
+  "detectable": false
+ },
+ {
+  "text": "F(1, 207) = 9.36, p = .210",
+  "corrupt": true,
+  "reference_p": 0.0025110165200472865,
+  "detectable": true
+ },
+ {
+  "text": "χ2(11, N = 560) = 16.95, p = .109",
+  "corrupt": false,
+  "reference_p": 0.10936330095857487,
+  "detectable": false
+ },
+ {
+  "text": "r(352) = .56, p = .000",
+  "corrupt": true,
+  "reference_p": 1.3035492037610404e-30,
+  "detectable": false
+ },
+ {
+  "text": "t(39) = 0.26, p = .796",
+  "corrupt": false,
+  "reference_p": 0.7962315321637645,
+  "detectable": false
+ },
+ {
+  "text": "z = 0.59, p = .030",
+  "corrupt": true,
+  "reference_p": 0.5551906495069299,
+  "detectable": true
+ },
+ {
+  "text": "r(321) = .05, p = .370",
+  "corrupt": false,
+  "reference_p": 0.37042017305837605,
+  "detectable": false
+ },
+ {
+  "text": "χ2(10, N = 531) = 21.97, p = .006",
+  "corrupt": true,
+  "reference_p": 0.015258163209139298,
+  "detectable": true
+ },
+ {
+  "text": "χ2(11, N = 871) = 5.34, p = .914",
+  "corrupt": false,
+  "reference_p": 0.9135894678900887,
+  "detectable": false
+ },
+ {
+  "text": "r(254) = .24, p = .210",
+  "corrupt": true,
+  "reference_p": 0.0001053021150997747,
+  "detectable": true
+ },
+ {
+  "text": "χ2(5, N = 716) = 2.29, p = .808",
+  "corrupt": false,
+  "reference_p": 0.8077344758062606,
+  "detectable": false
+ },
+ {
+  "text": "z = 1.53, p = .048",
+  "corrupt": true,
+  "reference_p": 0.12601672892795687,
+  "detectable": true
+ },
+ {
+  "text": "z = 3.38, p < .001",
+  "corrupt": false,
+  "reference_p": 0.0007248582980660874,
+  "detectable": false
+ },
+ {
+  "text": "z = 1.89, p = .030",
+  "corrupt": true,
+  "reference_p": 0.05875796008081886,
+  "detectable": true
+ },
+ {
+  "text": "z = 3.15, p = .002",
+  "corrupt": false,
+  "reference_p": 0.0016327046256571236,
+  "detectable": false
+ },
+ {
+  "text": "F(4, 165) = 8.36, p = .000",
+  "corrupt": true,
+  "reference_p": 3.6414322663398948e-06,
+  "detectable": false
+ }
+]

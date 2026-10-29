@@ -1,18 +1,23 @@
 {
   "name": "ethical-research",
-  "version": "0.1.0",
-  "description": "Korean-English academic-integrity research copilot for Claude Code. Plans, reviews, verifies, and improves scholarly work; refuses ghostwriting, fabricated citations, and AI-use concealment.",
+  "displayName": "Ethical Research",
+  "version": "2026.10.29",
+  "description": "A research assistant that keeps questioning: it challenges every claim, checks references against the scholarly record, recomputes reported statistics, scans manuscripts for slop and hidden prompts, and keeps the researcher the author. Refuses ghostwriting, fabricated citations and AI-use concealment.",
   "author": {
-    "name": "Ethical Research project contributors"
+    "name": "Jihun Chae",
+    "url": "https://ji-hun-git.github.io/"
   },
+  "homepage": "https://github.com/ji-hun-git/ethical-research",
+  "repository": "https://github.com/ji-hun-git/ethical-research",
   "license": "MIT",
   "keywords": [
+    "research-integrity",
     "academic-integrity",
-    "research",
-    "korean",
-    "bilingual",
     "citation-verification",
-    "literature-review",
-    "claude-code"
+    "critical-thinking",
+    "peer-review",
+    "statistics",
+    "research-ethics",
+    "korean"
   ]
 }

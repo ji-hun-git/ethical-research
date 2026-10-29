@@ -1,16 +1,17 @@
 {
   "name": "ethical-research",
   "owner": {
-    "name": "ji-hun-git",
+    "name": "Jihun Chae",
     "url": "https://github.com/ji-hun-git"
   },
-  "description": "Korean-English academic-integrity research copilot for Claude Code.",
+  "description": "Ethical Research: a research assistant that keeps questioning and checks the record.",
   "plugins": [
     {
       "name": "ethical-research",
       "source": "./",
-      "description": "Plan, review, verify, and improve scholarly work; refuses ghostwriting, fabricated citations, and AI-use concealment. Critical-thinking loop keeps the human the thinker; grounded in Korean research-ethics frameworks (national guideline + SNU/KAIST).",
-      "version": "0.1.0",
+      "description": "Challenges every claim, checks references against Crossref, OpenAlex and arXiv, recomputes reported statistics, scans manuscripts for slop and hidden prompts, and keeps a ledger of open questions that returns every session. Refuses ghostwriting, fabricated citations and AI-use concealment.",
+      "version": "2026.10.29",
+      "category": "research",
       "license": "MIT"
     }
   ]

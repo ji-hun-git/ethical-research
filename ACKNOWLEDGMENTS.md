@@ -1,49 +1,35 @@
-# Acknowledgments & Origin Statement
+# Acknowledgments and origin
 
-Ethical Research is an **independent** work, written from scratch. This file records what
-it owes intellectually, because a toolkit about academic integrity should hold
-itself to the citation standard it asks of its users.
+Ethical Research is an independent work, written from scratch. A project about research integrity should hold itself to the citation standard it asks of researchers, so this file records what it owes.
+
+## Methods it implements
+
+The checks are implementations of published methods. The credit for the methods belongs to their authors; any errors in the implementations are ours.
+
+- **Recomputed p-values** follow the approach of statcheck (Nuijten, Hartgerink, van Assen, Epskamp & Wicherts, 2016, *Behavior Research Methods*), including its rule for rounding.
+- **GRIM** is the test of Brown & Heathers (2017, *Social Psychological and Personality Science*).
+- **Tortured phrases** come from Table 1 of Cabanac, Labbé & Magazinov (2021, arXiv:2107.06751), and the threshold of five from their Problematic Paper Screener.
+- **Chatbot phrases** are the most specific of those documented by Glynn (Academ-AI, arXiv:2411.15218).
+- **Reference records** come from Crossref, including the Retraction Watch data Crossref has carried in its API since January 2025, and from DataCite, which also resolves arXiv DOIs. Both are open infrastructure run for the research community.
+- **The questioning loop** draws on research on sycophancy, cognitive offloading and AI that challenges its users; [the questioning reference](skills/ethical-research/references/questioning.md) cites each source.
 
 ## Prior art
 
-Ethical Research was informed by the broader idea of an *academic research copilot* built
-as a Claude Code skill — a category of tool that assists a researcher across the
-research-to-publication arc while keeping a human in control. One notable example
-in that category is **Academic Research Skills (ARS)** by Cheng-I Wu, distributed
-under CC BY-NC 4.0 (DOI: 10.5281/zenodo.20696614).
+Ethical Research belongs to the broader category of academic research assistants built as agent skills, which help a researcher across the arc from question to publication while keeping a person in control. One notable example is **Academic Research Skills (ARS)** by Cheng-I Wu, distributed under CC BY-NC 4.0 (DOI: 10.5281/zenodo.20696614).
 
-We reused **ideas and concepts** from that line of work — the value of treating
-fabricated citations as a hard failure, of verifying references against
-bibliographic indexes, of Socratic research planning, of venue-specific AI-use
-disclosure, and of keeping mandatory human checkpoints. Ideas, methods, and
-workflows are not owned by anyone, and we are glad to build on good ones.
+From that line of work it reuses ideas: treating fabricated citations as a hard failure, verifying references against bibliographic indexes, Socratic planning, venue-specific AI-use disclosure and mandatory human checkpoints. Ideas, methods and workflows belong to no one, and building on good ones is how research works.
 
-We did **not** reuse its expression. No text, code, prompt wording, file
-structure, mode names, or taxonomy phrasing was copied or translated from it.
-Every word and every design choice in this repository was authored independently.
-That is why Ethical Research carries its own license (MIT) rather than CC BY-NC 4.0: it is
-a separate work, not a derivative.
+It does not reuse expression. No text, code, prompt wording, file structure, mode names or taxonomy phrasing was copied or translated from it, which is why Ethical Research carries its own license (MIT) rather than CC BY-NC 4.0.
 
-## How Ethical Research differs on purpose
+## Where it differs on purpose
 
-Ethical Research is not "the same thing in Korean." It makes deliberately stricter choices:
+- It **keeps questioning**: a structured loop with evidence labels, a rule that positions change only for evidence, and a ledger of open questions in the researcher's project that returns each session.
+- It **checks in code**: references against the registries, statistics against their own numbers, manuscripts for hidden text, instead of relying on the model's reading.
+- It is **measured**: the same cases run with and without the skill on models from three vendors, graded by a jury from three vendors and by checks in code.
+- It **refuses AI-text detection** in both directions: it neither scores text nor helps anyone pass a detector.
+- It has **no full-draft mode**, and an AI-use statement comes with every substantive deliverable.
+- It works **in Korean and English**, composed natively, and is grounded in the Korean research-ethics framework as well as international venue rules.
 
-- It is **student-first**, not researcher-first. Its default is to refuse
-  submission-ready prose and to coach the human into writing it themselves.
-- It ships **no full-paper-generation mode** at all.
-- It makes **AI-use disclosure non-optional** — you cannot receive a deliverable
-  without also receiving the disclosure statement that goes with it.
-- It treats **Korean as a first language to compose in**, never as a translation
-  target.
-- It runs a **critical-thinking loop** that keeps the human doing the reasoning —
-  asking the user questions rather than just producing answers for them.
-- It is **grounded in Korean research-ethics frameworks** (the national guideline
-  plus SNU and KAIST regulations), not a generic notion of "ethics."
+## If you maintain a related tool
 
-See [ETHICS.md](ETHICS.md) for the full charter.
-
-## If you maintain a similar tool
-
-If you are the author of a related project and feel this acknowledgment is
-inaccurate or incomplete, please open an issue — we will correct it. Getting
-attribution right is the entire point.
+If this acknowledgment is inaccurate or incomplete, please open an issue and it will be corrected. Getting attribution right is the point.

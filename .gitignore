@@ -9,12 +9,18 @@ desktop.ini
 *.swp
 *~
 
-# Python (future tooling / eval harness)
+# Python
 __pycache__/
+.ruff_cache/
 *.py[cod]
 .venv/
 venv/
-.pytest_cache/
+
+# claude plugin eval writes its runs here; committed results live in benchmarks/results
+evals/results/
+
+# A research ledger made while trying the plugin in this folder
+.ethical-research/
 
 # Local / secrets
 .env

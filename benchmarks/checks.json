@@ -1,0 +1,152 @@
+{
+ "statistics": {
+  "kinds": {
+   "correct": {
+    "n": 200,
+    "flagged": 0,
+    "unchecked": 0,
+    "should_flag": false
+   },
+   "corrupted, detectable at the reported precision": {
+    "n": 171,
+    "flagged": 171,
+    "unchecked": 0,
+    "should_flag": true
+   },
+   "corrupted, but within rounding (no checker can see it)": {
+    "n": 29,
+    "flagged": 0,
+    "unchecked": 0,
+    "should_flag": false
+   }
+  },
+  "detected": 171,
+  "defective": 171,
+  "false_flags": 0,
+  "clean": 229,
+  "unchecked": 0,
+  "date": "2026-10-29"
+ },
+ "scan": {
+  "kinds": {
+   "clean text": {
+    "n": 5,
+    "flagged": 0,
+    "unchecked": 0,
+    "should_flag": false
+   },
+   "clean PDF": {
+    "n": 5,
+    "flagged": 0,
+    "unchecked": 0,
+    "should_flag": false
+   },
+   "clean Word": {
+    "n": 5,
+    "flagged": 0,
+    "unchecked": 0,
+    "should_flag": false
+   },
+   "clean LaTeX": {
+    "n": 5,
+    "flagged": 0,
+    "unchecked": 0,
+    "should_flag": false
+   },
+   "PDF white text": {
+    "n": 5,
+    "flagged": 5,
+    "unchecked": 0,
+    "should_flag": true
+   },
+   "PDF tiny font": {
+    "n": 5,
+    "flagged": 5,
+    "unchecked": 0,
+    "should_flag": true
+   },
+   "PDF invisible render mode": {
+    "n": 5,
+    "flagged": 5,
+    "unchecked": 0,
+    "should_flag": true
+   },
+   "Word hidden run": {
+    "n": 5,
+    "flagged": 5,
+    "unchecked": 0,
+    "should_flag": true
+   },
+   "LaTeX comment": {
+    "n": 5,
+    "flagged": 5,
+    "unchecked": 0,
+    "should_flag": true
+   },
+   "Unicode tag characters": {
+    "n": 5,
+    "flagged": 5,
+    "unchecked": 0,
+    "should_flag": true
+   },
+   "chatbot text": {
+    "n": 5,
+    "flagged": 5,
+    "unchecked": 0,
+    "should_flag": true
+   },
+   "five tortured phrases": {
+    "n": 5,
+    "flagged": 5,
+    "unchecked": 0,
+    "should_flag": true
+   }
+  },
+  "detected": 40,
+  "defective": 40,
+  "false_flags": 0,
+  "clean": 20,
+  "unchecked": 0,
+  "date": "2026-10-29"
+ },
+ "references": {
+  "kinds": {
+   "real": {
+    "n": 54,
+    "flagged": 0,
+    "unchecked": 0,
+    "should_flag": false
+   },
+   "DOI moved to another paper": {
+    "n": 27,
+    "flagged": 27,
+    "unchecked": 0,
+    "should_flag": true
+   },
+   "DOI with altered digits": {
+    "n": 27,
+    "flagged": 27,
+    "unchecked": 0,
+    "should_flag": true
+   },
+   "invented title, real author, no DOI": {
+    "n": 27,
+    "flagged": 27,
+    "unchecked": 0,
+    "should_flag": true
+   },
+   "retracted": {
+    "n": 2,
+    "flagged": 2,
+    "unchecked": 0,
+    "should_flag": true
+   }
+  },
+  "detected": 83,
+  "defective": 83,
+  "false_flags": 0,
+  "clean": 54,
+  "unchecked": 0,
+  "date": "2026-10-29"
+ }
+}

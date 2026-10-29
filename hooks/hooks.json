@@ -1,0 +1,16 @@
+{
+  "description": "At the start of a session, put the project's open research questions back in front of the assistant. Prints nothing when the project has no ledger.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/skills/ethical-research/scripts/ledger.py\" session-start 2>/dev/null || python \"${CLAUDE_PLUGIN_ROOT}/skills/ethical-research/scripts/ledger.py\" session-start",
+            "timeout": 20
+          }
+        ]
+      }
+    ]
+  }
+}

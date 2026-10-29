@@ -1,0 +1,57 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: tests (${{ matrix.os }}, ${{ matrix.python }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        python: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+        include:
+          - os: windows-latest
+            python: "3.13"
+          - os: macos-latest
+            python: "3.13"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: unit and structure tests (standard library only, offline)
+        run: python -m unittest -v
+      - name: the checks run on their own examples
+        shell: bash
+        run: |
+          s=skills/ethical-research/scripts
+          echo "t(28) = 2.20, p = .036" | python $s/stats_check.py -
+          python $s/stats_check.py --grim 3.48 25
+          echo "We found a modest association in a survey of 40 students." | python $s/integrity_scan.py -
+          python $s/ledger.py session-start
+
+  plugin:
+    name: claude plugin validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: validate the plugin and marketplace manifests (no login needed)
+        run: npx -y @anthropic-ai/claude-code@2.1.310 plugin validate . --strict
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: ruff
+        run: pipx run ruff==0.14.0 check --select F,E9,B,UP --ignore UP007,B904 --target-version py310 .
