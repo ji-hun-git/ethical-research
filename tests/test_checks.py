@@ -45,6 +45,62 @@ class Parsing(unittest.TestCase):
         self.assertEqual(ref["author"], "Liang")
         self.assertEqual(ref["title"], "GPT detectors are biased against non-native English writers")
 
+    def test_author_first_styles(self):
+        ref = verify_refs.from_text("Lorenz Kuhn, Yarin Gal, and Sebastian Farquhar. Semantic uncertainty: Linguistic "
+                                    "invariances for uncertainty estimation in natural language generation. In International "
+                                    "Conference on Learning Representations, 2023")
+        self.assertEqual(ref["title"], "Semantic uncertainty: Linguistic invariances for uncertainty estimation in natural "
+                                       "language generation")
+        self.assertEqual((ref["author"], ref["year"]), ("Kuhn", 2023))
+        ref = verify_refs.from_text("Daniel D. Johnson, Daniel Tarlow, and Chris J. Maddison. Experts don't cheat: learning "
+                                    "what you don't know by predicting pairs. In Proceedings of the 41st ICML, 2024")
+        self.assertEqual(ref["title"], "Experts don't cheat: learning what you don't know by predicting pairs")
+        self.assertEqual(verify_refs.from_text("S. Zhang, S. Roller, N. Goyal, et al. Opt: Open pre-trained transformer "
+                                               "language models. arXiv preprint arXiv:2205.01068, 2022")["author"], "Zhang")
+
+    def test_years_and_identifiers_in_the_text(self):
+        ref = verify_refs.from_text("Ari Holtzman, Jan Buys, and Yejin Choi. The curious case of neural text degeneration. "
+                                    "arXiv preprint arXiv:1904.09751, 2019")
+        self.assertEqual((ref["year"], ref["arxiv"]), (2019, "1904.09751"))  # not 1904, the start of the identifier
+        ref = verify_refs.from_text("John Schulman, Filip Wolski, and Oleg Klimov. Proximal policy optimization algorithms. "
+                                    "CoRR, abs/1707.06347, 2017. URL http://arxiv.org/abs/1707.06347")
+        self.assertEqual(ref["arxiv"], "1707.06347")
+        ref = verify_refs.from_text("Goran Duck et al. “A survey of bioinformatics database and software usage through "
+                                    "mining the literature”. In: PLOS ONE 11.6 (2016), e0157989. doi: 10.1371/journal.pone.0157989")
+        self.assertEqual(ref["title"], "A survey of bioinformatics database and software usage through mining the literature")
+        self.assertEqual((ref["author"], ref["year"]), ("Duck", 2016))
+
+    def test_apa_title_that_opens_with_a_quotation(self):
+        ref = verify_refs.from_text('Drosos, I., Sarkar, A., Xu, X., & Toronto, N. (2025). "It makes you think": '
+                                    "Provocations help restore critical thinking to AI-assisted knowledge work. arXiv:2501.17247.")
+        self.assertTrue(ref["title"].startswith('"It makes you think": Provocations'))
+
+    def test_web_resources_are_checked_by_their_link(self):
+        ref = verify_refs.from_text("Microsoft Corporation. (2025). MarkItDown: A Python tool for converting files to "
+                                    "Markdown. https://github.com/microsoft/markitdown")
+        self.assertEqual(ref["url"], "https://github.com/microsoft/markitdown")
+        self.assertNotIn("url", verify_refs.from_text("Schulman, J. (2017). PPO. https://arxiv.org/abs/1707.06347"))
+
+        class Page:
+            status = 200
+
+            def read(self, n):
+                return b""
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *a):
+                return False
+        lookups = [{"message": {"items": []}}, EMPTY_FEED, NO_NOTES, NO_NOTES, {"results": []}]
+        with mock.patch.object(verify_refs, "_get", side_effect=lookups), \
+                mock.patch.object(verify_refs.urllib.request, "urlopen", return_value=Page()):
+            self.assertEqual(verify_refs.check(ref)["status"], "page found")
+        missing = verify_refs.urllib.error.HTTPError(ref["url"], 404, "Not Found", {}, None)
+        with mock.patch.object(verify_refs, "_get", side_effect=lookups), \
+                mock.patch.object(verify_refs.urllib.request, "urlopen", side_effect=missing):
+            self.assertEqual(verify_refs.check(ref)["status"], "not found")
+
     def test_bibtex(self):
         refs = verify_refs.parse("@article{k,\n  title={{GPT} detectors are biased},\n  author={Liang, Weixin and Zou, "
                                  "James},\n  year={2023},\n  doi={https://doi.org/10.1016/j.patter.2023.100779}\n}\n")
@@ -132,6 +188,9 @@ class StrictMatching(unittest.TestCase):
         self.assertTrue(verify_refs.same_title("Neural Networks&apos; Implicit Priors", "Neural Networks’ Implicit Priors"))
         self.assertTrue(verify_refs.on_record("Hazla", ["Jan Hązła"]))
         self.assertTrue(verify_refs.on_record("Di Jin", ["Di Jin", "Bingdao Feng"]))
+        self.assertTrue(verify_refs.on_record("Reiß", ["Kailun Yang", "Simon Reis"]))  # an index without the sharp s
+        self.assertTrue(verify_refs.on_record("Ch&apos;ng", ["Shin-Fang Chng"]))
+        self.assertFalse(verify_refs.on_record("Cheng", ["Wei Chen"]))  # different people
         self.assertFalse(verify_refs.same_title("Metrics for Auditing Generative Model", "Metrics for Auditing Generative Models"))
 
     def test_given_name_differs(self):
@@ -248,14 +307,14 @@ class Lookups(unittest.TestCase):
                        "Brown", 2017)
         result = self.run_check(line, [{"message": {"items": [hit["message"]]}}])
         self.assertEqual(result["status"], "record found")
-        result = self.run_check(line, [{"message": {"items": []}}, EMPTY_FEED, NO_NOTES, {"results": []}])
+        result = self.run_check(line, [{"message": {"items": []}}, EMPTY_FEED, NO_NOTES, NO_NOTES, {"results": []}])
         self.assertEqual(result["status"], "not found")
 
     def test_search_falls_back_to_openalex(self):
         line = "Brown, N., & Heathers, J. (2017). The GRIM test: A simple technique detects numerous anomalies."
         work = openalex("The GRIM test: A simple technique detects numerous anomalies in the reporting of results",
                         "Nicholas J. L. Brown", 2017)
-        result = self.run_check(line, [{"message": {"items": []}}, EMPTY_FEED, NO_NOTES, {"results": [work]}])
+        result = self.run_check(line, [{"message": {"items": []}}, EMPTY_FEED, NO_NOTES, NO_NOTES, {"results": [work]}])
         self.assertEqual(result["status"], "record found")
         self.assertIn("OpenAlex", result["detail"])
 
@@ -269,13 +328,13 @@ class Lookups(unittest.TestCase):
     def test_one_changed_word_is_another_title(self):
         line = 'Vaswani, A., et al. (2017). Attention is all you want. *NeurIPS*.'
         feed = arxiv_feed("Attention Is All You Need", ["Ashish Vaswani", "Noam Shazeer"], 2017)
-        result = self.run_check(line, [{"message": {"items": []}}, feed, NO_NOTES, {"results": []}])
+        result = self.run_check(line, [{"message": {"items": []}}, feed, NO_NOTES, NO_NOTES, {"results": []}])
         self.assertEqual(result["status"], "metadata mismatch")
 
     def test_arxiv_unreachable_falls_through_to_openalex(self):
         line = "Brown, N., & Heathers, J. (2017). The GRIM test: A simple technique detects numerous anomalies."
         result = self.run_check(line, [{"message": {"items": []}}, OSError("HTTP 503 from export.arxiv.org"),
-                                       NO_NOTES, {"results": []}])
+                                       NO_NOTES, NO_NOTES, {"results": []}])
         self.assertEqual(result["status"], "not found")
         self.assertIn("arXiv", result["detail"])
 

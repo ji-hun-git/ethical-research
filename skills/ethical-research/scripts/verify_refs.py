@@ -14,6 +14,8 @@ the source and confirm it supports the claim it is cited for.
   retracted             the record has a retraction, withdrawal or removal notice
   concern               the record has an expression of concern
   not found             no record matches: treat as a fabrication risk until someone finds the source
+  page found            a web resource with no scholarly record (software, a dataset, a standard) whose
+                        link resolves: it exists; whether it is the cited work needs a look
   unchecked             the lookup failed (offline, rate limited); nothing is known either way
 
 Input: a file or standard input with BibTeX entries, or one reference per line (a DOI, an arXiv
@@ -45,17 +47,22 @@ import urllib.request
 from xml.etree import ElementTree
 
 TIMEOUT = 20
-USER_AGENT = "ethical-research/2026.10.29 (https://github.com/ji-hun-git/ethical-research)"
+USER_AGENT = "ethical-research/2026.10.30 (https://github.com/ji-hun-git/ethical-research)"
 DOI_RE = re.compile(r"\b(10\.\d{4,9}/[-._;()/:A-Za-z0-9]+)")  # the pattern Crossref recommends
-ARXIV_RE = re.compile(r"(?:arxiv[:./\s]*(?:abs/)?|^)(\d{4}\.\d{4,5}|[a-z\-]+(?:\.[A-Z]{2})?/\d{7})(?:v\d+)?\b", re.I)
+ARXIV_RE = re.compile(r"(?:arxiv(?:\.org/(?:abs|pdf))?[:./\s]*|\babs/|^)(\d{4}\.\d{4,5}|[a-z\-]+(?:\.[A-Z]{2})?/\d{7})(?:v\d+)?\b", re.I)
+SENTENCE = re.compile(r"(?<!\b[A-Z])(?<!\bJr)(?<!\bSt)(?<!\bvs)\.\s+")  # a full stop that ends a sentence, not an initial
+URL_RE = re.compile(r"https?://[^\s<>\"']+")
+SCHOLARLY_HOSTS = ("doi.org", "arxiv.org", "openreview.net", "aclanthology.org", "proceedings.mlr.press", "papers.nips.cc",
+                   "proceedings.neurips.cc", "dl.acm.org", "ieeexplore.ieee.org", "link.springer.com", "sciencedirect.com",
+                   "onlinelibrary.wiley.com", "semanticscholar.org", "scholar.google", "jmlr.org", "pubmed", "ncbi.nlm.nih.gov")
 YEAR_RE = re.compile(r"\b(1[89]\d{2}|20\d{2})\b")
 BIB_FIELD = re.compile(r"(\w+)\s*=\s*(?:\{((?:[^{}]|\{[^{}]*\})*)\}|\"([^\"]*)\"|(\d+))")
 SEARCH_ACCEPT = 0.80    # minimum similarity for a search hit to count as the same work
 _last_call: dict[str, float] = {}
 INTERVAL = 0.34         # seconds between requests: Crossref allows about 3 searches a second
 ARXIV_HOST = "export.arxiv.org"
-INTERVALS = {ARXIV_HOST: 3.0, "api2.openreview.net": 1.0}  # arXiv asks for one request every 3 seconds
-FALLBACK_HOSTS = {ARXIV_HOST, "api2.openreview.net", "api.openalex.org"}  # asked only when Crossref has no match
+INTERVALS = {ARXIV_HOST: 3.0, "api2.openreview.net": 1.0, "api.openreview.net": 1.0}  # arXiv asks for one every 3 s
+FALLBACK_HOSTS = {ARXIV_HOST, "api2.openreview.net", "api.openreview.net", "api.openalex.org"}  # asked after Crossref
 _limited: set[str] = set()  # fallback sources that kept refusing for rate limits in this run
 RETRACTION = {"retraction", "partial_retraction", "withdrawal", "removal"}
 CORRECTION = {"correction", "erratum", "corrigendum", "addendum", "clarification"}
@@ -103,19 +110,68 @@ def from_text(line: str) -> dict:
     doi = DOI_RE.search(line)
     if doi:
         ref["doi"] = clean_doi(doi.group(1))
-    arxiv = ARXIV_RE.search(line) if "arxiv" in line.lower() or re.fullmatch(r"\d{4}\.\d{4,5}(v\d+)?", line) else None
+    lower = line.lower()
+    arxiv = (ARXIV_RE.search(line) if "arxiv" in lower or "corr" in lower or re.fullmatch(r"\d{4}\.\d{4,5}(v\d+)?", line)
+             else None)
     if arxiv:
         ref["arxiv"] = arxiv.group(1)
-    year = YEAR_RE.search(line)
+    links = [u.rstrip(".,;)") for u in URL_RE.findall(line)]
+    web = [u for u in links if not any(h in u.lower() for h in SCHOLARLY_HOSTS)]
+    if web:
+        ref["url"] = web[0]
+    year = ref_year(line)
     if year:
-        ref["year"] = int(year.group(1))
-    title = apa_title(line) or quoted_title(line)
+        ref["year"] = year
+    title = apa_title(line) or quoted_title(line) or plain_title(line)
     if title:
         ref["title"] = title
-    author = re.match(r"\s*([A-Z][\w'\-À-ɏ]+|[가-힣]{2,4})", line)
+    author = first_author(line)
     if author:
-        ref["author"] = author.group(1)
+        ref["author"] = author
     return ref
+
+
+def ref_year(line: str) -> int | None:
+    """In brackets when there is one (APA, "(2016),"), else the last year in the text; never the digits of a DOI,
+    an arXiv identifier or a link."""
+    text = re.sub(r"https?://\S+|\b10\.\d{4,9}/\S+|\b\d{4}\.\d{4,5}(?:v\d+)?", " ", line)
+    bracketed = re.search(r"\((1[89]\d{2}|20\d{2})[a-z]?(?:\)|[,;])", text)
+    if bracketed:
+        return int(bracketed.group(1))
+    years = YEAR_RE.findall(text)
+    return int(years[-1]) if years else None
+
+
+def plain_title(line: str) -> str | None:
+    """Styles that list the authors, then the title as the next sentence, with no quotation marks or bracketed
+    year ("A. Author, B. Author, and C. Author. Title of the paper. In Venue, 2020."): NeurIPS, ACM, many others."""
+    parts = SENTENCE.split(URL_RE.sub(" ", line), maxsplit=2)
+    if len(parts) < 2 or not looks_like_authors(parts[0]):
+        return None
+    title = parts[1].strip(" *").rstrip(".")
+    return title if len(title) >= 10 and not re.match(r"(?i)in\b|proceedings\b|arxiv\b", title) else None
+
+
+def looks_like_authors(text: str) -> bool:
+    words = [w for w in re.split(r"[\s,]+", re.sub(r"\bet al\b.*", "", text)) if w and w.lower() not in ("and", "&")]
+    named = [w for w in words if w[0].isupper() or w.lower() in PARTICLES]
+    return 2 <= len(words) <= 120 and not re.search(r"\d", text) and len(named) >= 0.8 * len(words)
+
+
+def first_author(line: str) -> str | None:
+    """The first author's surname: 'Surname, F.' (APA, Harvard) or 'Firstname Surname, ...' (NeurIPS, ACM)."""
+    korean = re.match(r"\s*([가-힣]{2,4})", line)
+    if korean:
+        return korean.group(1)
+    surname_first = re.match(r"\s*([^\W\d][\w'\-]*(?:[ -][^\W\d][\w'\-]*){0,2}),\s+(?:[A-Z]\.|[A-Z][a-z]+\s+[A-Z]\.)", line)
+    if surname_first:
+        return surname_first.group(1)
+    chunk = re.sub(r"\s+et al\b.*", "", re.split(r",|\s+and\s+|\s+&\s+|(?<![A-Z])\.\s", line, maxsplit=1)[0]).strip()
+    words = chunk.split()
+    if 2 <= len(words) <= 5 and all(w[0].isupper() or w.lower() in PARTICLES for w in words) and not re.search(r"\d", chunk):
+        return surname(chunk)
+    word = re.match(r"\s*([A-Z][\w'\-À-ɏ]+)", line)
+    return word.group(1) if word else None
 
 
 def clean_doi(doi: str) -> str:
@@ -134,12 +190,14 @@ def apa_title(line: str) -> str | None:
         return None
     title = re.split(r"(?<=[?!])\s+(?=\*|arxiv|https?:|doi\b)", m.group(1), flags=re.I)[0]  # "...uncertainty? *ICLR*" ends at the "?"
     title = title.strip(" *").rstrip(".")
-    return title if len(title) >= 10 else None
+    return title if len(title) >= 10 and title[0] not in ",;:.)]" else None  # "(2016), e0157989" is not a title
 
 
 def quoted_title(line: str) -> str | None:
-    """IEEE and Chicago: the title in quotation marks."""
-    m = re.search(r"[\u201c\"]([^\u201d\"]{10,})[\u201d\"]", line)
+    """IEEE, Chicago and Springer: the title in quotation marks, also when copying from a PDF has turned the
+    curly quotes into question marks ("et al. ?A survey of ...?. In: ...")."""
+    m = (re.search(r"[\u201c\"]([^\u201d\"]{10,})[\u201d\"]", line)
+         or re.search(r"(?:^|[.,:]\s)\?([^?]{10,}?)\?[.,]", line))
     return m.group(1).strip().rstrip(",.") if m else None
 
 
@@ -164,6 +222,9 @@ def parse_bibtex(text: str) -> list[dict]:
         venue = fields.get("journal") or fields.get("booktitle")
         if venue:
             ref["venue"] = delatex(venue)
+        link = URL_RE.search(fields.get("url", "") or fields.get("howpublished", ""))
+        if link and not any(h in link.group(0).lower() for h in SCHOLARLY_HOSTS):
+            ref["url"] = link.group(0).rstrip(".,;)}")
         year = YEAR_RE.search(fields.get("year", "") or fields.get("date", ""))
         if year:
             ref["year"] = int(year.group(1))
@@ -256,9 +317,19 @@ def on_record(name: str, recorded: list[str], full_name: str = "") -> str | None
     """The record's author whose name holds a cited surname, if any. Records give family names or full
     names; a cited particle ("Di Jin", "van der Maaten") is tried with and without it. When several
     authors share the surname, the one whose given name fits the cited full name is chosen."""
-    wants = {norm(name), norm(name).split()[-1] if norm(name) else ""} - {""}
-    hits = [r for r in recorded
-            if any(want == norm(r) or want in norm(r).split() or f" {want}" in f" {norm(r)}" for want in wants)]
+    wants = {norm(name), norm(name).split()[-1] if norm(name) else "", norm(name).replace(" ", "")} - {""}
+
+    def holds(raw: str) -> bool:
+        full = norm(raw)
+        tokens = full.split()
+        if any(want == full or want in tokens or f" {want}" in f" {full}" for want in wants):
+            return True
+        if name.isascii() and raw.isascii():  # Chen and Cheng are different people
+            return False
+        # a letter apart where one side has a letter the other spells out or drops ("Reiß" and "Reis")
+        return any(len(want) >= 4 and len(t) >= 4 and want[0] == t[0] and difflib.SequenceMatcher(None, want, t).ratio() >= 0.88
+                   for want in wants for t in tokens)
+    hits = [r for r in recorded if holds(r)]
     if full_name:
         fitting = [r for r in hits if not given_differs(full_name, r)]
         hits = fitting or hits
@@ -333,10 +404,7 @@ def _get(url: str, raw: bool = False):
     host = urllib.parse.urlsplit(url).netloc
     if host in _limited:  # it said "too many requests" and kept saying it: do not wait on it again this run
         raise OSError(f"HTTP 429 from {host} earlier in this run")
-    wait = INTERVALS.get(host, INTERVAL) - (time.monotonic() - _last_call.get(host, 0.0))
-    if wait > 0:
-        time.sleep(wait)
-    _last_call[host] = time.monotonic()
+    _wait(host)
     accept = "application/atom+xml" if raw else "application/json"
     request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": accept})
     for attempt in range(3):
@@ -356,6 +424,38 @@ def _get(url: str, raw: bool = False):
         except urllib.error.URLError as err:
             raise OSError(str(err.reason)) from err
     raise OSError("no answer")
+
+
+def _wait(host: str) -> None:
+    wait = INTERVALS.get(host, INTERVAL) - (time.monotonic() - _last_call.get(host, 0.0))
+    if wait > 0:
+        time.sleep(wait)
+    _last_call[host] = time.monotonic()
+
+
+def check_url(url: str) -> tuple[str, str]:
+    """For a cited web resource with no scholarly record (software, a dataset, a standard, a page): does its
+    link resolve? A page that loads exists; whether it is the cited work needs a look."""
+    parts = urllib.parse.urlsplit(url)
+    host = (parts.hostname or "").lower()
+    if parts.scheme not in ("http", "https") or not host or host == "localhost" or re.fullmatch(r"[\d.]+|[\da-f:]+", host):
+        return "unchecked", f"{url} is not a public web address"
+    _wait(host)
+    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Range": "bytes=0-4095"})
+    try:
+        with urllib.request.urlopen(request, timeout=TIMEOUT) as response:
+            response.read(4096)
+            return "page found", (f"no scholarly record, but the link resolves (HTTP {response.status}): open it to "
+                                  "confirm it is the cited work")
+    except urllib.error.HTTPError as err:
+        if err.code in (404, 410):
+            return "not found", f"no scholarly record, and the link does not resolve (HTTP {err.code})"
+        return "unchecked", f"no scholarly record, and the site would not answer the check (HTTP {err.code}): open the link"
+    except (urllib.error.URLError, OSError, ValueError) as err:
+        reason = str(getattr(err, "reason", err))
+        if any(s in reason for s in ("getaddrinfo failed", "Name or service not known", "nodename nor servname")):
+            return "not found", f"no scholarly record, and the link's site does not exist ({host})"
+        return "unchecked", f"no scholarly record, and the link could not be checked ({reason[:80]})"
 
 
 def _mailto() -> str:
@@ -476,18 +576,36 @@ def openalex_search(ref: dict) -> dict | None:
     return best_match(ref, [openalex_record(w) for w in (data or {}).get("results", [])])
 
 
-OPENREVIEW = "https://api2.openreview.net/notes/search"
+OPENREVIEW = ("https://api2.openreview.net/notes/search", "https://api.openreview.net/notes/search")  # newer, older venues
 UNPUBLISHED = re.compile(r"\b(?:submitted to|withdrawn|rejected|desk.rejected)\b", re.I)
 
 
 def openreview_search(ref: dict) -> dict | None:
     """OpenReview holds ICLR, NeurIPS and TMLR papers and the DBLP index of computer-science venues, with
-    each venue as DBLP records it ("ICML 2022") or as the conference decided ("Submitted to ICLR 2023")."""
+    each venue as DBLP records it ("ICML 2022") or as the conference decided ("Submitted to ICLR 2023").
+    Its newer and older interfaces hold different venues, so both are asked until one has the work."""
     if not ref.get("title"):
         return None
-    data = _get(f"{OPENREVIEW}?term={urllib.parse.quote(ref['title'][:300])}&type=terms&content=title&source=forum&limit=8")
+    term = urllib.parse.quote(" ".join(re.sub(r"[^\w\s'-]", " ", ref["title"]).split())[:300])  # ":" is query syntax there
+    found, failure = None, None
+    for api in OPENREVIEW:
+        try:
+            data = _get(f"{api}?term={term}&type=terms&content=title&source=forum&limit=8")
+        except OSError as err:
+            failure = err
+            continue
+        record = _openreview_best(ref, (data or {}).get("notes", []))
+        if record and not compare(ref, record):
+            return record
+        found = found or record
+    if found is None and failure:
+        raise failure
+    return found
+
+
+def _openreview_best(ref: dict, notes: list[dict]) -> dict | None:
     records = []
-    for note in (data or {}).get("notes", []):
+    for note in notes:
         content = note.get("content") or {}
         value = lambda key: (content.get(key) or {}).get("value") if isinstance(content.get(key), dict) else content.get(key)  # noqa: E731
         names = [a.get("fullname", "") if isinstance(a, dict) else str(a) for a in value("authors") or []]
@@ -502,8 +620,8 @@ def openreview_search(ref: dict) -> dict | None:
             "retracted": False, "concern": False, "corrected": False, "notices": [], "is_notice_for": [],
         })
     same = [r for r in records if same_title(ref["title"], r["title"])]
-    if ref.get("venue") and same:  # DBLP keeps the preprint and the published paper apart: prefer the one cited
-        same.sort(key=lambda r: not (r["venue"] and same_venue(ref["venue"], r["venue"])))
+    # DBLP keeps the preprint and the published paper apart: prefer the record that agrees with the citation
+    same.sort(key=lambda r: bool(compare(ref, r)))
     return same[0] if same else best_match(ref, records)
 
 
@@ -595,6 +713,10 @@ def check(ref: dict) -> dict:
                 other = _try(name, fallback, ref)
                 if other is not None and (record is None or not compare(ref, other)):
                     record, how = other, f"an {name} search"
+            if record is None and ref.get("url"):
+                status, detail = check_url(ref["url"])
+                out.update(status=status, detail=detail)
+                return out
             if record is None:
                 out.update(status="not found", detail="no record in Crossref, arXiv, OpenReview or OpenAlex matches this citation"
                                                       f"{_unreached_note()}; it may still exist outside them (books, many "

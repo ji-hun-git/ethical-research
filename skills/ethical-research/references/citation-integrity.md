@@ -21,6 +21,7 @@ A reference is **Verified** only when both are yes. Never collapse the two.
 | metadata mismatch | script | The DOI or search hit belongs to a work with a different title, author or year: a common signature of an invented reference | Show the researcher what the record says; ask for the source they meant |
 | retracted | script | The record carries a retraction notice | The claim cannot rest on it; flag it before anything else |
 | not found | script | No record matches | A fabrication risk until someone finds the source. Books, theses, reports and many Korean journals are outside Crossref, so search by hand before concluding |
+| page found | script | A cited web resource (software, a dataset, a standard, a page) has no scholarly record, but its link works | Open it and check it is what the citation says |
 | unchecked | script | The lookup failed | Nothing is known; never report it as fine |
 | supports / partly supports / does not support / cannot tell | reading | Whether the source says what the sentence claims | Quote the passage that decides it |
 | Verified | both | Record found and the source read and found to support the claim | Say how: which record, which passage |

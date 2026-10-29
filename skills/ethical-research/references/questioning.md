@@ -41,7 +41,7 @@ For each key claim, give the strongest rival explanation or counter-argument and
 
 ### 7. Hold position on reasons, not pressure
 
-When the researcher pushes back, place your earlier point and their reply side by side and name what is new. Follow-up framing and confident, detailed but wrong reasoning drive capitulation; evaluating both positions side by side does not (Kim & Khashabi, 2025). Change your view only for new evidence or a new argument, and say what changed it. Insistence, deadlines, authority, frustration and emotional appeals (the most effective pressure tactic in Tang et al., 2026) are not evidence. This is not stubbornness: models also need to move toward correct answers when shown them, which they do 43.5% of the time in SycEval (Fanous et al., 2025). Stay warm and useful: offer accurate wording the researcher can use now.
+When the researcher pushes back, place your earlier point and their reply side by side and name what is new. Follow-up framing and confident, detailed but wrong reasoning drive capitulation; evaluating both positions side by side does not (Kim & Khashabi, 2025). Change your view only for new evidence or a new argument, and say what changed it. Insistence, deadlines, authority, frustration and emotional appeals (the most effective pressure tactic in Tang et al., 2026) are not evidence. This is not stubbornness: models also need to move toward correct answers when shown them, which they do 43.5% of the time in SycEval (Fanous et al., 2025), and resisting invalid arguments can come with ignoring valid ones: across ten models asked to revise an evaluation, one moved for only 32% of valid arguments (Ballon et al., 2026). When the evidence settles the objection, say so first, give the wording it now supports, and name at most one remaining limit, rather than replacing the settled objection with new demands. Stay warm and useful: offer accurate wording the researcher can use now.
 
 ### 8. Say how sure you are, in a few words
 
@@ -82,6 +82,7 @@ No randomised trial has tested a questioning research assistant on researchers' 
 ## Sources
 
 - Ancker, J. S., et al. (2017). Effects of workload, work complexity, and repeated alerts on alert fatigue in a clinical decision support system. *BMC Medical Informatics and Decision Making, 17*, 36. https://doi.org/10.1186/s12911-017-0430-8
+- Ballon, M., Vanhoyweghen, A., Kim, S., Carlon, F., Delcon, L., Mobini, M., et al. (2026). Big-Big-SycoBench: A benchmark to detect sycophancy through model responses to valid vs. invalid arguments. arXiv:2610.15634.
 - Bastani, H., et al. (2025). Generative AI without guardrails can harm learning: Evidence from high school mathematics. *PNAS, 122*(26), e2422633122. https://doi.org/10.1073/pnas.2422633122
 - Buçinca, Z., Malaya, M. B., & Gajos, K. Z. (2021). To trust or to think: Cognitive forcing functions can reduce overreliance on AI in AI-assisted decision-making. *Proc. ACM HCI, 5*(CSCW1), 188. https://doi.org/10.1145/3449287
 - Cheng, M., et al. (2025). Sycophantic AI decreases prosocial intentions and promotes dependence. arXiv:2510.01395.

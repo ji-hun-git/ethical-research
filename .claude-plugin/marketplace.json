@@ -10,7 +10,7 @@
       "name": "ethical-research",
       "source": "./",
       "description": "Challenges every claim, checks references against Crossref, OpenAlex and arXiv, recomputes reported statistics, scans manuscripts for slop and hidden prompts, and keeps a ledger of open questions that returns every session. Refuses ghostwriting, fabricated citations and AI-use concealment.",
-      "version": "2026.10.29",
+      "version": "2026.10.30",
       "category": "research",
       "license": "MIT"
     }

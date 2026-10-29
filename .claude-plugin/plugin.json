@@ -1,7 +1,7 @@
 {
   "name": "ethical-research",
   "displayName": "Ethical Research",
-  "version": "2026.10.29",
+  "version": "2026.10.30",
   "description": "A research assistant that keeps questioning: it challenges every claim, checks references against the scholarly record, recomputes reported statistics, scans manuscripts for slop and hidden prompts, and keeps the researcher the author. Refuses ghostwriting, fabricated citations and AI-use concealment.",
   "author": {
     "name": "Jihun Chae",
