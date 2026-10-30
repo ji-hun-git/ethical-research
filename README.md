@@ -1,6 +1,10 @@
 <h1 align="center">Ethical Research</h1>
 
 <p align="center">
+  <b>English</b> &nbsp;|&nbsp; <a href="README.ko.md">한국어</a> &nbsp;|&nbsp; <a href="README.zh-CN.md">简体中文</a> &nbsp;|&nbsp; <a href="README.ja.md">日本語</a>
+</p>
+
+<p align="center">
   <b>Use AI for research. Use it correctly.</b><br/>
   A research assistant that keeps questioning: it challenges every claim, checks references and statistics in code, finds hidden prompts, and keeps the researcher the author.
 </p>

@@ -1,4 +1,4 @@
-"""Turn benchmarks/results/*.json into benchmarks/README.md and the table in the README.
+"""Turn benchmarks/results/*.json into benchmarks/README.md and the table in each README.
 
 A run's score is the weighted share of its scored graders that passed, as in `claude plugin eval`.
 A case passes for a model only when it scored 1.0 on every run (pass^k). Graders named never-*
@@ -9,10 +9,41 @@ DOIs in answers are resolved in code; one that resolves nowhere is an invented D
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
 START, END = "<!-- eval table -->", "<!-- /eval table -->"
+
+# The README in each language, with the words of the table in it; numbers are written by `localise`.
+READMES = {
+    "README.md": ({}, "{n} in {total} runs"),
+    "README.ko.md": ({"Cases passed on every run": "모든 실행에서 통과한 사례",
+                      "Cases that need no tool, passed": "도구가 필요 없는 사례 중 통과",
+                      "Integrity failures": "진실성 위반",
+                      "Invented DOIs": "지어낸 DOI",
+                      "Runs that could not run (provider errors, left out)": "실행되지 못한 실행(제공사 오류, 집계 제외)",
+                      "Bare model": "스킬 없음"}, "{total}회 중 {n}회"),
+    "README.zh-CN.md": ({"Cases passed on every run": "每次运行均通过的案例",
+                         "Cases that need no tool, passed": "无需工具的案例中通过的",
+                         "Integrity failures": "诚信违规",
+                         "Invented DOIs": "编造的 DOI",
+                         "Runs that could not run (provider errors, left out)": "未能运行的次数（服务商错误，不计入）",
+                         "Bare model": "不加技能"}, "{total} 次中 {n} 次"),
+    "README.ja.md": ({"Cases passed on every run": "すべての実行で合格したケース",
+                      "Cases that need no tool, passed": "ツール不要のケースのうち合格",
+                      "Integrity failures": "研究公正上の違反",
+                      "Invented DOIs": "捏造された DOI",
+                      "Runs that could not run (provider errors, left out)": "実行できなかった回（プロバイダーのエラー、集計外）",
+                      "Bare model": "スキルなし"}, "{total} 回中 {n} 回"),
+}
+
+
+def localise(table: str, readme: str) -> str:
+    words, runs = READMES[readme]
+    for english, local in words.items():
+        table = table.replace(english, local)
+    return re.sub(r"(\d+) in (\d+) runs", lambda m: runs.format(n=m[1], total=m[2]), table)
 
 # What the failing runs actually did, read from the stored answers. Scores are left as the jury gave them.
 NOTES = {
@@ -420,12 +451,15 @@ Benchmarks built by others, with their published results beside ours. Runners an
 """
     (root / "benchmarks").mkdir(exist_ok=True)
     (root / "benchmarks" / "README.md").write_text(body, encoding="utf-8")
-    readme = root / "README.md"
-    text = readme.read_text(encoding="utf-8")
-    if START in text and END in text:
-        head, rest = text.split(START, 1)
-        _, tail = rest.split(END, 1)
-        front = summary_table(results) if rivals else table(results)
-        readme.write_text(head + START + "\n" + front + "\n" + END + tail, encoding="utf-8")
-    print("wrote benchmarks/README.md" + (" and the README table" if START in text else ""))
+    front = summary_table(results) if rivals else table(results)
+    written = []
+    for name in READMES:
+        readme = root / name
+        text = readme.read_text(encoding="utf-8") if readme.exists() else ""
+        if START in text and END in text:
+            head, rest = text.split(START, 1)
+            _, tail = rest.split(END, 1)
+            readme.write_text(head + START + "\n" + localise(front, name) + "\n" + END + tail, encoding="utf-8")
+            written.append(name)
+    print("wrote benchmarks/README.md" + (" and the table in " + ", ".join(written) if written else ""))
     return 0

@@ -39,6 +39,22 @@ def links(path: Path) -> list[str]:
             if not m.startswith(("http://", "https://", "mailto:"))]
 
 
+READMES = sorted(ROOT.glob("README*.md"))
+
+
+def targets(text: str) -> set[str]:
+    """Every link, image and anchor a README points at, apart from the other languages."""
+    found = re.findall(r"\]\(([^)\s]+)\)|(?:href|src)=\"([^\"]+)\"", text)
+    return {a or b for a, b in found} - {p.name for p in READMES}
+
+
+def table_numbers(text: str) -> list[str]:
+    """The numbers in the eval table, sorted: a translation may write "18 in 300" as "300 中 18"."""
+    sys.path.insert(0, str(ROOT / "evals"))
+    from report import END, START
+    return sorted(re.findall(r"\d+", text.split(START, 1)[1].split(END, 1)[0]))
+
+
 class Manifests(unittest.TestCase):
     def test_versions_agree(self):
         plugin = json.loads((ROOT / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
@@ -134,6 +150,30 @@ class Modes(unittest.TestCase):
                     for part in f"{base}/{link}".split("/"):
                         parts = parts[:-1] if part == ".." else parts + [part]
                     self.assertIn("/".join(parts), files, f"{name}: {link}")
+
+
+class Readmes(unittest.TestCase):
+    def test_each_language_links_the_others_and_gets_the_table(self):
+        sys.path.insert(0, str(ROOT / "evals"))
+        import report
+        self.assertEqual({p.name for p in READMES}, {"README.md", "README.ko.md", "README.zh-CN.md", "README.ja.md"})
+        self.assertEqual(set(report.READMES), {p.name for p in READMES}, "report.py writes the table in each")
+        for readme in READMES:
+            text = readme.read_text(encoding="utf-8")
+            for other in READMES:
+                if other != readme:
+                    self.assertIn(f'href="{other.name}"', text, readme.name)
+
+    def test_translations_keep_the_links_anchors_and_numbers(self):
+        english = (ROOT / "README.md").read_text(encoding="utf-8")
+        for readme in READMES:
+            if readme.name == "README.md":
+                continue
+            text = readme.read_text(encoding="utf-8")
+            self.assertEqual(targets(text), targets(english), readme.name)
+            self.assertEqual(table_numbers(text), table_numbers(english), readme.name)
+            for anchor in re.findall(r"(?:\]\(|href=\")#([\w-]+)", text):  # headings are translated; anchors are not
+                self.assertIn(f'<a id="{anchor}"></a>', text, f"{readme.name}: #{anchor}")
 
 
 class Evals(unittest.TestCase):
