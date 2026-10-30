@@ -47,8 +47,20 @@ class Manifests(unittest.TestCase):
         skill = re.search(r'version: "([^"]+)"', (SKILL / "SKILL.md").read_text(encoding="utf-8")).group(1)
         self.assertEqual(plugin["name"], "ethical-research")
         self.assertEqual(market["plugins"][0]["name"], plugin["name"])
-        self.assertEqual({plugin["version"], market["plugins"][0]["version"], cff, skill}, {plugin["version"]})
+        portable = json.loads((ROOT / "plugin.json").read_text(encoding="utf-8"))
+        gemini = json.loads((ROOT / "gemini-extension.json").read_text(encoding="utf-8"))
+        self.assertEqual({plugin["version"], market["plugins"][0]["version"], cff, skill, portable["version"],
+                          gemini["version"]}, {plugin["version"]})
+        self.assertEqual({portable["name"], gemini["name"]}, {plugin["name"]})
         self.assertIsInstance(plugin["author"], dict)
+
+    def test_other_manifests_start_the_mcp_server(self):
+        portable = json.loads((ROOT / "mcp.json").read_text(encoding="utf-8"))["mcpServers"]["ethical-research"]
+        gemini = json.loads((ROOT / "gemini-extension.json").read_text(encoding="utf-8"))["mcpServers"]["ethical-research"]
+        for server, variable in ((portable, "${PLUGIN_ROOT}"), (gemini, "${extensionPath}")):
+            path = server["args"][0]
+            self.assertTrue(path.startswith(variable + "/"), path)
+            self.assertTrue((ROOT / path.removeprefix(variable + "/")).is_file(), path)
 
     def test_hook_runs_a_script_that_exists(self):
         hooks = json.loads((ROOT / "hooks" / "hooks.json").read_text(encoding="utf-8"))
@@ -113,9 +125,9 @@ class Modes(unittest.TestCase):
         self.assertEqual(len([n for n in files if "/modes/" in n]), 12)
         for name, data in files.items():
             text = data.decode("utf-8", "replace")
-            self.assertNotIn("CLAUDE_PLUGIN_ROOT", text, name)
-            self.assertNotIn("$ARGUMENTS", text, name)
-            if name.endswith(".md"):  # every relative link inside the zip lands on a file in the zip
+            if name.endswith(".md"):  # the instructions: no plugin paths, and every relative link lands in the zip
+                self.assertNotIn("CLAUDE_PLUGIN_ROOT", text, name)
+                self.assertNotIn("$ARGUMENTS", text, name)
                 base = name.rsplit("/", 1)[0]
                 for link in re.findall(r"\]\(((?!https?:|#)[^)\s]+\.md)\)", text):
                     parts = []

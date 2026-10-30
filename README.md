@@ -15,6 +15,7 @@
 
 <p align="center">
   <a href="#install"><b>Install</b></a> &nbsp;|&nbsp;
+  <a href="#the-workflow"><b>Workflow</b></a> &nbsp;|&nbsp;
   <a href="guide/using-ai-in-research.md"><b>Guide</b></a> &nbsp;|&nbsp;
   <a href="#benchmark"><b>Benchmark</b></a> &nbsp;|&nbsp;
   <a href="ETHICS.md"><b>Charter</b></a> &nbsp;|&nbsp;
@@ -59,9 +60,12 @@ These failures don't come from using AI. They come from trusting its output unch
 | **Remembers what is unresolved** | A research ledger in your project records claims, evidence and open questions. It returns at the start of each session, three items at most, until you answer them or accept the risk. Claims stated as fact without checked evidence generate their own questions. |
 | **Checks in code** | References against Crossref, DataCite, arXiv, OpenReview and OpenAlex: every cited author, the year, the venue, and retractions. Sources found in an index, never recalled. Reported p-values recomputed, and GRIM on means. Manuscripts scanned for hidden instructions (white, tiny, invisible or off-page text, metadata), invisible characters, chatbot leftovers and tortured phrases. Standard library only. |
 | **Refuses the shortcuts** | No ghostwriting, no invented references or data, no help passing AI detectors, no understated AI-use statements, no confidential manuscripts processed before the venue's rules are checked. Every refusal comes with an honest alternative. |
+| **Runs anywhere** | As a skill in Claude, ChatGPT and Codex, Grok, Gemini, Muse Code, GitHub Copilot, Cursor and other Agent Skills hosts; its checks as an MCP server for any MCP host; on any open or hosted model behind an API through a small runner. [How, host by host](docs/hosts.md). |
 | **Measured** | Five models from three vendors, with this skill, with the two most-used research skill collections, and bare, graded by a three-vendor jury and by checks in code. Its reference checker is also measured on benchmarks built by others, beside the tools they compare. [Benchmark](#benchmark). |
 
 ## Install
+
+It runs in most AI hosts: as a skill where the host takes skills, with its checks as an MCP server where the host takes servers, and on any model behind an API through a small runner. Step-by-step for each host, checked 2026-10-30: [docs/hosts.md](docs/hosts.md).
 
 **Claude Code**, as a plugin with twelve commands and a session hook:
 
@@ -70,17 +74,31 @@ These failures don't come from using AI. They come from trusting its output unch
 /plugin install ethical-research@ethical-research
 ```
 
-**Codex and other Agent Skills hosts**, as a skill:
+**Codex, the ChatGPT desktop app, Grok Build, Muse Code, GitHub Copilot, Cursor, OpenCode, Goose, Kimi Code** and other hosts that read [Agent Skills](https://agentskills.io): copy the skill, then register its checks as a local MCP server.
 
 ```
 git clone https://github.com/ji-hun-git/ethical-research
 cp -r ethical-research/skills/ethical-research ~/.agents/skills/
+codex mcp add ethical-research -- python3 ~/.agents/skills/ethical-research/scripts/mcp_server.py
 ```
 
-**The Claude apps**, as an uploaded skill: build the zip, which holds the skill and its twelve modes, and upload it as a custom skill.
+**Gemini CLI**, as an extension with the skills and the server together:
+
+```
+gemini extensions install https://github.com/ji-hun-git/ethical-research
+```
+
+**The Claude apps, the Gemini app and grok.com**, as an uploaded skill: build the zip, which holds the skill and its twelve modes, and upload it as a custom skill. **ChatGPT** takes the repository as a plugin in OpenAI's portable format.
 
 ```
 python scripts/build_skill_zip.py
+```
+
+**Any model behind an API**, open or hosted (Ollama, LM Studio, vLLM, llama.cpp, OpenAI, xAI, Meta), with the skill as the system prompt and the checks as tools:
+
+```
+python skills/ethical-research/scripts/chat.py --base-url http://localhost:11434 --api ollama --model <model>
+python skills/ethical-research/scripts/chat.py --base-url https://api.meta.ai/v1 --model muse-spark-1.3 --key-env META_API_KEY
 ```
 
 **Just the checks**, in a terminal (Python 3.10 or newer, nothing to install):
@@ -108,6 +126,14 @@ The skill triggers on research requests in English or Korean ("check these citat
 | `/ethical-research:er-rebuttal` | A plan for answering reviewers that you write |
 | `/ethical-research:er-peer-review` | Forming your own judgement as a reviewer, within confidentiality rules |
 | `/ethical-research:er-disclosure` | A truthful AI-use statement for a named venue |
+
+## The workflow
+
+From a first question to the answer to your reviewers, in six stages, each ending at a gate: a short test to pass before the next stage. You do the thinking and the writing; it questions you, checks what code can check, and keeps the open questions until they are answered. The full walk-through, with what to bring and what to ask at each stage: [guide/workflow.md](guide/workflow.md).
+
+<p align="center">
+  <img src="docs/figures/workflow.png" alt="Six stages: Question, Sources, Analysis, Writing, Submission and Review, each with what the researcher does, the commands and checks, and the gate before the next stage" width="920"/>
+</p>
 
 ## See it work
 
@@ -213,19 +239,22 @@ The rules map onto the misconduct categories researchers answer to: fabrication,
 ## Layout
 
 ```
-.claude-plugin/     plugin.json, marketplace.json, icon
+.claude-plugin/     plugin.json, marketplace.json, icon: the Claude Code plugin
+plugin.json, mcp.json   the same plugin in OpenAI's portable format (ChatGPT, Codex)
+gemini-extension.json   the same as a Gemini CLI extension
 hooks/              hooks.json: put open questions back at the start of a session
 skills/
-  ethical-research/ SKILL.md, references/ (13 files), scripts/ (4 checks): the portable Agent Skill
+  ethical-research/ SKILL.md, references/ (13 files), scripts/: the portable Agent Skill, with its four checks,
+                    the MCP server that serves them to any host, and the runner for any model behind an API
   er-*/             the twelve commands
-guide/              Using AI in research, correctly: the evidence and the practice
+guide/              Using AI in research, correctly; the workflow, stage by stage
+docs/               hosts.md: how to run it in each host; figures/, drawn from the data by scripts/make_figures.py
 evals/              19 cases in the layout `claude plugin eval` reads, 2 pressure tests, the cross-vendor runner,
                     and rivals/: how each rival skill is loaded, case by case
 benchmarks/         results per model, the report, the benchmark of the checks themselves,
                     and external/: runners and raw outputs for HALLMARK, Badalova & Mayr and SycoBench-600
 scripts/            the figures, and the zip for the Claude apps
-tests/              structure, checks and ledger tests (python -m unittest)
-docs/figures/       figures, drawn from the data by scripts/make_figures.py
+tests/              structure, checks, ledger, MCP server and runner tests (python -m unittest)
 ```
 
 ## Contributing, security and license

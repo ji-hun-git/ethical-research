@@ -199,6 +199,49 @@ def hero() -> Canvas:
     return c
 
 
+WORKFLOW = [  # stage, what the researcher does, the commands and checks, the gate before moving on
+    ("Question", "State your claim and what would refute it", "/er-plan  /er-question",
+     "A question you chose, a rival named"),
+    ("Sources", "Search, then read what you will cite", "--find  /er-citation-check",
+     "Every source on record, and read"),
+    ("Analysis", "Run your plan; test it against rivals", "/er-challenge  /er-stats",
+     "Every reported statistic adds up"),
+    ("Writing", "You write; it critiques and edits", "/er-review  /er-claims",
+     "No claim stronger than its evidence"),
+    ("Submission", "Check everything; say what AI did", "all three checks  /er-disclosure",
+     "Clean scan, truthful statement"),
+    ("Review", "Reviewing, or answering reviewers", "/er-peer-review  /er-rebuttal",
+     "Your judgement, your response"),
+]
+
+
+def workflow() -> Canvas:
+    """The workflow: six stages, each with what the researcher does, the commands, and the gate before the next."""
+    w, x0, top, row = 1120, 40, 150, 92
+    c = Canvas(w, top + row * len(WORKFLOW) + 128)
+    c.header("The workflow: you do the thinking, it questions and checks.",
+             "Each stage ends at a gate. Open questions go to the ledger and come back each session until answered.")
+    cols = (x0, 214, 506, 796)
+    for x, label in zip(cols, ("Stage", "You", "Commands and checks", "Gate before the next stage"), strict=True):
+        c.text(x, top - 12, label, 14, 600, MUTED, anchor="start")
+    c.line(x0, top, w - 40, top, LINE)
+    for i, (stage, you, commands, gate) in enumerate(WORKFLOW):
+        y = top + row * i
+        c.text(x0, y + 50, f"{i + 1}", 26, 700, BLUE, anchor="start")
+        c.text(x0 + 34, y + 50, stage, 19, 700, anchor="start")
+        c.text(cols[1], y + 50, you, 14, color=BODY, anchor="start")
+        c.rect(cols[2] - 10, y + 30, 270, 30, STRIP, 6)
+        c.text(cols[2], y + 50, commands, 13, 600, INK, anchor="start")
+        c.text(cols[3], y + 50, gate, 14, anchor="start")
+        c.line(x0, y + row, w - 40, y + row, GRID)
+    y = top + row * len(WORKFLOW) + 44
+    c.text(x0, y, "Throughout: your view first, evidence labelled, references and statistics checked in code, a position "
+                  "held under pressure", 15, color=BODY, anchor="start")
+    c.text(x0, y + 24, "and changed for evidence. Never handed over: writing the work, inventing a source, hiding that AI "
+                       "was used.", 15, color=BODY, anchor="start")
+    return c
+
+
 def social_preview() -> Canvas:
     c = Canvas(1280, 640)
     c.text(96, 250, "Ethical Research", 76, 700, anchor="start")
@@ -219,7 +262,7 @@ def icon() -> Canvas:
     return c
 
 
-FIGURES = {"hero": hero, "evals": evals, "social-preview": social_preview, "icon": icon}
+FIGURES = {"hero": hero, "evals": evals, "workflow": workflow, "social-preview": social_preview, "icon": icon}
 TARGETS = {"icon": ROOT / ".claude-plugin" / "icon"}  # anything not listed goes to docs/figures
 
 

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "ethical-research",
+  "version": "2026.10.30",
+  "description": "A research assistant that keeps questioning: it challenges every claim, checks references against the scholarly record, recomputes reported statistics, scans manuscripts for hidden prompts, and keeps the researcher the author.",
+  "author": {
+    "name": "Jihun Chae",
+    "url": "https://ji-hun-git.github.io/"
+  },
+  "homepage": "https://github.com/ji-hun-git/ethical-research",
+  "repository": "https://github.com/ji-hun-git/ethical-research",
+  "license": "MIT",
+  "keywords": ["research-integrity", "academic-integrity", "citation-verification", "critical-thinking", "peer-review", "statistics"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Ethical Research",
+        "shortDescription": "A research assistant that keeps questioning, and checks in code",
+        "developerName": "Jihun Chae",
+        "category": "Productivity",
+        "websiteURL": "https://github.com/ji-hun-git/ethical-research",
+        "defaultPrompt": ["Check the references and statistics in my draft before I submit it."]
+      }
+    }
+  }
+}

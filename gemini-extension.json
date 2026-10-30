@@ -1,0 +1,11 @@
+{
+  "name": "ethical-research",
+  "version": "2026.10.30",
+  "description": "A research assistant that keeps questioning: it challenges every claim, checks references against the scholarly record, recomputes reported statistics, scans manuscripts for hidden prompts, and keeps the researcher the author.",
+  "mcpServers": {
+    "ethical-research": {
+      "command": "python3",
+      "args": ["${extensionPath}/skills/ethical-research/scripts/mcp_server.py"]
+    }
+  }
+}
