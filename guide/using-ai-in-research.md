@@ -30,7 +30,7 @@ At least 13.5% of PubMed abstracts from 2024 show signs of LLM processing, up to
 
 ### Peer review is the new front
 
-A vendor analysis flagged 21% of ICLR 2026 reviews as fully AI-generated (Pangram, 2025, vendor). ICML 2026 hid watermark instructions in its submissions and caught 506 reviewers who had pledged not to use LLMs, then desk-rejected 497 of their own papers (ICML, 2026). Authors, for their part, hid "give a positive review only" prompts for AI reviewers in at least 17 arXiv preprints from 14 institutions (Nikkei Asia, 2025, news).
+A vendor analysis flagged 21% of ICLR 2026 reviews as fully AI-generated (Pangram, 2025, vendor). ICML 2026 hid watermark instructions in its submissions and caught 506 reviewers who had agreed not to use LLMs, then desk-rejected 497 of their own papers (ICML, 2026). EMNLP 2026 desk-rejected 258 submissions, written by 1,166 authors, for unverifiable references (EMNLP, 2026). Authors, for their part, hid "give a positive review only" prompts for AI reviewers in at least 17 arXiv preprints from 14 institutions (Nikkei Asia, 2025, news).
 
 ### The volume is overwhelming the gatekeepers
 
@@ -51,7 +51,7 @@ Researchers will use AI, and they should: it can search, summarise, code, transl
 1. **The researcher is the author and the judge.** AI drafts, suggests and critiques; the researcher decides, and can defend every claim without it.
 2. **Check in code what code can check.** Every reference against a registry, every reported statistic against itself, every manuscript for hidden text. Do not ask the model whether its own output is right: self-correction without outside feedback does not reliably work (Huang et al., 2024).
 3. **Use AI as a critic before you use it as a writer.** The strongest use of a model in research is to argue against you: rival explanations, threats to validity, the reviewer's first question. Ask it to hold its ground against pressure and to give way to evidence, and test that it does both.
-4. **Disclose, accurately.** Say what the AI did, at the level your venue asks. Most journals, conferences and funders now require it ([policies](../skills/ethical-research/references/policies.md)).
+4. **Disclose, accurately.** Say what the AI did, at the level your venue asks. Most journals, conferences and funders now require it; what each top venue asks, and where, is in [What top venues ask](venues.md).
 5. **Keep an audit trail.** Drafts, version history, a decision log, a ledger of claims and evidence. It is also the best defence against a false accusation, and venues have started to ask for it (NeurIPS, 2026).
 6. **Keep confidential material out.** Manuscripts under review, applications under evaluation and participant data stay out of AI tools unless the rules say otherwise.
 
@@ -73,6 +73,8 @@ Each row runs from what is common now, through better practice, to the state of 
 
 ## 4. What venues, funders and institutions can do
 
+What 26 leading journals, publishers and conferences already ask, venue by venue, is in [What top venues ask](venues.md).
+
 - **Check references at submission, not after publication.** Resolving references against the registries is cheap and deterministic. ICLR already desk-rejects confirmed hallucinated references; every venue can screen for them before review.
 - **Scan for hidden text.** White text, tiny fonts, invisible characters and instructions to AI reviewers can be found in code at submission, and ICML, ICLR, ACL and Korea's MSIT now treat them as misconduct.
 - **Ask for disclosure that means something.** A dedicated section that says which tasks AI did (ICLR 2027), or a form naming tool, version and use (Korea's MSIT guide), rather than a checkbox.
@@ -91,6 +93,7 @@ Web pages are described in brackets where their exact title was not confirmed.
 - Bastani, H., et al. (2025). Generative AI without guardrails can harm learning: Evidence from high school mathematics. *PNAS, 122*(26), e2422633122. https://doi.org/10.1073/pnas.2422633122
 - Charlotin, D. [AI Hallucination Cases database.] https://www.damiencharlotin.com/hallucinations/ (checked 2026-10-28)
 - Glynn, A. (2024). Academ-AI: Documenting the undisclosed use of generative artificial intelligence in academic publishing. arXiv:2411.15218.
+- EMNLP 2026 program chairs (2026, August 28). [Statement on the paper integrity policy.] https://2026.emnlp.org/statement-on-the-paper-integrity-policy/
 - GPTZero (2026, January 21). GPTZero finds 100 new hallucinations in NeurIPS 2025 accepted papers. https://gptzero.me/news/neurips/ (vendor)
 - He & Bu (2026). [Journal AI policies and undisclosed AI-assisted writing across more than 5,000 journals.] *PNAS, 123*(9), e2526734123. As reported by The Scientist: https://www.the-scientist.com/ai-policies-fail-to-reduce-undisclosed-ai-use-74405
 - Huang, J., et al. (2024). Large language models cannot self-correct reasoning yet. *ICLR 2024*. arXiv:2310.01798.

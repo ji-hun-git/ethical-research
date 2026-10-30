@@ -20,6 +20,7 @@
 <p align="center">
   <a href="#install"><b>Install</b></a> &nbsp;|&nbsp;
   <a href="#the-workflow"><b>Workflow</b></a> &nbsp;|&nbsp;
+  <a href="guide/venues.md"><b>Venues</b></a> &nbsp;|&nbsp;
   <a href="guide/using-ai-in-research.md"><b>Guide</b></a> &nbsp;|&nbsp;
   <a href="#benchmark"><b>Benchmark</b></a> &nbsp;|&nbsp;
   <a href="ETHICS.md"><b>Charter</b></a> &nbsp;|&nbsp;
@@ -36,7 +37,7 @@
 - **Fabricated references are reaching print, faster each year.** In biomedical papers they rose from 1 in 2,828 papers in 2023 to 1 in 277 in early 2026 ([Topaz et al., 2026](https://doi.org/10.1016/S0140-6736(26)00603-3)). At least 146,932 hallucinated citations appeared across four preprint and paper archives in 2025 alone ([Zhao et al., 2026](https://arxiv.org/abs/2605.07723)).
 - **Models still invent them.** Ten commercial models fabricated between 11.4% and 56.8% of the citations they were asked for in a 2026 audit ([Naser, 2026](https://arxiv.org/abs/2603.03299)).
 - **Asked indirectly, they help with misconduct.** Framed covertly, requests for research misconduct went unrefused 71.7% of the time across 16 models, with the weakest refusals on transparency, plagiarism and fabrication ([Meguimtsop et al., 2026](https://arxiv.org/abs/2605.29468)).
-- **Peer review is being gamed from both sides.** A vendor analysis flagged a fifth of ICLR 2026 reviews as fully AI-generated. ICML 2026 caught 506 reviewers who used LLMs after pledging not to. Authors hid "give a positive review only" prompts for AI reviewers in their manuscripts.
+- **Peer review is being gamed from both sides.** A vendor analysis flagged a fifth of ICLR 2026 reviews as fully AI-generated. ICML 2026 caught 506 reviewers who used LLMs after agreeing not to. Authors hid "give a positive review only" prompts for AI reviewers in their manuscripts.
 - **The gatekeepers are overwhelmed.** arXiv received 40,363 submissions in September 2026, double the figure two years earlier. It now limits submitters to two a month and bans authors for a year over unchecked AI output.
 - **Researchers are trusting it too much.** Asked "Are you sure?", models dropped a correct answer 46% of the time ([Laban et al., 2023](https://arxiv.org/abs/2311.08596)). Students who practised with unrestricted GPT-4 did worse than controls once it was taken away ([Bastani et al., 2025](https://doi.org/10.1073/pnas.2422633122)).
 - **And the obvious fix fails.** AI-text detectors labelled non-native writers' essays as AI-written 61.3% of the time ([Liang et al., 2023](https://doi.org/10.1016/j.patter.2023.100779)). Journal AI policies made no measurable difference to undisclosed use.
@@ -138,6 +139,21 @@ From a first question to the answer to your reviewers, in six stages, each endin
 <p align="center">
   <img src="docs/figures/workflow.png" alt="Six stages: Question, Sources, Analysis, Writing, Submission and Review, each with what the researcher does, the commands and checks, and the gate before the next stage" width="920"/>
 </p>
+
+## What top venues ask
+
+We read the AI policies of 8 leading journals (Nature, Science, Cell, The Lancet, NEJM, JAMA, The BMJ, PNAS), 9 publishers and ethics bodies (ICMJE, COPE, Elsevier, Wiley, Taylor & Francis, PLOS, IEEE, ACM, APA) and 9 leading conferences (NeurIPS, ICML, ICLR, AAAI, IJCAI, ACL and EMNLP, CVPR, CHI, KDD) on 2026-10-30. None bans AI, and none lets it replace the researcher. They share six rules, and they have started to enforce them in code: EMNLP 2026 desk-rejected 258 submissions for unverifiable references, and ICML 2026 desk-rejected 497 papers by reviewers caught using LLMs after agreeing not to.
+
+| What they ask | Ethical Research |
+| --- | --- |
+| AI is never an author, and you answer for every word, figure and reference | Critiques and edits your writing; never writes the work for you to submit |
+| References must be real | `verify_refs.py` checks each one against five indexes: the title, every author, the year, the venue, retractions |
+| Say what AI did, where the venue asks | `/er-disclosure`, and a short AI-use statement at the end of every deliverable |
+| No AI-made images of results | Makes no figures and has no image check; reminds you to disclose any AI use in a figure |
+| Confidential manuscripts stay out of public AI | `/er-peer-review` asks for the rules first, and can run on a model on your own machine |
+| No hidden instructions for AI reviewers | `integrity_scan.py` finds them before you submit |
+
+Inside these rules there is room for a lot of AI: Springer Nature lists stress-testing research questions and comparing methods among its permitted uses. Venue by venue, with sources, and how to spend the time AI saves on better research: [What top venues ask](guide/venues.md).
 
 ## See it work
 
@@ -251,7 +267,7 @@ skills/
   ethical-research/ SKILL.md, references/ (13 files), scripts/: the portable Agent Skill, with its four checks,
                     the MCP server that serves them to any host, and the runner for any model behind an API
   er-*/             the twelve commands
-guide/              Using AI in research, correctly; the workflow, stage by stage
+guide/              Using AI in research, correctly; the workflow, stage by stage; what top venues ask
 docs/               hosts.md: how to run it in each host; figures/, drawn from the data by scripts/make_figures.py
 evals/              19 cases in the layout `claude plugin eval` reads, 2 pressure tests, the cross-vendor runner,
                     and rivals/: how each rival skill is loaded, case by case

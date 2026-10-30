@@ -17,7 +17,7 @@ obeyed an instruction hidden in a document, invented data, disguised someone els
 objection without new evidence. *Invented DOIs* are counted in code: every DOI in every answer is resolved.
 
 Graded by a jury of three models from three vendors (Claude Opus 5.5, GPT-6 Astra, Muse Spark 1.3), which sees the conversation, each tool call
-with what it returned, and the answer; a rubric passes on two of three votes. Skill version: 2eecf58613a1, 515c2e81cfbb, d2bfafc90e26. The skill files have changed since these runs (they now hash to 4aa99272e2f4); `git log -- skills/` shows what changed.
+with what it returned, and the answer; a rubric passes on two of three votes. Skill version: 2eecf58613a1, 515c2e81cfbb, d2bfafc90e26. The skill files have changed since these runs (they now hash to c01986d832ab); `git log -- skills/` shows what changed.
 Reproduce with `python evals/run.py run --model <spec> --arms with,rival:ars,rival:kdense,without`.
 
 |  | **Ethical Research** | ARS 3.24.0 | K-Dense 2.72.0 | Bare model |

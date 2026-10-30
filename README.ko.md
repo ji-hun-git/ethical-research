@@ -20,6 +20,7 @@
 <p align="center">
   <a href="#install"><b>설치</b></a> &nbsp;|&nbsp;
   <a href="#the-workflow"><b>워크플로</b></a> &nbsp;|&nbsp;
+  <a href="guide/venues.md"><b>투고처</b></a> &nbsp;|&nbsp;
   <a href="guide/using-ai-in-research.md"><b>가이드</b></a> &nbsp;|&nbsp;
   <a href="#benchmark"><b>벤치마크</b></a> &nbsp;|&nbsp;
   <a href="ETHICS.md"><b>헌장</b></a> &nbsp;|&nbsp;
@@ -38,7 +39,7 @@
 - **지어낸 참고문헌이 해마다 더 빠르게 출판물에 실리고 있습니다.** 생의학 논문에서 그 비율은 2023년 2,828편 중 1편에서 2026년 초 277편 중 1편으로 늘었습니다([Topaz et al., 2026](https://doi.org/10.1016/S0140-6736(26)00603-3)). 2025년 한 해에만 프리프린트·논문 아카이브 네 곳에서 최소 146,932건의 환각 인용이 나타났습니다([Zhao et al., 2026](https://arxiv.org/abs/2605.07723)).
 - **모델은 여전히 인용을 지어냅니다.** 2026년의 한 감사에서 상용 모델 10종은 요청받은 인용의 11.4%에서 56.8%를 지어냈습니다([Naser, 2026](https://arxiv.org/abs/2603.03299)).
 - **우회적으로 요청하면 연구부정을 돕습니다.** 의도를 감춘 연구부정 요청은 16개 모델 전체에서 71.7%가 거절되지 않았고, 투명성, 표절, 위조 영역에서 거절이 가장 약했습니다([Meguimtsop et al., 2026](https://arxiv.org/abs/2605.29468)).
-- **동료심사는 양쪽에서 조작되고 있습니다.** 한 업체의 분석은 ICLR 2026 심사의 5분의 1을 전적으로 AI가 생성한 것으로 판정했습니다. ICML 2026은 LLM을 쓰지 않겠다고 서약한 뒤 사용한 심사자 506명을 적발했습니다. 원고 안에 AI 심사자를 겨냥한 "긍정적인 심사만 하라" 프롬프트를 숨긴 저자들도 있었습니다.
+- **동료심사는 양쪽에서 조작되고 있습니다.** 한 업체의 분석은 ICLR 2026 심사의 5분의 1을 전적으로 AI가 생성한 것으로 판정했습니다. ICML 2026은 LLM을 쓰지 않기로 동의한 뒤 사용한 심사자 506명을 적발했습니다. 원고 안에 AI 심사자를 겨냥한 "긍정적인 심사만 하라" 프롬프트를 숨긴 저자들도 있었습니다.
 - **관문은 감당하지 못하고 있습니다.** arXiv는 2026년 9월 투고 40,363건을 받았습니다. 2년 전의 두 배입니다. 현재는 투고자당 월 2건으로 제한하고, 검토하지 않은 AI 산출물을 올린 저자에게 1년간 투고를 금지합니다.
 - **연구자는 AI를 지나치게 신뢰하고 있습니다.** "확실합니까?"라고 물으면 모델은 46%의 경우 정답을 버렸습니다([Laban et al., 2023](https://arxiv.org/abs/2311.08596)). 제한 없는 GPT-4로 연습한 학생은 GPT-4를 쓸 수 없게 되자 대조군보다 성적이 낮았습니다([Bastani et al., 2025](https://doi.org/10.1073/pnas.2422633122)).
 - **뻔한 해법은 실패합니다.** AI 텍스트 탐지기는 비원어민이 쓴 에세이의 61.3%를 AI가 쓴 것으로 분류했습니다([Liang et al., 2023](https://doi.org/10.1016/j.patter.2023.100779)). 학술지의 AI 정책은 미공개 사용에 측정 가능한 차이를 만들지 못했습니다.
@@ -144,6 +145,21 @@ python skills/ethical-research/scripts/integrity_scan.py manuscript.pdf
 <p align="center">
   <img src="docs/figures/workflow.png" alt="여섯 단계: 질문, 출처, 분석, 집필, 투고, 심사. 각 단계에서 연구자가 하는 일, 명령과 검사, 다음 단계 전의 관문" width="920"/>
 </p>
+
+## 주요 학술지와 학회가 요구하는 것
+
+2026-10-30에 주요 학술지 8곳(Nature, Science, Cell, The Lancet, NEJM, JAMA, The BMJ, PNAS), 출판사와 출판윤리 기구 9곳(ICMJE, COPE, Elsevier, Wiley, Taylor & Francis, PLOS, IEEE, ACM, APA), 주요 학회 9곳(NeurIPS, ICML, ICLR, AAAI, IJCAI, ACL과 EMNLP, CVPR, CHI, KDD)의 AI 정책을 읽었습니다. AI를 금지하는 곳은 없고, AI가 연구자를 대신하도록 허용하는 곳도 없습니다. 이들은 여섯 가지 규칙을 공유하며, 이제 코드로 집행하기 시작했습니다. EMNLP 2026은 확인할 수 없는 참고문헌을 이유로 투고 258편을 데스크 리젝트했고, ICML 2026은 LLM을 쓰지 않기로 동의하고도 사용한 것이 적발된 심사자들의 논문 497편을 데스크 리젝트했습니다.
+
+| 요구하는 것 | Ethical Research |
+| --- | --- |
+| AI는 저자가 될 수 없고, 모든 문장, 그림, 참고문헌의 책임은 연구자에게 있음 | 연구자의 글을 비평하고 다듬을 뿐, 제출할 글을 대신 쓰지 않음 |
+| 참고문헌은 실재해야 함 | `verify_refs.py`가 색인 5곳과 대조해 제목, 모든 저자, 연도, 게재처, 철회 여부를 확인 |
+| AI가 한 일을 투고처가 요구하는 곳에 밝힘 | `/er-disclosure`, 그리고 모든 결과물 끝의 짧은 AI 사용 고지 |
+| 결과를 보여 주는 이미지를 AI로 만들지 않음 | 그림을 만들지 않으며 이미지 검사 기능은 없음; 그림에 AI를 썼다면 고지하도록 안내 |
+| 기밀 원고는 공개 AI에 넣지 않음 | `/er-peer-review`가 먼저 규정을 묻고, 연구자의 컴퓨터에 있는 모델로도 실행 가능 |
+| AI 심사자를 겨냥한 숨겨진 지시문 금지 | `integrity_scan.py`가 투고 전에 찾아냄 |
+
+이 규칙 안에서도 AI를 쓸 여지는 넓습니다. Springer Nature는 연구 질문의 스트레스 테스트와 방법 비교를 허용되는 사용으로 명시합니다. 투고처별 내용과 출처, 그리고 AI로 아낀 시간을 더 좋은 연구에 쓰는 방법: [What top venues ask](guide/venues.md)(영어).
 
 ## 실제 작동 예
 
@@ -261,7 +277,7 @@ skills/
   ethical-research/ SKILL.md, references/(파일 13개), scripts/: 이식 가능한 Agent Skill과 네 가지 검사 도구,
                     검사 도구를 모든 호스트에 제공하는 MCP 서버, API 뒤의 모든 모델을 위한 실행기
   er-*/             명령 12개
-guide/              Using AI in research, correctly; 단계별 워크플로
+guide/              Using AI in research, correctly; 단계별 워크플로; 주요 투고처의 요구
 docs/               hosts.md: 호스트별 실행 방법; figures/: scripts/make_figures.py가 데이터로 그린 그림
 evals/              `claude plugin eval` 형식의 사례 19개, 압력 테스트 2개, 회사 간 실행기,
                     rivals/: 경쟁 스킬을 사례별로 불러오는 방식

@@ -20,6 +20,7 @@
 <p align="center">
   <a href="#install"><b>安装</b></a> &nbsp;|&nbsp;
   <a href="#the-workflow"><b>工作流程</b></a> &nbsp;|&nbsp;
+  <a href="guide/venues.md"><b>期刊与会议</b></a> &nbsp;|&nbsp;
   <a href="guide/using-ai-in-research.md"><b>指南</b></a> &nbsp;|&nbsp;
   <a href="#benchmark"><b>基准测试</b></a> &nbsp;|&nbsp;
   <a href="ETHICS.md"><b>章程</b></a> &nbsp;|&nbsp;
@@ -38,7 +39,7 @@
 - **编造的参考文献正以逐年加快的速度进入出版物。** 在生物医学论文中，含编造引用的论文从 2023 年的每 2,828 篇中 1 篇，增至 2026 年初的每 277 篇中 1 篇（[Topaz et al., 2026](https://doi.org/10.1016/S0140-6736(26)00603-3)）。仅 2025 年，四个预印本和论文库中就出现了至少 146,932 条幻觉引用（[Zhao et al., 2026](https://arxiv.org/abs/2605.07723)）。
 - **模型仍在编造引用。** 在 2026 年的一项审计中，十个商用模型编造了被要求提供的引用中的 11.4% 至 56.8%（[Naser, 2026](https://arxiv.org/abs/2603.03299)）。
 - **间接提出请求时，它们会协助学术不端。** 以隐蔽方式提出的学术不端请求，在 16 个模型中有 71.7% 未被拒绝，其中透明度、剽窃和捏造方面的拒绝最弱（[Meguimtsop et al., 2026](https://arxiv.org/abs/2605.29468)）。
-- **同行评审正遭到两方面的操纵。** 一家厂商的分析认为 ICLR 2026 五分之一的评审意见完全由 AI 生成。ICML 2026 查出 506 名承诺不使用 LLM 却仍然使用的评审人。还有作者在稿件中为 AI 评审人藏入“只给正面评价”的提示词。
+- **同行评审正遭到两方面的操纵。** 一家厂商的分析认为 ICLR 2026 五分之一的评审意见完全由 AI 生成。ICML 2026 查出 506 名同意不使用 LLM 却仍然使用的评审人。还有作者在稿件中为 AI 评审人藏入“只给正面评价”的提示词。
 - **把关者已不堪重负。** arXiv 在 2026 年 9 月收到 40,363 份投稿，是两年前的两倍。它现在限制每位投稿人每月两篇，并对提交未经检查的 AI 输出的作者处以一年禁投。
 - **研究者对它过于信任。** 被问到“你确定吗？”时，模型有 46% 的情况放弃了正确答案（[Laban et al., 2023](https://arxiv.org/abs/2311.08596)）。用不受限制的 GPT-4 练习的学生，在 GPT-4 被撤走后表现不如对照组（[Bastani et al., 2025](https://doi.org/10.1073/pnas.2422633122)）。
 - **而显而易见的解决办法并不奏效。** AI 文本检测器把非母语写作者的文章中的 61.3% 判定为 AI 所写（[Liang et al., 2023](https://doi.org/10.1016/j.patter.2023.100779)）。期刊的 AI 政策对未披露的使用没有产生可测量的影响。
@@ -144,6 +145,21 @@ python skills/ethical-research/scripts/integrity_scan.py manuscript.pdf
 <p align="center">
   <img src="docs/figures/workflow.png" alt="六个阶段：问题、来源、分析、写作、投稿和评审，每个阶段包括研究者要做的事、命令和检查，以及进入下一阶段前的关卡" width="920"/>
 </p>
+
+## 顶级期刊和会议的要求
+
+我们在 2026-10-30 阅读了 8 家顶级期刊（Nature、Science、Cell、The Lancet、NEJM、JAMA、The BMJ、PNAS）、9 家出版商和出版伦理机构（ICMJE、COPE、Elsevier、Wiley、Taylor & Francis、PLOS、IEEE、ACM、APA）以及 9 个顶级会议（NeurIPS、ICML、ICLR、AAAI、IJCAI、ACL 与 EMNLP、CVPR、CHI、KDD）的 AI 政策。没有一家禁止 AI，也没有一家允许 AI 取代研究者。它们共有六条规则，并且已开始用代码执行：EMNLP 2026 因参考文献无法核实而直接拒稿 258 份投稿；ICML 2026 查出同意不使用 LLM 却仍然使用的评审人，并直接拒稿了他们的 497 篇论文。
+
+| 它们要求什么 | Ethical Research |
+| --- | --- |
+| AI 不能是作者；每个字、每张图、每条参考文献都由你负责 | 批评并编辑你写的内容，从不代写要提交的作品 |
+| 参考文献必须真实存在 | `verify_refs.py` 对照五个索引逐条核查：标题、每位作者、年份、发表场所、撤稿 |
+| 按投稿场所的要求说明 AI 做了什么 | `/er-disclosure`，以及每份成果末尾的简短 AI 使用声明 |
+| 不用 AI 生成展示结果的图像 | 不制作图表，也没有图像检查；提醒你披露图中任何 AI 的使用 |
+| 机密稿件不放入公共 AI | `/er-peer-review` 先询问规则，也可以在你自己电脑上的模型中运行 |
+| 不得向 AI 评审人隐藏指令 | `integrity_scan.py` 在投稿前把它们找出来 |
+
+在这些规则之内，AI 仍有很大的用武之地：Springer Nature 把对研究问题做压力测试、比较方法列为允许的用途。各场所的具体要求与来源，以及如何把 AI 节省的时间用于更好的研究：[What top venues ask](guide/venues.md)（英文）。
 
 ## 实际效果
 
@@ -261,7 +277,7 @@ skills/
   ethical-research/ SKILL.md、references/（13 个文件）、scripts/：可移植的 Agent Skill 及其四项检查，
                     向任何宿主提供检查的 MCP 服务器，以及面向任何 API 模型的运行器
   er-*/             十二个命令
-guide/              Using AI in research, correctly；分阶段的工作流程
+guide/              Using AI in research, correctly；分阶段的工作流程；顶级期刊和会议的要求
 docs/               hosts.md：在各宿主中运行的方法；figures/：由 scripts/make_figures.py 根据数据绘制
 evals/              `claude plugin eval` 可读格式的 19 个案例、2 个压力测试、跨厂商运行器，
                     以及 rivals/：每个对手技能如何按案例加载
