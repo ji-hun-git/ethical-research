@@ -186,6 +186,14 @@ def checks(root: Path) -> str:
     return "\n\n".join(table(names[k], data[k]) + f"\n\nRun {data[k]['date']}." for k in names if k in data)
 
 
+def _with_runs(result: dict | None, case: str) -> list[dict]:
+    return [r for r in (result or {}).get("rows", []) if r["case"] == case and r["arm"] == "with" and not r.get("error")]
+
+
+def _passed(runs: list[dict]) -> str:
+    return f"{sum(r['score'] == 1.0 for r in runs)}/{len(runs)}" if runs else ""
+
+
 def followup(root: Path, results: list[dict]) -> str:
     """Cases run again with a later version of the skill (benchmarks/followup/*.json), beside the same cases in the
     head-to-head, so a change made after the runs is measured instead of assumed."""
@@ -199,11 +207,8 @@ def followup(root: Path, results: list[dict]) -> str:
         hashes.add(new["skill"])
         old = by_name.get(new["name"])
         for case in sorted({r["case"] for r in new["rows"]}):
-            runs = lambda res: [r for r in (res or {}).get("rows", []) if r["case"] == case and r["arm"] == "with"  # noqa: E731
-                                and not r.get("error")]
-            before, after = runs(old), runs(new)
-            fmt = lambda rs: f"{sum(r['score'] == 1.0 for r in rs)}/{len(rs)}" if rs else ""  # noqa: E731
-            lines.append(f"| {new['name']} | {case} | {fmt(before)} | {fmt(after)} |")
+            before, after = _with_runs(old, case), _with_runs(new, case)
+            lines.append(f"| {new['name']} | {case} | {_passed(before)} | {_passed(after)} |")
     return ("\n\n## After the runs: changes, measured\n\nTwo misses of the skill led to changes, and the cases they touch "
             "were run again with the changed skill, in this skill's arm only (files hashed "
             f"{', '.join(sorted(hashes))}):\n\n"

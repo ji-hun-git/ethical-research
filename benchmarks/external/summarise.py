@@ -88,7 +88,7 @@ def sycobench() -> dict:
             if path.exists():
                 arms[arm] = sb.score([json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line])
         out.append({"model": name, **arms})
-    return {"models": out, "published": [dict(zip(("model", "acc", "syco", "sel"), p)) for p in SYCOBENCH_PUBLISHED]}
+    return {"models": out, "published": [dict(zip(("model", "acc", "syco", "sel"), p, strict=True)) for p in SYCOBENCH_PUBLISHED]}
 
 
 def main() -> int:

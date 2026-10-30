@@ -371,8 +371,9 @@ def compare(ref: dict, record: dict) -> list[str]:
     if recorded and listed:
         names = ref.get("names") or []
         matched = [on_record(a, recorded, names[i] if i < len(names) else "") for i, a in enumerate(listed)]
-        missing = [a for a, m in zip(listed, matched) if m is None]
-        renamed = [f"{n} (the record has {m})" for n, m in zip(names, matched) if m and given_differs(n, m)]
+        missing = [a for a, m in zip(listed, matched, strict=True) if m is None]
+        # full names come only with BibTeX; a citation in prose names only its first author
+        renamed = [f"{n} (the record has {m})" for n, m in zip(names, matched, strict=False) if m and given_differs(n, m)]
         if len(listed) == 1 and missing:
             problems.append(f"first author differs: the record lists {', '.join(recorded[:3])}")
         elif missing:
@@ -603,18 +604,23 @@ def openreview_search(ref: dict) -> dict | None:
     return found
 
 
+def _field(content: dict, key: str):
+    """A note's field: the newer interface wraps each value as {"value": ...}, the older one does not."""
+    item = content.get(key)
+    return item.get("value") if isinstance(item, dict) else item
+
+
 def _openreview_best(ref: dict, notes: list[dict]) -> dict | None:
     records = []
     for note in notes:
         content = note.get("content") or {}
-        value = lambda key: (content.get(key) or {}).get("value") if isinstance(content.get(key), dict) else content.get(key)  # noqa: E731
-        names = [a.get("fullname", "") if isinstance(a, dict) else str(a) for a in value("authors") or []]
-        venue = str(value("venue") or "")
+        names = [a.get("fullname", "") if isinstance(a, dict) else str(a) for a in _field(content, "authors") or []]
+        venue = str(_field(content, "venue") or "")
         year = YEAR_RE.search(venue)
         stamp = note.get("pdate") or note.get("cdate")
         records.append({
-            "source": "OpenReview" + (" (DBLP)" if str(value("venueid") or "").startswith("dblp.org") else ""),
-            "doi": None, "title": str(value("title") or ""), "authors": names,
+            "source": "OpenReview" + (" (DBLP)" if str(_field(content, "venueid") or "").startswith("dblp.org") else ""),
+            "doi": None, "title": str(_field(content, "title") or ""), "authors": names,
             "year": int(year.group(1)) if year else (time.gmtime(stamp / 1000).tm_year if stamp else None),
             "venue": "" if venue.lower().startswith("corr") else venue, "type": "",
             "retracted": False, "concern": False, "corrected": False, "notices": [], "is_notice_for": [],
